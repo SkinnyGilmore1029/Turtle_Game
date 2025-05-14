@@ -1,0 +1,54 @@
+# Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Pygame generated files
+*.log
+*.bak
+
+# VS Code files
+.vscode/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Windows specific
+*.cab
+*.msi
+*.pdb
+
+# OneDrive sync files
+*.lnk
+desktop.ini
+
+# Environment directories
+env/
+venv/
+ENV/
+.env/
+Turtle/
+
+# Coverage reports
+.coverage
+*.coveragerc
+
+# Pytest cache
+.cache/
+
+# MacOS specific
+*.swp
+*.swo
+
+# GitHub specific (optional)
+*.tgz
+*.tar.gz
+
+# Ignore the directories with sensitive information
+config/settings.json
+
+# Ignore large files, backups
+*.bak
+*.tmp
