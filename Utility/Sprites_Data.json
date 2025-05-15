@@ -1,6 +1,12 @@
 {
         "Normal" : {
-            "Turtle" : "Pictures/Turtles/Turtle.png"
+            "Turtle" : "Pictures/Turtles/Turtle.png",
+            "Turtle2" : "Pictures/Turtles/Turtle2.png"
+        },
+
+        "Sheets" :{
+            "Turtle" : "Pictures/Turtles/Turtle sheet.png",
+            "Turtle2" :"Pictures/Turtles/Turtle2 sheet1.png"
         }
     
 }

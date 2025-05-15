@@ -1,8 +1,8 @@
 import pygame
 from Utility.Settings import WIDTH,HEIGHT
 from The_turtles.The_player import player
+from The_turtles.Jesse import jesse
 import sys
-
 
 class Turtle_Game:
     def __init__(self):
@@ -19,7 +19,10 @@ class Turtle_Game:
                     pygame.quit()
                     sys.exit()
             self.screen.fill("blue")
-            player.draw(self.screen,dt)
+            player.update(dt)
+            jesse.update(dt)
+            player.draw(self.screen)
+            jesse.draw(self.screen)
 
             pygame.display.flip()
             
