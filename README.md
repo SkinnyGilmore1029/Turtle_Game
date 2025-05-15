@@ -6,6 +6,9 @@ A simple 2D pixel-art game built with Pygame.
 
 ## Setup Instructions
 
+> ⚠️ This game requires **Python 3.12.3**.  
+> It has not been tested with newer versions — compatibility with newer Python versions is not guaranteed.
+
 1. **Clone the repository**
 
     ```bash
@@ -19,7 +22,7 @@ A simple 2D pixel-art game built with Pygame.
     
       ```bash
       python -m venv venv
-      venv/Scripts/activate
+      venv\Scripts\activate
       ```
     
     - On **Linux/Mac**:
@@ -46,3 +49,6 @@ A simple 2D pixel-art game built with Pygame.
     ```
 
 ---
+
+**requirements.txt**
+
