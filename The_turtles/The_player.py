@@ -3,37 +3,47 @@ from Utility.Image_Handler import Image_Animator, get_frames
 
 class Player(pygame.sprite.Sprite):
     """
-    A player-controlled character sprite for a Pygame-based game.
+        Represents the player-controlled character sprite in a Pygame-based game.
 
-    This class handles the player's position, movement, direction, and rendering. 
-    It responds to keyboard input for directional movement and updates the 
-    character's image based on the current facing direction.
+        This class manages the player's position, movement, animation, and rendering.
+        It responds to keyboard inputs for directional movement and updates the player's 
+        animation frames based on the facing direction.
 
-    Attributes:
-        name (str): The name of the sprite image file (without extension) to load.
-        x (float): The initial X position of the player on the screen.
-        y (float): The initial Y position of the player on the screen.
-        w (int): The width of the player's sprite.
-        h (int): The height of the player's sprite.
-        rect (pygame.FRect): The player's rectangular position and size for positioning and collision.
-        direction (str): The current facing direction of the player ('Up', 'Down', 'Left', 'Right').
-        velocity (pygame.Vector2): The current velocity of the player for movement.
-        image (pygame.Surface): The current image of the player (set in `direction_facing()`).
-        mask (pygame.Mask): The collision mask generated from the current image.
-    """
+        Attributes:
+            lives (int): Number of lives the player has. Shared by all instances.
+            name (str): The name of the sprite sheet (without extension) to load.
+            x (float): Initial X position of the player.
+            y (float): Initial Y position of the player.
+            w (int): Width of each animation frame.
+            h (int): Height of each animation frame.
+            rect (pygame.FRect): The player's rectangular position and size for positioning and collision.
+            direction (str): Current facing direction ('Up', 'Down', 'Left', 'Right').
+            velocity (pygame.Vector2): The player's velocity in both axes.
+            frame_count (int): Number of animation frames per direction.
+            frames (list): List of raw frames loaded from the sprite sheet.
+            animation (Image_Animator): Image animator helper instance (not actively used yet here).
+            transformed_frames (dict): Pre-transformed images for each direction.
+            current_frame (int): Index of the current animation frame.
+            image (pygame.Surface): Current image of the player.
+            mask (pygame.Mask): Collision mask for the current image.
+            animation_timer (int): Time of the last frame change.
+            animation_speed (int): Milliseconds between animation frames.
+        """
     lives:int = 5
     def __init__(self, name:str, x:float, y:float,width:int, height:int,direction:str,frame_count:int)->None:
         """
         Initializes a new Player instance.
 
         Parameters:
-            name (str): The name of the image file to load for the player.
-            x (float): The starting X position of the player.
-            y (float): The starting Y position of the player.
-            width (int): The width of the player's sprite.
-            height (int): The height of the player's sprite.
-            direction (str): The initial facing direction of the player ('Up', 'Down', 'Left', 'Right').
+            name (str): The name of the sprite sheet image file to load (without extension).
+            x (float): Starting X position of the player.
+            y (float): Starting Y position of the player.
+            width (int): Width of each animation frame.
+            height (int): Height of each animation frame.
+            direction (str): Initial facing direction ('Up', 'Down', 'Left', 'Right').
+            frame_count (int): Number of animation frames per direction.
         """
+
         super().__init__()
         self.name = name
         self.x = x
@@ -46,7 +56,6 @@ class Player(pygame.sprite.Sprite):
         self.frame_count = frame_count
         self.frames = get_frames(self.name,self.frame_count,self.w,self.h)
         self.animation = Image_Animator(self.name)
-        self.animation.frames = self.frames
         self.transformed_frames = {
             "Up": [],
             "Down": [],
@@ -62,6 +71,19 @@ class Player(pygame.sprite.Sprite):
         
 
     def pre_load_frames(self):
+        """
+        Prepares and transforms the player's animation frames for each facing direction.
+
+        This method iterates through the original frames, performing transformations to 
+        produce separate frame lists for 'Up', 'Down', 'Left', and 'Right' directions:
+            - 'Up': Scales the original image.
+            - 'Down': Flips the image vertically and scales it.
+            - 'Left': Rotates the image -90 degrees, flips it horizontally, and scales it.
+            - 'Right': Rotates the image -90 degrees and scales it.
+
+        The resulting frames are stored in the `transformed_frames` dictionary 
+        keyed by direction.
+        """
         for frame in self.frames:
             # Up: just scale
             up_img = pygame.transform.smoothscale(frame, (self.w, self.h))
@@ -86,17 +108,17 @@ class Player(pygame.sprite.Sprite):
         
     def move(self,dt:float)->None:
         """
-        Updates the character's velocity and position based on user input.
+        Updates the player's velocity and position based on keyboard input.
 
-        This method checks the current keyboard state for arrow key inputs and 
-        sets the character's velocity and facing direction accordingly.
-        It then updates the character's position (`self.rect`) based on the 
-        velocity and delta time (`dt`).
-        
+        This method checks the current keyboard state and sets the player's 
+        velocity and facing direction accordingly. The player's position is 
+        then updated using the velocity scaled by the delta time (dt) for 
+        framerate-independent movement.
+
         Parameters:
-            dt (float): The time elapsed since the last frame (delta time),
-                        used to scale movement speed for frame rate independence.
+            dt (float): Time elapsed since the last frame (delta time).
         """
+
         keys = pygame.key.get_pressed()
         self.velocity.x = 0
         self.velocity.y = 0
@@ -117,11 +139,15 @@ class Player(pygame.sprite.Sprite):
         self.rect.x += self.velocity.x * dt
         self.rect.y += self.velocity.y * dt
     
-    def update(self, dt):
-        # Move player
-        self.move(dt)
-        
-        # Animate frames over time
+    def handle_animations(self)->None:
+        """
+        Handles player animation frame updates based on elapsed time.
+
+        Advances the animation frame if enough time has passed, and updates 
+        the current image and collision mask based on the facing direction.
+        """
+
+         # Animate frames over time
         current_time = pygame.time.get_ticks()
         if current_time - self.animation_timer > self.animation_speed:
             self.current_frame = (self.current_frame + 1) % self.frame_count
@@ -131,7 +157,28 @@ class Player(pygame.sprite.Sprite):
         self.image = self.transformed_frames[self.direction][self.current_frame]
         self.mask = pygame.mask.from_surface(self.image)
     
+    
+    def update(self, dt):
+        """
+        Updates the player's state.
+
+        Calls movement and animation handling methods.
+
+        Parameters:
+            dt (float): Time elapsed since the last frame (delta time).
+        """
+
+        # Move player
+        self.move(dt)
+        self.handle_animations()
+    
     def draw(self,screen:pygame.Surface)->None:
+        """
+        Draws the player's current image at its position on the given surface.
+
+        Parameters:
+            screen (pygame.Surface): The surface to draw the player onto.
+        """
         screen.blit(self.image,self.rect)
         
 player = Player("Turtle",200,200,64,64,"Up",3)
