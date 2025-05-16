@@ -1,24 +1,24 @@
 {
     "Level 1" : {
         "Background" : {
-        "Room 1" : "Pictures/Backgrounds/Level1_BG.png",
-        "Room 2" : "Pictures/Backgrounds/Level1_BG2.png"
-        }
-    },
+            "Room 1" : "Pictures/Backgrounds/level1_BG.png",
+            "Room 2" : "Pictures/Backgrounds/level1b_BG.png"
+            }
+        },
     "Level 2" : {
         "Background" : {
-        "Room 1" : "Pictures/Backgrounds/level2_bg.png",
-        "Room 2" : "Pictures/Backgrounds/level2b_bg.png"
-        }
-    },
-    "Level 3" :{
+            "Room 1" : "Pictures/Backgrounds/level2_bg.png",
+            "Room 2" : "Pictures/Backgrounds/level2b_bg.png"
+            }
+        },
+    "Level 3" : {
         "Background" :{
             "Room 1" : "Pictures/Backgrounds/level3_bg.png"
-        }
-    },
-    "Level 4" :{
-        "Backgrounds" : {
+            }
+        },
+    "Level 4" : {
+        "Background" : {
             "Room 1" : "Pictures/Backgrounds/level4_bg.png"
+            }
         }
-    }
 }

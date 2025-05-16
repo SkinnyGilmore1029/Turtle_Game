@@ -2,9 +2,11 @@ import pygame
 from Utility.Settings import WIDTH,HEIGHT
 from The_turtles.The_player import player
 from The_turtles.Jesse import jesse
+from Levels.Level_Creater import Level_Creater
 import sys
 
 class Turtle_Game:
+    Level_1 = Level_Creater(1,1)
     def __init__(self):
         self.playing = True
         self.screen = pygame.display.get_surface()
@@ -19,6 +21,7 @@ class Turtle_Game:
                     pygame.quit()
                     sys.exit()
             self.screen.fill("blue")
+            self.Level_1.draw_level(self.screen)
             player.update(dt)
             jesse.update(dt)
             player.draw(self.screen)
