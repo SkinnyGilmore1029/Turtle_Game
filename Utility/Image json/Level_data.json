@@ -13,12 +13,14 @@
         },
     "Level 3" : {
         "Background" :{
-            "Room 1" : "Pictures/Backgrounds/level3_bg.png"
+            "Room 1" : "Pictures/Backgrounds/level3_bg.png",
+            "Room 2" : "Pictures/Backgrounds/level3_bg.png"
             }
         },
     "Level 4" : {
         "Background" : {
-            "Room 1" : "Pictures/Backgrounds/level4_bg.png"
+            "Room 1" : "Pictures/Backgrounds/level4_bg.png",
+            "Room 2" : "Pictures/Backgrounds/level4_bg.png"
             }
         }
 }

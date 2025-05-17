@@ -48,7 +48,7 @@ def load_sheet_data(sheet_name:str)->pygame.Surface:
         _loaded_images[sheet_name] = image
     return _loaded_images[sheet_name]
 
-def load_level_room_data(level_num: int, path: str) -> dict:
+def load_level_room_data(level_num: int, path: str) -> dict[str,str]:
     if path not in _cached_level_data:
         with open(path, 'r') as f:
             _cached_level_data[path] = json.load(f)
@@ -60,7 +60,7 @@ def load_level_room_data(level_num: int, path: str) -> dict:
 def load_level_background(level_num: int, room_num: float) -> pygame.Surface:
     room_key = f"Room {room_num}"
     room_bg = load_level_room_data(level_num, "Utility/Image json/Level_data.json")
-    room_image_path = room_bg[room_key]
+    room_image_path = room_bg[room_key] #gives me path string
     try:
         level_background = pygame.image.load(room_image_path).convert_alpha()
     except (KeyError, FileNotFoundError):
@@ -69,7 +69,6 @@ def load_level_background(level_num: int, room_num: float) -> pygame.Surface:
         image_surface.fill((255, 50, 125))
         level_background = image_surface
     return level_background
-
 
 def get_frames(name:str, frame_count:int, w:int, h:int)->list[pygame.Surface]:
     key = (name, frame_count, w, h)

@@ -8,7 +8,7 @@ class Level_Backgrounds:
         self.room_num = room_num
         self.image = load_level_background(self.level_num,self.room_num)
         self.rect = self.image.get_frect()
+        self.room_list = []
         
     def draw(self,screen):
         screen.blit(self.image,self.rect)
-        
