@@ -3,7 +3,79 @@
         "Background" : {
             "Room 1" : "Pictures/Backgrounds/level1_BG.png",
             "Room 2" : "Pictures/Backgrounds/level1b_BG.png"
+            },
+        "Enemies" : {
+            "car1" : {
+                "name" : "Car",
+                "x" : 400.0,
+                "y" : 480.0,
+                "width" : 128,
+                "height" : 128,
+                "direction" : "right",
+                "frame_count" : 3,
+                "in_room" : 1
+            },
+            "car2" :{
+                "name" : "Car",
+                "x" : 1080.0,
+                "y" : 480.0,
+                "width" : 128,
+                "height" : 128,
+                "direction" : "right",
+                "frame_count" : 3,
+                "in_room" : 1
+            },
+            "truck1":{
+                "name" : "Truck",
+                "x" : 100.0,
+                "y" : 160.0,
+                "width" : 256,
+                "height" : 192,
+                "direction" : "left",
+                "frame_count" : 3,
+                "in_room" : 1
+            },
+            "truck2":{
+                "name" : "Truck",
+                "x" : 675.0,
+                "y" : 160.0,
+                "width" : 256,
+                "height" : 192,
+                "direction" : "left",
+                "frame_count" : 3,
+                "in_room" : 1
+            },
+            "truck3":{
+                "name" : "Truck",
+                "x" : 400.0,
+                "y" : 480.0,
+                "width" : 128,
+                "height" : 128,
+                "direction" : "right",
+                "frame_count" : 3,
+                "in_room" : 2
+            },
+            "truck4":{
+                "name" : "Truck",
+                "x" : 1080.0,
+                "y" : 480.0,
+                "width" : 128,
+                "height" : 128,
+                "direction" : "right",
+                "frame_count" : 3,
+                "in_room" : 2
+            },
+            "bus" : {
+                "name" : "Bus",
+                "x" : 100.0,
+                "y" : 160.0,
+                "width" : 256,
+                "height" : 192,
+                "direction" : "left",
+                "frame_count" : 3,
+                "in_room" : 2
             }
+        }
         },
     "Level 2" : {
         "Background" : {
