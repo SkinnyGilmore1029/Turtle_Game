@@ -103,7 +103,7 @@ class DataManager:
     def load_background_image(self, level_num: int, room: int) -> pygame.Surface:
         room_key = f"Room {room}"
         room_data = self.load_level_background_data(level_num)
-        image_string = room_data["Background"][room_key]
+        image_string = room_data[room_key]
         try:
             background_image = pygame.image.load(image_string).convert_alpha()
         except (KeyError, FileNotFoundError):
