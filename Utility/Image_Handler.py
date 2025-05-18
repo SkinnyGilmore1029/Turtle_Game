@@ -137,6 +137,39 @@ class Image_Animator:
             self.start_time = current_time
         return self.frames[self.frame]
 
+class DataManger:
+    def __init__(self):
+        self._cached_image_data = {}
+        self._loaded_images = {}
+        self._cached_level_data = {}
+        self.sheets = {}
+        self.single_pictures = {}
+        
+    def _load_json_file(self,path:str)->dict:
+        """Internal method to load and cache JSON Files"""
+        if path not in self._cached_level_data:
+            with open(path, "r") as f:
+                self._cached_level_data[path] = json.load(f)
+        return self._cached_level_data[path]
+    
+    def load_level_background_data(self,level_num:int)->dict[str,str]:
+        path = f"Utility/JSON Data/Level{level_num}/Level{level_num}_background.json"
+        return self._load_json_file(path)
+
+    def load_level_enemies_data(self,level_num:int)->dict[str,dict]:
+        path = f"Utility/JSON Data/Level{level_num}/Level{level_num}_enemies.json"
+        return self._load_json_file(path)
+    
+    def load_background_image(self,room:int)->pygame.Surface:
+        room_key = f"Room {room}"
+        image_string = self.load_level_background_data[room_key]
+        try:
+            background_image = pygame.image.load(image_string).convert_alpha()
+        except (KeyError, FileNotFoundError):
+            image_surface = pygame.Surface((1200, 800), pygame.SRCALPHA).convert_alpha()
+            image_surface.fill((255, 50, 125))
+            background_image = image_surface
+        return background_image
 
 #Normal Dictionary for load_image()
 single_pictures = get_image_data("Normal","Utility/JSON Data/Sprites_Data.json")
