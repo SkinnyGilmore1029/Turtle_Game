@@ -41,7 +41,7 @@ class Turtle_Game:
     def change_level(self):
         if (self.current_level.level != self.level or
             self.current_level.room != self.room):
-            self.current_level.change_background(self.level, self.room)
+            self.current_level.change_rooms(self.level, self.room)
     
     def Run(self)->None:
         while True:

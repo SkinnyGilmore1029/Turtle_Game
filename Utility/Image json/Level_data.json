@@ -11,7 +11,7 @@
                 "y" : 480.0,
                 "width" : 128,
                 "height" : 128,
-                "direction" : "right",
+                "direction" : "Right",
                 "frame_count" : 3,
                 "in_room" : 1
             },
@@ -21,7 +21,7 @@
                 "y" : 480.0,
                 "width" : 128,
                 "height" : 128,
-                "direction" : "right",
+                "direction" : "Right",
                 "frame_count" : 3,
                 "in_room" : 1
             },
@@ -31,7 +31,7 @@
                 "y" : 160.0,
                 "width" : 256,
                 "height" : 192,
-                "direction" : "left",
+                "direction" : "Right",
                 "frame_count" : 3,
                 "in_room" : 1
             },
@@ -41,7 +41,7 @@
                 "y" : 160.0,
                 "width" : 256,
                 "height" : 192,
-                "direction" : "left",
+                "direction" : "Right",
                 "frame_count" : 3,
                 "in_room" : 1
             },
@@ -51,7 +51,7 @@
                 "y" : 480.0,
                 "width" : 128,
                 "height" : 128,
-                "direction" : "right",
+                "direction" : "Right",
                 "frame_count" : 3,
                 "in_room" : 2
             },
@@ -61,7 +61,7 @@
                 "y" : 480.0,
                 "width" : 128,
                 "height" : 128,
-                "direction" : "right",
+                "direction" : "Right",
                 "frame_count" : 3,
                 "in_room" : 2
             },
@@ -71,7 +71,7 @@
                 "y" : 160.0,
                 "width" : 256,
                 "height" : 192,
-                "direction" : "left",
+                "direction" : "Left",
                 "frame_count" : 3,
                 "in_room" : 2
             }

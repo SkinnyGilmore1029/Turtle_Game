@@ -3,7 +3,7 @@ from Utility.Settings import WIDTH,HEIGHT
 from .Background_manger import Level_Backgrounds
 from The_turtles.The_player import player
 from The_turtles.Jesse import jesse
-from .The_Enemies import test_monster
+from .The_Enemy_Group import bad_guys
 
 class Level_Creater:
     def __init__(self,level:int,room:int):
@@ -11,6 +11,7 @@ class Level_Creater:
         self.level = level
         self.room = room
         self.background = Level_Backgrounds(level,room)
+        bad_guys.get_level_badguys(level,room)
     
     def get_background(self,level:int,room:int):
         key = (level, room)
@@ -23,11 +24,20 @@ class Level_Creater:
         self.room = new_room
         self.background = self.get_background(new_level, new_room)
     
+    def change_badguys(self,new_level:int,new_room:int)->None:
+        self.level = new_level
+        self.room = new_room
+        bad_guys.get_level_badguys(new_level,new_room)
+    
+    def change_rooms(self,new_level:int,new_room:int)->None:
+        self.change_background(new_level,new_room)
+        self.change_badguys(new_level,new_room)
+    
     def update_level(self,dt:float)->None:
         player.update(dt)
-        test_monster.update(dt)
+        bad_guys.update(dt)
     
     def draw_level(self,screen:pygame.Surface)->None:
         self.background.draw(screen)
         player.draw(screen)
-        test_monster.draw(screen)
+        bad_guys.draw(screen)

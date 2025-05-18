@@ -48,6 +48,16 @@ def load_sheet_data(sheet_name:str)->pygame.Surface:
         _loaded_images[sheet_name] = image
     return _loaded_images[sheet_name]
 
+def load_enemy_in_room(level_num:int):
+    path = "Utility/Image json/Level_data.json"
+    if path not in _cached_level_data:
+        with open(path, 'r') as f:
+            _cached_level_data[path] = json.load(f)
+    full_dict = _cached_level_data[path]
+    level_key = f"Level {level_num}"
+    level_backgrounds = full_dict[level_key]
+    return level_backgrounds["Enemies"]
+
 def load_level_room_data(level_num: int, path: str) -> dict[str,str]:
     if path not in _cached_level_data:
         with open(path, 'r') as f:
