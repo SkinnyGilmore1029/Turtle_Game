@@ -3,9 +3,6 @@ import pygame
 
 #cached images to make sure they dont reload
 _cached_image_data = {}
-_loaded_images = {}
-_loaded_frames = {}
-_cached_level_data = {}
 
 #functions to help load the json data
 #functions for Sprites_Data.json
@@ -28,91 +25,6 @@ def get_image_data(Key:str,path:str)->dict:
             _cached_image_data[Key] = image_paths
     return _cached_image_data[Key]
 
-def load_sheet_data(sheet_name:str)->pygame.Surface:
-    """This function loads the picture
-    from the specified path or the Error
-    image if the picture doesn't exist.
-
-    Args:
-        picture_name (str): The name of the picture to load
-
-    Returns:
-        pygame.Surface: The image on a pygame.Surface that can be used with pygame.Rectangles
-    """
-    if sheet_name not in _loaded_images:
-        try:
-            image = pygame.image.load(sheets[sheet_name]).convert_alpha()
-        except KeyError:
-            image_surface = pygame.Surface((128,128),pygame.SRCALPHA).convert_alpha()
-            image_surface.fill((255,0,0))
-            image = image_surface
-        _loaded_images[sheet_name] = image
-    return _loaded_images[sheet_name]
-
-
-#functions for Levels enemies
-def load_enemy_in_room(level_num:int):
-    path = f"Utility/JSON Data/Level{level_num}/Level{level_num}_data.json"
-    if path not in _cached_level_data:
-        with open(path, 'r') as f:
-            _cached_level_data[path] = json.load(f)
-    full_dict = _cached_level_data[path]
-    level_key = f"Level {level_num}"
-    level_enemies = full_dict[level_key]
-    return level_enemies["Enemies"]
-
-def load_level_room_data(level_num: int, path: str) -> dict[str,str]:
-    if path not in _cached_level_data:
-        with open(path, 'r') as f:
-            _cached_level_data[path] = json.load(f)
-    full_dict = _cached_level_data[path]
-    level_key = f"Level {level_num}"
-    level_backgrounds = full_dict[level_key]
-    return level_backgrounds["Background"]
-
-def load_level_background(level_num: int, room_num: float) -> pygame.Surface:
-    room_key = f"Room {room_num}"
-    room_bg = load_level_room_data(level_num, f"Utility/JSON Data/Level{level_num}/Level{level_num}_data.json")
-    room_image_path = room_bg[room_key] #gives me path string
-    try:
-        level_background = pygame.image.load(room_image_path).convert_alpha()
-    except (KeyError, FileNotFoundError):
-        # Return a placeholder surface if image loading fails
-        image_surface = pygame.Surface((1200, 800), pygame.SRCALPHA).convert_alpha()
-        image_surface.fill((255, 50, 125))
-        level_background = image_surface
-    return level_background
-
-def get_frames(name:str, frame_count:int, w:int, h:int)->list[pygame.Surface]:
-    key = (name, frame_count, w, h)
-    if key not in _loaded_frames:
-        animator = Image_Animator(name)
-        animator.load_frames(name, frame_count, w, h)
-        _loaded_frames[key] = animator.frames
-    return _loaded_frames[key]
-
-def load_image(picture_name:str)->pygame.Surface:
-    """This function loads the picture
-    from the specified path or the Error
-    image if the picture doesn't exist.
-
-    Args:
-        picture_name (str): The name of the picture to load
-
-    Returns:
-        pygame.Surface: The image on a pygame.Surface that can be used with pygame.Rectangles
-    """
-    if picture_name not in _loaded_images:
-        try:
-            image = pygame.image.load(single_pictures[picture_name]).convert_alpha()
-        except KeyError:
-            image_surface = pygame.Surface((128,128),pygame.SRCALPHA).convert_alpha()
-            image_surface.fill((255,0,0))
-            image = image_surface
-        _loaded_images[picture_name] = image
-    return _loaded_images[picture_name]
-
-
 class Image_Animator:
     def __init__(self,name:str,frame:int = 0, change_time:int = 200)-> None:
         self.name = name
@@ -122,7 +34,7 @@ class Image_Animator:
         self.frames:list[pygame.Surface] = []
         
     def get_image(self,name:str,frame:int,width:int,height:int)->pygame.Surface:
-        sheet = load_sheet_data(name)
+        sheet = data.load_sheet_data(name)
         image = pygame.Surface((width,height),pygame.SRCALPHA)
         image.blit(sheet,(0,0),(frame * width, 0, width, height))
         return image
@@ -137,41 +49,69 @@ class Image_Animator:
             self.start_time = current_time
         return self.frames[self.frame]
 
-class DataManger:
+class DataManager:
     def __init__(self):
+        self._cached_level_data = {}
         self._cached_image_data = {}
         self._loaded_images = {}
-        self._cached_level_data = {}
-        self.sheets = {}
-        self.single_pictures = {}
-        
-    def _load_json_file(self,path:str)->dict:
-        """Internal method to load and cache JSON Files"""
+        self._loaded_frames = {}
+        self.sheets = get_image_data("Sheets", "Utility/JSON Data/Sprites_Data.json")
+        self.single_pictures = get_image_data("Normal", "Utility/JSON Data/Sprites_Data.json")
+
+    def _load_json_file(self, path: str) -> dict:
         if path not in self._cached_level_data:
-            with open(path, "r") as f:
+            with open(path, 'r') as f:
                 self._cached_level_data[path] = json.load(f)
         return self._cached_level_data[path]
-    
-    def load_level_background_data(self,level_num:int)->dict[str,str]:
+
+    def load_level_background_data(self, level_num: int) -> dict[str, str]:
         path = f"Utility/JSON Data/Level{level_num}/Level{level_num}_background.json"
         return self._load_json_file(path)
 
-    def load_level_enemies_data(self,level_num:int)->dict[str,dict]:
+    def load_level_enemies_data(self, level_num: int) -> dict[str, dict]:
         path = f"Utility/JSON Data/Level{level_num}/Level{level_num}_enemies.json"
         return self._load_json_file(path)
-    
-    def load_background_image(self,room:int)->pygame.Surface:
+
+    def load_sheet_data(self, sheet_name: str) -> pygame.Surface:
+        if sheet_name not in self._loaded_images:
+            try:
+                image = pygame.image.load(self.sheets[sheet_name]).convert_alpha()
+            except (KeyError, FileNotFoundError):
+                image = pygame.Surface((128, 128), pygame.SRCALPHA)
+                image.fill((255, 0, 0))
+            self._loaded_images[sheet_name] = image
+        return self._loaded_images[sheet_name]
+
+    def load_image(self, picture_name: str) -> pygame.Surface:
+        if picture_name not in self._loaded_images:
+            try:
+                image = pygame.image.load(self.single_pictures[picture_name]).convert_alpha()
+            except (KeyError, FileNotFoundError):
+                image = pygame.Surface((128, 128), pygame.SRCALPHA)
+                image.fill((255, 0, 0))
+            self._loaded_images[picture_name] = image
+        return self._loaded_images[picture_name]
+
+    def get_frames(self, name: str, frame_count: int, w: int, h: int) -> list[pygame.Surface]:
+        key = (name, frame_count, w, h)
+        if key not in self._loaded_frames:
+            animator = Image_Animator(name)
+            animator.load_frames(name, frame_count, w, h)
+            self._loaded_frames[key] = animator.frames
+        return self._loaded_frames[key]
+
+    def load_background_image(self, level_num: int, room: int) -> pygame.Surface:
         room_key = f"Room {room}"
-        image_string = self.load_level_background_data[room_key]
+        room_data = self.load_level_background_data(level_num)
+        image_string = room_data["Background"][room_key]
         try:
             background_image = pygame.image.load(image_string).convert_alpha()
         except (KeyError, FileNotFoundError):
-            image_surface = pygame.Surface((1200, 800), pygame.SRCALPHA).convert_alpha()
-            image_surface.fill((255, 50, 125))
-            background_image = image_surface
+            background_image = pygame.Surface((1200, 800), pygame.SRCALPHA)
+            background_image.fill((255, 50, 125))
         return background_image
 
-#Normal Dictionary for load_image()
-single_pictures = get_image_data("Normal","Utility/JSON Data/Sprites_Data.json")
-sheets = get_image_data("Sheets","Utility/JSON Data/Sprites_Data.json")
+# Initialize the data manager once:
+data = DataManager()
+
 

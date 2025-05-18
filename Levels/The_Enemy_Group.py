@@ -1,5 +1,5 @@
 import pygame
-from Utility.Image_Handler import load_enemy_in_room
+from Utility.Image_Handler import data
 from .The_Enemies import (
     The_cars,
     The_trucks,
@@ -12,7 +12,8 @@ class The_Bad_Guys(pygame.sprite.Group):
         
     def get_level_badguys(self,level:int,room:int):
         self.empty()
-        in_level = load_enemy_in_room(level) #should be dict full of enemis
+        enemies_dict = data.load_level_enemies_data(level) #should be dict full of enemis
+        in_level = enemies_dict["Enemies"]
         for m in in_level.values():
             if m['in_room'] == room:
                 badguy = self.create_badguy_from_data(m)

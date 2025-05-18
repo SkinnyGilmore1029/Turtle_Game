@@ -1,6 +1,6 @@
 import pygame
 from Utility.Settings import WIDTH
-from Utility.Image_Handler import Image_Animator, get_frames
+from Utility.Image_Handler import Image_Animator, data
 
 class Bad_guy(pygame.sprite.Sprite):
     """
@@ -19,7 +19,7 @@ class Bad_guy(pygame.sprite.Sprite):
         self.direction = direction
         self.velocity = pygame.Vector2(0,0)
         self.frame_count = frame_count
-        self.frames = get_frames(self.name,self.frame_count,self.w,self.h)
+        self.frames = data.get_frames(self.name,self.frame_count,self.w,self.h)
         self.animation = Image_Animator(self.name)
         self.transformed_frames = {
             "Left": [],
