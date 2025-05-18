@@ -54,6 +54,12 @@ class The_Bad_Guys(pygame.sprite.Group):
                     in_room=data["in_room"]
                 )
 
+    def collision_with_player(self,player)->None:
+        for sprite in self:
+            if pygame.sprite.collide_mask(sprite,player):
+                return True
+        return False
+
     def update(self,dt:float):
         for sprite in self:
             sprite.update(dt)

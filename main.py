@@ -24,6 +24,7 @@ class Turtle_Game:
         self.change_level()
         self.current_level.update_level(dt)
     
+    
     def draw(self):
         self.current_level.draw_level(self.screen)
     
@@ -49,6 +50,7 @@ class Turtle_Game:
             self.handle_events()
             if self.playing:
                 self.update_game(dt)
+                self.current_level.handle_collision()
                 self.draw()
                 
             pygame.display.flip()

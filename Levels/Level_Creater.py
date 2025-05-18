@@ -33,6 +33,10 @@ class Level_Creater:
         self.change_background(new_level,new_room)
         self.change_badguys(new_level,new_room)
     
+    def handle_collision(self):
+        if bad_guys.collision_with_player(player):
+            player.died()
+    
     def update_level(self,dt:float)->None:
         player.update(dt)
         bad_guys.update(dt)

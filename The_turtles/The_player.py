@@ -1,4 +1,5 @@
 import pygame
+from Utility.Settings import WIDTH,HEIGHT
 from Utility.Image_Handler import Image_Animator, data
 
 class Player(pygame.sprite.Sprite):
@@ -158,6 +159,11 @@ class Player(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
     
     
+    def died(self):
+        self.lives -= 1
+        self.rect.x = self.x
+        self.rect.y = self.y
+    
     def update(self, dt):
         """
         Updates the player's state.
@@ -181,4 +187,4 @@ class Player(pygame.sprite.Sprite):
         """
         screen.blit(self.image,self.rect)
         
-player = Player("Turtle",200,200,64,64,"Up",3)
+player = Player("Turtle",WIDTH*.5,HEIGHT-64,64,64,"Up",3)
