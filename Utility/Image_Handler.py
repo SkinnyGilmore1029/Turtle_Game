@@ -8,6 +8,7 @@ _loaded_frames = {}
 _cached_level_data = {}
 
 #functions to help load the json data
+#functions for Sprites_Data.json
 def get_image_data(Key:str,path:str)->dict:
     """This function just loads
     the json file to get image
@@ -48,15 +49,17 @@ def load_sheet_data(sheet_name:str)->pygame.Surface:
         _loaded_images[sheet_name] = image
     return _loaded_images[sheet_name]
 
+
+#functions for Levels enemies
 def load_enemy_in_room(level_num:int):
-    path = "Utility/Image json/Level_data.json"
+    path = f"Utility/JSON Data/Level{level_num}/Level{level_num}_data.json"
     if path not in _cached_level_data:
         with open(path, 'r') as f:
             _cached_level_data[path] = json.load(f)
     full_dict = _cached_level_data[path]
     level_key = f"Level {level_num}"
-    level_backgrounds = full_dict[level_key]
-    return level_backgrounds["Enemies"]
+    level_enemies = full_dict[level_key]
+    return level_enemies["Enemies"]
 
 def load_level_room_data(level_num: int, path: str) -> dict[str,str]:
     if path not in _cached_level_data:
@@ -69,7 +72,7 @@ def load_level_room_data(level_num: int, path: str) -> dict[str,str]:
 
 def load_level_background(level_num: int, room_num: float) -> pygame.Surface:
     room_key = f"Room {room_num}"
-    room_bg = load_level_room_data(level_num, "Utility/Image json/Level_data.json")
+    room_bg = load_level_room_data(level_num, f"Utility/JSON Data/Level{level_num}/Level{level_num}_data.json")
     room_image_path = room_bg[room_key] #gives me path string
     try:
         level_background = pygame.image.load(room_image_path).convert_alpha()
@@ -136,6 +139,6 @@ class Image_Animator:
 
 
 #Normal Dictionary for load_image()
-single_pictures = get_image_data("Normal","Utility/Image json/Sprites_Data.json")
-sheets = get_image_data("Sheets","Utility/Image json/Sprites_Data.json")
+single_pictures = get_image_data("Normal","Utility/JSON Data/Sprites_Data.json")
+sheets = get_image_data("Sheets","Utility/JSON Data/Sprites_Data.json")
 
