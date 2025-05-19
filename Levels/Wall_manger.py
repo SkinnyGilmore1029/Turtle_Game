@@ -58,13 +58,13 @@ class The_walls_group(pygame.sprite.Group):
             walls = data.load_wall_data(level)
             for w in walls.values():
                 if w['room'] == room:
-                    wall = The_Walls(name= w['name'],
-                                    x= w['x'],
-                                    y= w['y'],
-                                    width= w['width'],
-                                    height= w['height'],
-                                    direction= w['direction'],
-                                    room= w['room'])
+                    wall = The_Walls(name= w.get("name","Fence"),
+                                    x= w.get("x",0),
+                                    y= w.get("y",0),
+                                    width= w.get("width",128),
+                                    height= w.get("height",128),
+                                    direction= w.get("direction","up"),
+                                    room= w.get("room",1))
                     self.add(wall)
             self.loaded_room.add(key)
     

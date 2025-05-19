@@ -1,5 +1,4 @@
 import pygame
-from Utility.Settings import WIDTH,HEIGHT
 from Levels.Level_Creater import Level_Creater
 import sys
 

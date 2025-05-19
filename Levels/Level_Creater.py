@@ -2,7 +2,6 @@ import pygame
 from .Background_manger import Level_Backgrounds
 from .Wall_manger import All_walls
 from The_turtles.The_player import player
-from The_turtles.Jesse import jesse
 from .The_Enemy_Group import bad_guys
 
 class Level_Creater:
