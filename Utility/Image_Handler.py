@@ -35,7 +35,7 @@ class Image_Animator:
         
     def get_image(self,name:str,frame:int,width:int,height:int)->pygame.Surface:
         sheet = data.load_sheet_data(name)
-        image = pygame.Surface((width,height),pygame.SRCALPHA)
+        image = pygame.Surface((width,height),pygame.SRCALPHA).convert_alpha()
         image.blit(sheet,(0,0),(frame * width, 0, width, height))
         return image
     

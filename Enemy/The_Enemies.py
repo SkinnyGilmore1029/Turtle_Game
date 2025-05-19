@@ -121,7 +121,7 @@ class The_bus(Bad_guy):
         super().__init__(name,x,y,width,height,direction,frame_count,in_room)
         
     def move(self,dt:float)->None:
-        self.velocity.x = 200
+        self.velocity.x = 400
         self.rect.x -=self.velocity.x *dt
         if self.rect.x < -128:
             self.rect.x = WIDTH + 30
