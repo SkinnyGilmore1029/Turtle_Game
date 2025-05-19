@@ -1,6 +1,6 @@
 import pygame
-from Utility.Settings import WIDTH,HEIGHT
 from .Background_manger import Level_Backgrounds
+from .Wall_manger import All_walls
 from The_turtles.The_player import player
 from The_turtles.Jesse import jesse
 from .The_Enemy_Group import bad_guys
@@ -12,6 +12,7 @@ class Level_Creater:
         self.room = room
         self.background = Level_Backgrounds(level,room)
         bad_guys.get_level_badguys(level,room)
+        All_walls.load_group(level,room)
     
     def get_background(self,level:int,room:int):
         key = (level, room)
@@ -29,9 +30,16 @@ class Level_Creater:
         self.room = new_room
         bad_guys.get_level_badguys(new_level,new_room)
     
+    def change_walls(self,new_level:int,new_room:int)->None:
+        self.level = new_level
+        self.room = new_room
+        All_walls.change_level()
+        All_walls.load_group(new_level,new_room)
+    
     def change_rooms(self,new_level:int,new_room:int)->None:
         self.change_background(new_level,new_room)
         self.change_badguys(new_level,new_room)
+        self.change_walls(new_level,new_room)
     
     def handle_collision(self):
         if bad_guys.collision_with_player(player):
@@ -43,5 +51,7 @@ class Level_Creater:
     
     def draw_level(self,screen:pygame.Surface)->None:
         self.background.draw(screen)
+        All_walls.draw(screen,player)
         player.draw(screen)
         bad_guys.draw(screen)
+        

@@ -72,6 +72,10 @@ class DataManager:
         path = f"Utility/JSON Data/Level{level_num}/Level{level_num}_enemies.json"
         return self._load_json_file(path)
 
+    def load_wall_data(self,level_num:int)->dict[str,dict]:
+        path = f"Utility/JSON Data/Level{level_num}/Level{level_num}_walls.json"
+        return self._load_json_file(path)
+
     def load_sheet_data(self, sheet_name: str) -> pygame.Surface:
         if sheet_name not in self._loaded_images:
             try:

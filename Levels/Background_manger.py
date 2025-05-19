@@ -1,5 +1,3 @@
-import pygame
-from Utility.Settings import WIDTH,HEIGHT
 from Utility.Image_Handler import data
 
 class Level_Backgrounds:

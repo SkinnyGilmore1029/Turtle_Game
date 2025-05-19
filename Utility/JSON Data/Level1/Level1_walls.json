@@ -1,0 +1,52 @@
+{
+    "Fence 1" : {
+        "name" : "Fence",
+        "x" : 0,
+        "y" : 68,
+        "width" : 560,
+        "height" : 64,
+        "direction" : "up",
+        "room" : 1,
+        "level" : 1
+    },
+    "Fence 2" : {
+        "name" : "Fence",
+        "x" : 730,
+        "y" : 68,
+        "width" : 640,
+        "height" : 64,
+        "direction" : "up",
+        "room" : 1,
+        "level" : 1
+    },
+    "Fence 3" : {
+        "name" : "Fence",
+        "x" : 730,
+        "y" : 680,
+        "width" : 640,
+        "height" : 64,
+        "direction" : "up",
+        "room" : 2,
+        "level" : 1
+    },
+    "Fence 4" : {
+        "name" : "Fence",
+        "x" : 0,
+        "y" : 680,
+        "width" : 560,
+        "height" : 64,
+        "direction" : "up",
+        "room" : 2,
+        "level" : 1
+    },
+    "Fence 5" : {
+        "name" : "Fence",
+        "x" : 0,
+        "y" : 100,
+        "width" : 1000,
+        "height" : 64,
+        "direction" : "up",
+        "room" : 2,
+        "level" : 1
+    }
+}
