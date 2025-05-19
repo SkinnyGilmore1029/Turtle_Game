@@ -1,0 +1,16 @@
+{
+    "Key" : {
+        "name" : "Key",
+        "x" : 300,
+        "y" : 266.6,
+        "width" : 64,
+        "height" : 64
+    },
+    "Lock" : {
+        "name" : "Lock",
+        "x" : 1000,
+        "y" : 100,
+        "width" : 200,
+        "height" : 64
+    }
+}

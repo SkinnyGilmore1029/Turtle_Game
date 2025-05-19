@@ -1,8 +1,10 @@
 import pygame
 from .Background_manger import Level_Backgrounds
 from .Wall_manger import All_walls
+from .Collectables import key1
 from The_turtles.The_player import player
 from Enemy.The_Enemy_Group import bad_guys
+
 
 class Level_Creater:
     def __init__(self,level:int,room:int):
@@ -53,4 +55,5 @@ class Level_Creater:
         All_walls.draw(screen,player)
         player.draw(screen)
         bad_guys.draw(screen)
+        key1.draw(screen)
         
