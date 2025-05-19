@@ -43,8 +43,8 @@
         "name" : "Truck",
         "x" : 400.0,
         "y" : 480.0,
-        "width" : 128,
-        "height" : 128,
+        "width" : 256,
+        "height" : 192,
         "direction" : "Right",
         "frame_count" : 3,
         "in_room" : 2
@@ -53,8 +53,8 @@
         "name" : "Truck",
         "x" : 1080.0,
         "y" : 480.0,
-        "width" : 128,
-        "height" : 128,
+        "width" : 256,
+        "height" : 192,
         "direction" : "Right",
         "frame_count" : 3,
         "in_room" : 2

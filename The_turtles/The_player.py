@@ -69,6 +69,7 @@ class Player(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
         self.animation_timer = pygame.time.get_ticks()
         self.animation_speed = 200  # ms per frame
+        self.speed = 300
         
 
     def pre_load_frames(self):
@@ -125,16 +126,16 @@ class Player(pygame.sprite.Sprite):
         self.velocity.y = 0
 
         if keys[pygame.K_LEFT]:
-            self.velocity.x = -200
+            self.velocity.x = -self.speed
             self.direction = "Left"
         if keys[pygame.K_RIGHT]:
-            self.velocity.x = 200
+            self.velocity.x = self.speed
             self.direction = "Right"
         if keys[pygame.K_UP]:
-            self.velocity.y = -200
+            self.velocity.y = -self.speed
             self.direction = "Up"
         if keys[pygame.K_DOWN]:
-            self.velocity.y = 200
+            self.velocity.y = self.speed
             self.direction = "Down"
 
         self.rect.x += self.velocity.x * dt
