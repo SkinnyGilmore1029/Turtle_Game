@@ -6,7 +6,18 @@
             "Key" : "Pictures/Misc/key.png",
             "Lock" : "Pictures/Misc/Locked.png",
             "Red Star" : "Pictures/Misc/Star.png",
-            "Green Star" : "Pictures/Misc/Star2.png"
+            "Green Star" : "Pictures/Misc/Star2.png",
+            "1up" : "Pictures/Misc/1up.png",
+            "Down Arrow" : "Pictures/Misc/Down_arrow.png",
+            "Right Arrow" : "Pictures/Misc/Right Arrow.png",
+            "Vine" : "Pictures/Misc/Vine.png",
+            "Crab" : "Pictures/NPC/Crab.png",
+            "Fish" : "Pictures/Enemies/School of fish.png",
+            "Hint" : "Pictures/NPC/Hint.png",
+            "Lizard" : "Pictures/NPC/lizard.png",
+            "Boss" : "Pictures/Enemies/Boss.png",
+            "Arrow" : "Pictures/Enemies/arrow2.png",
+            "Rat" : "Pictures/Enemies/Rat.png"
         },
 
         "Sheets" :{
@@ -14,7 +25,13 @@
             "Turtle2" :"Pictures/Turtles/Turtle2 sheet1.png",
             "Car" : "Pictures/Enemies/car sheet.png",
             "Truck" : "Pictures/Enemies/Truck_sheet.png",
-            "Bus" : "Pictures/Enemies/Bus_sheet.png"
+            "Bus" : "Pictures/Enemies/Bus_sheet.png",
+            "Gator" : "Pictures/Enemies/Gator_sheet.png",
+            "Scorpion" : "Pictures/Enemies/scorpion_sheet.png",
+            "Bolder" : "Pictures/Enemies/bolder2.png",
+            "Teleporter" : "Pictures/Misc/tele_sheet.png",
+            "Cactus" : "Pictures/NPC/cactus_sheet.png",
+            "Fly" : "Pictures/NPC/fly_sheet.png"
         }
     
 }

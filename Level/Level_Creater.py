@@ -14,7 +14,7 @@ class Level_Creater:
         self.background = Level_Backgrounds(level,room)
         bad_guys.get_level_badguys(level,room)
         All_walls.load_group(level,room)
-        Collect_group.get_level_keys(level,room)
+        Collect_group.get_level_collectables(level,room)
     
     def get_background(self,level:int,room:int):
         key = (level, room)
