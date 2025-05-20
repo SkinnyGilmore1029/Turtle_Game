@@ -3,6 +3,7 @@ from .Background_manger import Level_Backgrounds
 from .Wall_manger import All_walls
 from .Collectables_Group import Collect_group
 from .Locks_Group import the_lock
+from .Teleporters import The_tele
 from The_turtles.The_player import player
 from Enemy.The_Enemy_Group import bad_guys
 
@@ -14,6 +15,8 @@ class Level_Creater:
         self.room = room
         self.background = Level_Backgrounds(level,room)
         self.change_rooms(level,room)
+        self.next_level = None
+        self.next_room = None
         
     def get_background(self,level:int,room:int):
         key = (level, room)
@@ -30,6 +33,8 @@ class Level_Creater:
         All_walls.load_group(level, room)
         Collect_group.get_level_collectables(level,room)
         the_lock.get_level_lock(level,room)
+        The_tele.get_tele_data(level,room)
+        
         
 
     def handle_collision(self):
@@ -41,6 +46,7 @@ class Level_Creater:
         bad_guys.update(dt)
         Collect_group.update(player)
         the_lock.update(player)
+        The_tele.update(player,self)
     
     def draw_level(self,screen:pygame.Surface)->None:
         self.background.draw(screen)
@@ -49,4 +55,5 @@ class Level_Creater:
         bad_guys.draw(screen)
         Collect_group.draw(screen)
         the_lock.draw(screen)
+        The_tele.draw(screen)
         

@@ -69,7 +69,7 @@ class DataManager:
         return self._load_json_file(path)
 
     def load_level_Key_Lock_data(self,level_num:int)->dict[str,dict]:
-        path = f"Utility/JSON Data/Level{level_num}/Levlel{level_num}_Lock_Key.json"
+        path = f"Utility/JSON Data/Level{level_num}/Level{level_num}_Lock_Key.json"
         return self._load_json_file(path)
 
     def load_level_background_data(self, level_num: int) -> dict[str, str]:
@@ -78,6 +78,10 @@ class DataManager:
 
     def load_level_enemies_data(self, level_num: int) -> dict[str, dict]:
         path = f"Utility/JSON Data/Level{level_num}/Level{level_num}_enemies.json"
+        return self._load_json_file(path)
+
+    def load_level_teleporter(self,level_num:int) -> dict[str,dict]:
+        path = f"Utility/JSON Data/Level{level_num}/Level{level_num}_Teleporter.json"
         return self._load_json_file(path)
 
     def load_wall_data(self,level_num:int)->dict[str,dict]:
