@@ -1,7 +1,7 @@
 import pygame
 from .Background_manger import Level_Backgrounds
 from .Wall_manger import All_walls
-from .Collectables import key1
+from .Collectables_Group import Collect_group
 from The_turtles.The_player import player
 from Enemy.The_Enemy_Group import bad_guys
 
@@ -14,6 +14,7 @@ class Level_Creater:
         self.background = Level_Backgrounds(level,room)
         bad_guys.get_level_badguys(level,room)
         All_walls.load_group(level,room)
+        Collect_group.get_level_keys(level,room)
     
     def get_background(self,level:int,room:int):
         key = (level, room)
@@ -45,15 +46,17 @@ class Level_Creater:
     def handle_collision(self):
         if bad_guys.collision_with_player(player):
             player.died()
+        #Collect_group.collision_with_player(player)
     
     def update_level(self,dt:float)->None:
         player.update(dt)
         bad_guys.update(dt)
+        Collect_group.update(player)
     
     def draw_level(self,screen:pygame.Surface)->None:
         self.background.draw(screen)
         All_walls.draw(screen,player)
         player.draw(screen)
         bad_guys.draw(screen)
-        key1.draw(screen)
+        Collect_group.draw(screen)
         

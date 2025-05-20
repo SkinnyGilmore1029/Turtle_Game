@@ -14,19 +14,27 @@ class Collectable(pygame.sprite.Sprite):
         self.rect = pygame.FRect(self.x,self.y,self.w,self.h)
         self.mask = pygame.mask.from_surface(self.image)
         self.collected = False
-        self.used = False
-        self.can_give = False
         
-    def collect(self,player:object)->None:
+    def collect(self,player)->None:
+        pass
+    
+    def get_collected(self,player)->None:
         if pygame.sprite.collide_mask(self,player):
-            self.collected = True
-            self.can_give = True
+            self.collect(player)
+    
+    def update(self,player)->None:
+        self.get_collected(player)
+    
+    def draw(self,screen:pygame.Surface)->None:
+        screen.blit(self.image,self.rect)
             
 class Keys(Collectable):
     def __init__(self,name:str,x:float,y:float,width:int,height:int):
         super().__init__(name,x,y,width,height)
-        
-    def draw(self,screen:pygame.Surface)->None:
-        screen.blit(self.image,self.rect)
-        
-key1 = Keys("Key",300,300,32,32)
+    
+    
+    def collect(self,player)->None:
+        self.collected = True
+        player.key_count +=1
+        print("collected")
+

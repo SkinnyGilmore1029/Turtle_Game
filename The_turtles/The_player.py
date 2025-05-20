@@ -31,6 +31,7 @@ class Player(pygame.sprite.Sprite):
             animation_speed (int): Milliseconds between animation frames.
         """
     lives:int = 5
+    key_count = 0
     def __init__(self, name:str, x:float, y:float,width:int, height:int,direction:str,frame_count:int)->None:
         """
         Initializes a new Player instance.

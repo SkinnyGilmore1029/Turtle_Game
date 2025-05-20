@@ -64,6 +64,14 @@ class DataManager:
                 self._cached_level_data[path] = json.load(f)
         return self._cached_level_data[path]
 
+    def load_level_collectables_data(self,level_num:int)->dict[str,dict]:
+        path = f"Utility/JSON Data/Level{level_num}/Level{level_num}_collectables.json"
+        return self._load_json_file(path)
+
+    def load_level_Key_Lock_data(self,level_num:int)->dict[str,dict]:
+        path = f"Utility/JSON Data/Level{level_num}/Levlel{level_num}_Lock_Key.json"
+        return self._load_json_file(path)
+
     def load_level_background_data(self, level_num: int) -> dict[str, str]:
         path = f"Utility/JSON Data/Level{level_num}/Level{level_num}_background.json"
         return self._load_json_file(path)
