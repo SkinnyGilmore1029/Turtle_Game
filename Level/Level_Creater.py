@@ -96,8 +96,10 @@ class Level_Creater:
         
         
     def handle_collision(self,game:object):
+        #Player death
         if bad_guys.collision_with_player(player):
             player.died()
+        #Level Win Condition
         if The_tele.collision_with_player(player):
             game.level +=1
             game.room = 1
