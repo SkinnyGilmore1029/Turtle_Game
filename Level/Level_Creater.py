@@ -22,31 +22,18 @@ class Level_Creater:
             self.backgrounds[key] = Level_Backgrounds(level,room)
         return self.backgrounds[key]
     
-    def change_background(self,new_level:int,new_room:int)->None:
-        self.level = new_level
-        self.room = new_room
-        self.background = self.get_background(new_level, new_room)
-    
-    def change_badguys(self,new_level:int,new_room:int)->None:
-        self.level = new_level
-        self.room = new_room
-        bad_guys.get_level_badguys(new_level,new_room)
-    
-    def change_walls(self,new_level:int,new_room:int)->None:
-        self.level = new_level
-        self.room = new_room
+    def change_rooms(self, level: int, room: int) -> None:
+        self.level = level
+        self.room = room
+        self.background = self.get_background(level, room)
+        bad_guys.get_level_badguys(level, room)
         All_walls.change_level()
-        All_walls.load_group(new_level,new_room)
-    
-    def change_rooms(self,new_level:int,new_room:int)->None:
-        self.change_background(new_level,new_room)
-        self.change_badguys(new_level,new_room)
-        self.change_walls(new_level,new_room)
-    
+        All_walls.load_group(level, room)
+        
+
     def handle_collision(self):
         if bad_guys.collision_with_player(player):
             player.died()
-        #Collect_group.collision_with_player(player)
     
     def update_level(self,dt:float)->None:
         player.update(dt)
