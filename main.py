@@ -23,7 +23,6 @@ class Turtle_Game:
         self.change_level()
         self.current_level.update_level(dt)
     
-    
     def draw(self):
         self.current_level.draw_level(self.screen)
     

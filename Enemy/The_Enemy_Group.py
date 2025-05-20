@@ -7,6 +7,11 @@ from .The_Enemies import (
 )
 
 class The_Bad_Guys(pygame.sprite.Group):
+    badguy_classes = {
+            "Car" : The_cars,
+            "Truck" : The_trucks,
+            "Bus" : The_bus
+        }
     def __init__(self):
         super().__init__()
         
@@ -19,40 +24,18 @@ class The_Bad_Guys(pygame.sprite.Group):
                 self.add(badguy)
         
     def create_badguy_from_data(self,data:dict):
-        match data["name"]:
-            case "Car":
-                return The_cars(
-                                name= data["name"],
-                                x= data['x'],
-                                y= data["y"],
-                                width= data["width"],
-                                height= data["height"],
-                                direction= data["direction"],
-                                frame_count= data["frame_count"],
-                                in_room= data["in_room"]
-                            )
-            case "Truck":
-                return The_trucks(
-                    name=data["name"],
-                    x=data["x"],
-                    y=data["y"],
-                    width=data["width"],
-                    height=data["height"],
-                    direction=data["direction"],
-                    frame_count=data["frame_count"],
-                    in_room=data["in_room"]
-                )
-            case "Bus":
-                return The_bus(
-                    name=data["name"],
-                    x=data["x"],
-                    y=data["y"],
-                    width=data["width"],
-                    height=data["height"],
-                    direction=data["direction"],
-                    frame_count=data["frame_count"],
-                    in_room=data["in_room"]
-                )
+        clas = self.badguy_classes.get(data["name"])
+        if clas:
+            return clas(
+                name= data["name"],
+                x= data['x'],
+                y= data["y"],
+                width= data["width"],
+                height= data["height"],
+                direction= data["direction"],
+                frame_count= data["frame_count"],
+                in_room= data["in_room"]
+            )
 
     def collision_with_player(self,player)->None:
         for sprite in self:
