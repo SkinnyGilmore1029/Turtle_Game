@@ -28,6 +28,7 @@ class Collectable_Group(pygame.sprite.Group):
                 self.add(oneup)
 
     def get_level_collectables(self,level:int,room:int)->None:
+        self.empty()
         self.get_level_keys(level,room)
         self.get_level_OneUps(level,room)
 

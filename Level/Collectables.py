@@ -36,7 +36,6 @@ class Keys(Collectable):
     def collect(self,player)->None:
         self.collected = True
         player.key_count +=1
-        print("collected key\n",player.key_count)
         
 class OneUps(Collectable):
     def __init__(self,name:str,x:float,y:float,width:int,height:int):
@@ -45,5 +44,4 @@ class OneUps(Collectable):
     def collect(self,player)->None:
         self.collected = True
         player.lives +=1
-        print("collected 1up\n",player.lives)
 
