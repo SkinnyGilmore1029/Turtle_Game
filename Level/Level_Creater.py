@@ -1,4 +1,6 @@
 import pygame
+from Utility.Image_Handler import data
+from Utility.Settings import WIDTH, HEIGHT
 from .Background_manger import Level_Backgrounds
 from .Wall_manger import All_walls
 from .Collectables_Group import Collect_group
@@ -13,15 +15,73 @@ class Level_Creater:
         self.backgrounds:dict[tuple,Level_Backgrounds] = {}
         self.level = level
         self.room = room
+        self.room2_location = data.get_room2_location(level)
         self.background = Level_Backgrounds(level,room)
         self.change_rooms(level,room)
-        
         
     def get_background(self,level:int,room:int):
         key = (level, room)
         if key not in self.backgrounds:
             self.backgrounds[key] = Level_Backgrounds(level,room)
         return self.backgrounds[key]
+        
+    def change_up_down(self,game) -> None:
+        if self.room2_location == "Above":
+            if player.rect.x <= 0:
+                player.rect.x = 0
+            elif player.rect.x >= WIDTH-64:
+                player.rect.x = WIDTH-64
+            if player.rect.y <= 0 and game.room == 1:
+                game.room +=1
+                player.rect.y = HEIGHT -1
+                The_tele.get_tele_data(game.level, game.room)
+            elif player.rect.y <=0 and game.room == 2:
+                player.rect.y =1 
+            elif player.rect.y >= HEIGHT and game.room == 2:
+                game.room -= 1 
+                player.rect.y = 1
+                The_tele.get_tele_data(game.level, game.room)
+            elif player.rect.y >= HEIGHT-64 and game.room == 1:
+                player.rect.y = HEIGHT - 64
+    
+    #Room 2 on bottom        
+    def change_down_up(self,game) -> None:
+        if self.room2_location == "Below": 
+            if player.rect.x <= 0:
+                player.rect.x = 0
+            elif player.rect.x >= WIDTH-64:
+                player.rect.x = WIDTH-64
+            if player.rect.y >= HEIGHT and game.room == 1:
+                game.room +=1
+                player.rect.y = 1
+                The_tele.get_tele_data(game.level, game.room)
+            elif player.rect.y <=0 and game.room == 1:
+                player.rect.y =1 
+            elif player.rect.y <= 0 and game.room ==2:
+                game.room -= 1 
+                player.rect.y = HEIGHT-32
+                The_tele.get_tele_data(game.level, game.room)
+            elif player.rect.y >= HEIGHT-32 and game.room == 2:
+                player.rect.y = HEIGHT - 32    
+    
+    def change_left_right(self,game)->None:
+        if self.room2_location == "Side":
+            if player.rect.y <= 0:
+                player.rect.y = 0
+            elif player.rect.y >= HEIGHT - 64:
+                player.rect.y = HEIGHT-64
+            if player.rect.x <= 0 and game.room == 1:
+                player.rect.x =1
+            elif player.rect.x >= WIDTH-64 and game.room == 2:
+                player.rect.x = WIDTH-64
+            elif player.rect.x >= WIDTH and game.room == 1:
+                game.room +=1
+                player.rect.x = 0
+                The_tele.get_tele_data(game.level, game.room)
+            elif player.rect.x <=0 and game.room ==2:
+                game.room -=1         
+                player.rect.x = WIDTH-64
+                The_tele.get_tele_data(game.level, game.room)
     
     def change_rooms(self, level: int, room: int) -> None:
         self.level = level
@@ -32,25 +92,30 @@ class Level_Creater:
         All_walls.load_group(level, room)
         Collect_group.get_level_collectables(level,room)
         the_lock.get_level_lock(level,room)
-        The_tele.get_tele_data(level,room)
-        
-        
 
+        
+        
     def handle_collision(self,game:object):
         if bad_guys.collision_with_player(player):
             player.died()
         if The_tele.collision_with_player(player):
             game.level +=1
             game.room = 1
-            player.rect.x = 400
-            player.rect.y = 700
+            player.rect.x = data.get_player_start(game.level)[0]
+            player.rect.y = data.get_player_start(game.level)[1]
+            self.room2_location = data.get_room2_location(game.level)
     
-    def update_level(self,dt:float)->None:
+    def update_level(self,dt:float,game:object)->None:
         player.update(dt)
         bad_guys.update(dt)
         Collect_group.update(player)
         the_lock.update(player)
         The_tele.update()
+        self.change_up_down(game)
+        self.change_left_right(game)
+        self.change_down_up(game)
+        
+        
     
     def draw_level(self,screen:pygame.Surface)->None:
         self.background.draw(screen)

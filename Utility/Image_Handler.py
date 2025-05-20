@@ -1,29 +1,6 @@
 import json
 import pygame
 
-#cached images to make sure they dont reload
-_cached_image_data = {}
-
-#functions to help load the json data
-#functions for Sprites_Data.json
-def get_image_data(Key:str,path:str)->dict:
-    """This function just loads
-    the json file to get image
-    locations for join.
-
-    Args:
-        Key (str): The key of the dictionary in
-        the json file.
-
-    Returns:
-        dict: The dictionary of image paths
-    """
-    if Key not in _cached_image_data:
-        with open(path,'r') as f:
-            images = json.load(f)
-            image_paths = images[Key]
-            _cached_image_data[Key] = image_paths
-    return _cached_image_data[Key]
 
 class Image_Animator:
     def __init__(self,name:str,frame:int = 0, change_time:int = 200)-> None:
@@ -55,8 +32,27 @@ class DataManager:
         self._cached_image_data = {}
         self._loaded_images = {}
         self._loaded_frames = {}
-        self.sheets = get_image_data("Sheets", "Utility/JSON Data/Sprites_Data.json")
-        self.single_pictures = get_image_data("Normal", "Utility/JSON Data/Sprites_Data.json")
+        self.sheets = self.get_image_data("Sheets", "Utility/JSON Data/Sprites_Data.json")
+        self.single_pictures = self.get_image_data("Normal", "Utility/JSON Data/Sprites_Data.json")
+
+    def get_image_data(self,Key:str,path:str)->dict:
+        """This function just loads
+        the json file to get image
+        locations for join.
+
+        Args:
+            Key (str): The key of the dictionary in
+            the json file.
+
+        Returns:
+            dict: The dictionary of image paths
+        """
+        if Key not in self._cached_image_data:
+            with open(path,'r') as f:
+                images = json.load(f)
+                image_paths = images[Key]
+                self._cached_image_data[Key] = image_paths
+        return self._cached_image_data[Key]
 
     def _load_json_file(self, path: str) -> dict:
         if path not in self._cached_level_data:
@@ -126,6 +122,16 @@ class DataManager:
             background_image = pygame.Surface((1200, 800), pygame.SRCALPHA)
             background_image.fill((255, 50, 125))
         return background_image
+
+    def get_player_start(self, level_num:int)->list[int,int]:
+        player_spot_data = self.load_level_background_data(level_num)
+        player_spot = player_spot_data["Starting Spot"]
+        return player_spot
+    
+    def get_room2_location(self, level_num:int)->str:
+        room_location_data = self.load_level_background_data(level_num)
+        room_location = room_location_data['Room 2 Location']
+        return room_location
 
 # Initialize the data manager once:
 data = DataManager()

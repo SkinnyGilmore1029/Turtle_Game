@@ -21,7 +21,7 @@ class Turtle_Game:
     def update_game(self,dt:float)->None:
         self.change_level_dev()
         self.change_level()
-        self.current_level.update_level(dt)
+        self.current_level.update_level(dt,self)
     
     def draw(self):
         self.current_level.draw_level(self.screen)
