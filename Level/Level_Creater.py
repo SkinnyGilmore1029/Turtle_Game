@@ -15,8 +15,7 @@ class Level_Creater:
         self.room = room
         self.background = Level_Backgrounds(level,room)
         self.change_rooms(level,room)
-        self.next_level = None
-        self.next_room = None
+        
         
     def get_background(self,level:int,room:int):
         key = (level, room)
@@ -37,16 +36,21 @@ class Level_Creater:
         
         
 
-    def handle_collision(self):
+    def handle_collision(self,game:object):
         if bad_guys.collision_with_player(player):
             player.died()
+        if The_tele.collision_with_player(player):
+            game.level +=1
+            game.room = 1
+            player.rect.x = 400
+            player.rect.y = 700
     
     def update_level(self,dt:float)->None:
         player.update(dt)
         bad_guys.update(dt)
         Collect_group.update(player)
         the_lock.update(player)
-        The_tele.update(player,self)
+        The_tele.update()
     
     def draw_level(self,screen:pygame.Surface)->None:
         self.background.draw(screen)

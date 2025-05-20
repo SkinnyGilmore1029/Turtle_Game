@@ -48,8 +48,9 @@ class Turtle_Game:
             dt = self.clock.tick(60.0) / 1000
             self.handle_events()
             if self.playing:
+                self.current_level.handle_collision(self)
                 self.update_game(dt)
-                self.current_level.handle_collision()
+                
                 self.draw()
                 
             pygame.display.flip()

@@ -20,17 +20,11 @@ class Teleporter(pygame.sprite.Sprite):
         self.image = self.animator.frames[0]
         self.mask = pygame.mask.from_surface(self.image)
 
-    def collision_with_player(self,player:object,Level_obj):
-        if pygame.sprite.collide_mask(self,player):
-            Level_obj.next_level = Level_obj.level + 1
-            Level_obj.next_room = 1
-            player.rect.x = WIDTH/2
-            player.rect.y = HEIGHT- 100
+    
 
-    def update(self,player,Level_obj):
+    def update(self):
         self.image = self.animator.play(self.frame_count)
         self.mask = pygame.mask.from_surface(self.image)
-        self.collision_with_player(player,Level_obj)
 
     def draw(self, screen:pygame.Surface)->None:
         screen.blit(self.image, self.rect)
@@ -58,9 +52,15 @@ class Tele_Group(pygame.sprite.GroupSingle):
             frame_count= data['frame_count']
         )
 
-    def update(self,player,Level_obj):
+    def collision_with_player(self,player:object):
         if self.sprite:
-            self.sprite.update(player,Level_obj)
+            if pygame.sprite.collide_mask(self.sprite,player):
+                return True
+            return False
+
+    def update(self):
+        if self.sprite:
+            self.sprite.update()
             
     def draw(self,screen):
         if self.sprite:
