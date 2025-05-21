@@ -55,6 +55,7 @@ class Tele_Group(pygame.sprite.GroupSingle):
     def collision_with_player(self,player:object):
         if self.sprite:
             if pygame.sprite.collide_mask(self.sprite,player):
+                self.remove(self.sprite)
                 return True
             return False
 
