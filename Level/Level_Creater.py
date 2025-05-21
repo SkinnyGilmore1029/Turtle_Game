@@ -88,16 +88,18 @@ class Level_Creater:
         self.room = room
         self.background = self.get_background(level, room)
         bad_guys.get_level_badguys(level, room)
-        All_walls.change_level()
+        All_walls.change_room()
         All_walls.load_group(level, room)
         Collect_group.get_level_collectables(level,room)
         the_lock.get_level_lock(level,room)
 
     def clear_level(self):
         Collect_group.empty()
-        the_lock.clear()
-        The_tele.clear()
-        bad_guys.clear()
+        Collect_group.already_in_level.clear()
+        the_lock.empty()
+        The_tele.empty()
+        bad_guys.empty()
+        
     
     def handle_collision(self,game:object):
         #Player death

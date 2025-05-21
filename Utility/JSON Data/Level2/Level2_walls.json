@@ -5,7 +5,7 @@
         "y" : 130.0,
         "width" : 1220,
         "height" : 32,
-        "direction" : "up",
+        "direction" : "top",
         "room" : 1,
         "level" : 2
     },
@@ -15,7 +15,7 @@
         "y" : 630.0,
         "width" : 540,
         "height" : 32,
-        "direction" : "up",
+        "direction" : "top",
         "room" : 1,
         "level" : 2
     },
@@ -25,7 +25,7 @@
         "y" : 630,
         "width" : 540,
         "height" : 32,
-        "direction" : "up",
+        "direction" : "top",
         "room" : 1,
         "level" : 2
     },
@@ -35,7 +35,7 @@
         "y" : 130,
         "width" : 1000,
         "height" : 32,
-        "direction" : "up",
+        "direction" : "top",
         "room" : 2,
         "level" : 2
     },
@@ -45,7 +45,7 @@
         "y" : 630,
         "width" : 1200,
         "height" : 32,
-        "direction" : "up",
+        "direction" : "top",
         "room" : 2,
         "level" : 2
     }

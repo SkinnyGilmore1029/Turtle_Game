@@ -68,10 +68,9 @@ class The_walls_group(pygame.sprite.Group):
                     self.add(wall)
             self.loaded_room.add(key)
     
-    def change_level(self):
+    def change_room(self):
         self.empty()
         self.loaded_room.clear()
-        
     
     def draw(self,screen:pygame.Surface,josh)->None:
         for sprite in self:

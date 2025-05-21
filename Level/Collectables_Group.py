@@ -12,23 +12,37 @@ class Collectable_Group(pygame.sprite.Group):
     }
     def __init__(self):
         super().__init__()
+        self.already_in_level = set()
+        self.already_collected = set()
         
     def get_level_keys(self,level:int,room:int)->None:
-        level_data = data.load_level_Key_Lock_data(level)
-        level_keys = level_data["Key"]
-        if level_keys['in_room'] == room:
-            key = self.create_collectable_from_data(level_keys)
-            self.add(key)
+        set_key = ("key",level,room)
+        if set_key not in self.already_in_level:
+            level_data = data.load_level_Key_Lock_data(level)
+            level_keys = level_data["Key"]
+            if level_keys['in_room'] == room:
+                collected_key = (level_keys['name'],level_keys['x'],level_keys['y'])
+                if collected_key not in self.already_collected:
+                    key = self.create_collectable_from_data(level_keys)
+                    self.add(key)
+            self.already_in_level.add(set_key)
+
     
     def get_level_OneUps(self,level:int,room:int)->None:
-        oneup_data = data.load_level_collectables_data(level)
-        for up in oneup_data.values():
-            if up['in_room'] == room:
-                oneup = self.create_collectable_from_data(up)
-                self.add(oneup)
-
+        set_key = ("Oneup",level,room)
+        if set_key not in self.already_in_level:
+            oneup_data = data.load_level_collectables_data(level)
+            for up in oneup_data.values():
+                if up['in_room'] == room:
+                    collected_key = (up['name'],up['x'],up['y'])
+                    if collected_key not in self.already_collected:
+                        oneup = self.create_collectable_from_data(up)
+                        self.add(oneup)
+            self.already_in_level.add(set_key)
+            
     def get_level_collectables(self,level:int,room:int)->None:
         self.empty()
+        self.already_in_level.clear()
         self.get_level_keys(level,room)
         self.get_level_OneUps(level,room)
 
@@ -46,6 +60,7 @@ class Collectable_Group(pygame.sprite.Group):
     def check_collected(self):
         for sprite in self:
             if sprite.collected == True :
+                self.already_collected.add((sprite.name,sprite.x,sprite.y))
                 self.remove(sprite)
        
     def update(self,player):

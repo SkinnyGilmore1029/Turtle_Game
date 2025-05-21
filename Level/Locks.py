@@ -32,6 +32,7 @@ class Lock(pygame.sprite.Sprite):
             elif player.key_count >= 1:
                 self.can_unlock = True
                 player.key_count -=1
+                print(player.key_count)
 
     def unlock(self)->None:
         if self.can_unlock == True:
