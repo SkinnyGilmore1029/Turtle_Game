@@ -19,7 +19,6 @@ class Turtle_Game:
                     sys.exit()
                     
     def update_game(self,dt:float)->None:
-        self.change_level_dev()
         self.change_level_room()
         self.change_level()
         self.current_level.update_level(dt,self)
@@ -27,16 +26,6 @@ class Turtle_Game:
     def draw(self):
         self.current_level.draw_level(self.screen)
     
-    def change_level_dev(self):
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_2]:
-            self.level = 2
-        if keys[pygame.K_1]:
-            self.level = 1
-        if keys[pygame.K_t]:
-            self.room = 2
-        if keys[pygame.K_o]:
-            self.room =1
             
     def change_level(self):
         if (self.current_level.level != self.level):
