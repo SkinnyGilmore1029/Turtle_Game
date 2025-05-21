@@ -96,7 +96,9 @@ class Level_Creater:
     def clear_level(self):
         Collect_group.empty()
         Collect_group.already_in_level.clear()
+        Collect_group.already_collected.clear()
         the_lock.empty()
+        the_lock.already_unlocked.clear()
         The_tele.empty()
         bad_guys.empty()
         

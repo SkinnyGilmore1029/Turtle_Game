@@ -5,7 +5,8 @@
         "y" : 266.6,
         "width" : 64,
         "height" : 64,
-        "in_room" : 1
+        "in_room" : 1,
+        "collected key" : "Level1 key collected"
     },
     "Lock" : {
         "name" : "Lock",
@@ -13,6 +14,7 @@
         "y" : 0,
         "width" : 200,
         "height" : 128,
-        "in_room" : 2
+        "in_room" : 2,
+        "unlocked key" : "Level1 lock unlocked"
     }
 }

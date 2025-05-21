@@ -2,13 +2,14 @@ import pygame
 from Utility.Image_Handler import data
 
 class Collectable(pygame.sprite.Sprite):
-    def __init__(self,name:str, x:float, y:float,width:int,height:int):
+    def __init__(self,name:str, x:float, y:float,width:int,height:int,collected_key:str):
         super().__init__()
         self.name = name
         self.x = x
         self.y = y
         self.w = width
         self.h = height
+        self.collected_key = collected_key
         self.image = data.load_image(name)
         self.image = pygame.transform.smoothscale(self.image,(self.w,self.h))
         self.rect = pygame.FRect(self.x,self.y,self.w,self.h)
@@ -29,8 +30,8 @@ class Collectable(pygame.sprite.Sprite):
         screen.blit(self.image,self.rect)
             
 class Keys(Collectable):
-    def __init__(self,name:str,x:float,y:float,width:int,height:int):
-        super().__init__(name,x,y,width,height)
+    def __init__(self,name:str,x:float,y:float,width:int,height:int,collected_key:str):
+        super().__init__(name,x,y,width,height,collected_key)
     
     
     def collect(self,player)->None:
@@ -38,8 +39,8 @@ class Keys(Collectable):
         player.key_count +=1
         
 class OneUps(Collectable):
-    def __init__(self,name:str,x:float,y:float,width:int,height:int):
-        super().__init__(name,x,y,width,height)
+    def __init__(self,name:str,x:float,y:float,width:int,height:int,collected_key:str):
+        super().__init__(name,x,y,width,height,collected_key)
         
     def collect(self,player)->None:
         self.collected = True

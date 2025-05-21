@@ -5,6 +5,7 @@
         "y" : 170,
         "width" : 61,
         "height" : 76,
-        "in_room" : 2
+        "in_room" : 2,
+        "collected key" : "Level2 one collected"
     }
 }

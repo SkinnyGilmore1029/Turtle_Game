@@ -21,7 +21,7 @@ class Collectable_Group(pygame.sprite.Group):
             level_data = data.load_level_Key_Lock_data(level)
             level_keys = level_data["Key"]
             if level_keys['in_room'] == room:
-                collected_key = (level_keys['name'],level_keys['x'],level_keys['y'])
+                collected_key = (level_keys['collected key'])
                 if collected_key not in self.already_collected:
                     key = self.create_collectable_from_data(level_keys)
                     self.add(key)
@@ -34,7 +34,7 @@ class Collectable_Group(pygame.sprite.Group):
             oneup_data = data.load_level_collectables_data(level)
             for up in oneup_data.values():
                 if up['in_room'] == room:
-                    collected_key = (up['name'],up['x'],up['y'])
+                    collected_key = (up['collected key'])
                     if collected_key not in self.already_collected:
                         oneup = self.create_collectable_from_data(up)
                         self.add(oneup)
@@ -54,13 +54,14 @@ class Collectable_Group(pygame.sprite.Group):
                 x= data['x'],
                 y= data['y'],
                 width= data['width'],
-                height= data['height']
+                height= data['height'],
+                collected_key= data['collected key']
             )
     
     def check_collected(self):
         for sprite in self:
             if sprite.collected == True :
-                self.already_collected.add((sprite.name,sprite.x,sprite.y))
+                self.already_collected.add((sprite.collected_key))
                 self.remove(sprite)
        
     def update(self,player):
