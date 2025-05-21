@@ -3,14 +3,16 @@ from Utility.Image_Handler import data
 from .The_Enemies import (
     The_cars,
     The_trucks,
-    The_bus
+    The_bus,
+    The_gators
 )
 
 class The_Bad_Guys(pygame.sprite.Group):
     badguy_classes = {
             "Car" : The_cars,
             "Truck" : The_trucks,
-            "Bus" : The_bus
+            "Bus" : The_bus,
+            "Gator" : The_gators
         }
     def __init__(self):
         super().__init__()

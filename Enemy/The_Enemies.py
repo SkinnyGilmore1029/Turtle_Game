@@ -162,6 +162,7 @@ class The_gators(Bad_guy):
     
     def update(self,dt:float)->None:
         self.move(dt)
+        self.handle_animations()
         
     def draw(self,screen:pygame.Surface)->None:
         screen.blit(self.image,self.rect)
