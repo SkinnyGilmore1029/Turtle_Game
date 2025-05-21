@@ -20,6 +20,7 @@ class Turtle_Game:
                     
     def update_game(self,dt:float)->None:
         self.change_level_dev()
+        self.change_level_room()
         self.change_level()
         self.current_level.update_level(dt,self)
     
@@ -38,9 +39,13 @@ class Turtle_Game:
             self.room =1
             
     def change_level(self):
-        if (self.current_level.level != self.level or
-            self.current_level.room != self.room):
+        if (self.current_level.level != self.level):
+            self.current_level.clear_level()
             self.current_level.change_rooms(self.level, self.room)
+            
+    def change_level_room(self):
+        if (self.current_level.room != self.room):
+            self.current_level.change_rooms(self.level,self.room)
             
     
     def Run(self)->None:

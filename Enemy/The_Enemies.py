@@ -2,6 +2,7 @@ import pygame
 from Utility.Settings import WIDTH
 from Utility.Image_Handler import Image_Animator, data
 
+
 class Bad_guy(pygame.sprite.Sprite):
     """
     This is a parent Class for all the rest of
@@ -14,7 +15,7 @@ class Bad_guy(pygame.sprite.Sprite):
         self.y = y
         self.w = width
         self.h = height
-        in_room = in_room
+        self.in_room = in_room
         self.rect = pygame.FRect(self.x,self.y,self.w,self.h)
         self.direction = direction
         self.velocity = pygame.Vector2(0,0)
@@ -119,9 +120,9 @@ class The_trucks(Bad_guy):
 class The_bus(Bad_guy):
     def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int)->None:
         super().__init__(name,x,y,width,height,direction,frame_count,in_room)
+        self.velocity.x = 400
         
     def move(self,dt:float)->None:
-        self.velocity.x = 400
         self.rect.x -=self.velocity.x *dt
         if self.rect.x < -128:
             self.rect.x = WIDTH + 30
@@ -129,6 +130,38 @@ class The_bus(Bad_guy):
     def update(self,dt):
         self.move(dt)
         self.handle_animations()
+        
+    def draw(self,screen:pygame.Surface)->None:
+        screen.blit(self.image,self.rect)
+        
+class The_gators(Bad_guy):
+    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int)->None:
+        super().__init__(name,x,y,width,height,direction,frame_count,in_room)
+        self.velocity.x = 300
+        self.velocity.y = 300
+    
+    def move_up_down(self,dt:float)->None:
+        self.rect.y -= self.velocity.y * dt
+        #Would like to figure out how to link to walls for collsion but this works for now
+        if self.rect.y <= 150 or self.rect.y >=500:
+            self.velocity.y *=1
+    
+    def move_left_right(self,dt:float)->None:
+        self.rect.x += self.velocity.x * dt
+        if self.rect.x <= 0 or self.rect.x >= WIDTH-self.w:
+            self.velocity.x *=-1
+            match self.direction:
+                case "Left":
+                    self.direction = "Right"
+                case "Right":
+                    self.direction = "Left"
+        
+    def move(self,dt:float)->None:
+        self.move_left_right(dt)
+        self.move_up_down(dt)
+    
+    def update(self,dt:float)->None:
+        self.move(dt)
         
     def draw(self,screen:pygame.Surface)->None:
         screen.blit(self.image,self.rect)

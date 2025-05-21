@@ -1,7 +1,7 @@
 {
     "Tele 1" : {
         "name" : "Teleporter",
-        "x" : 600.0,
+        "x" : 200.0,
         "y" : 0,
         "width" : 128,
         "height" : 128,

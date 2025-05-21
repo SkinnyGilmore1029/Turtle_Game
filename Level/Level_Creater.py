@@ -93,8 +93,12 @@ class Level_Creater:
         Collect_group.get_level_collectables(level,room)
         the_lock.get_level_lock(level,room)
 
-        
-        
+    def clear_level(self):
+        Collect_group.empty()
+        the_lock.clear()
+        The_tele.clear()
+        bad_guys.clear()
+    
     def handle_collision(self,game:object):
         #Player death
         if bad_guys.collision_with_player(player):
@@ -117,8 +121,6 @@ class Level_Creater:
         self.change_left_right(game)
         self.change_down_up(game)
         
-        
-    
     def draw_level(self,screen:pygame.Surface)->None:
         self.background.draw(screen)
         All_walls.draw(screen,player)

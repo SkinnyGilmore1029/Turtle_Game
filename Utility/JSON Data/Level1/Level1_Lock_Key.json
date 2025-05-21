@@ -9,10 +9,10 @@
     },
     "Lock" : {
         "name" : "Lock",
-        "x" : 1000,
-        "y" : 100,
+        "x" : 450,
+        "y" : 0,
         "width" : 200,
-        "height" : 64,
+        "height" : 128,
         "in_room" : 2
     }
 }
