@@ -8,7 +8,7 @@ from .Locks_Group import the_lock
 from .Teleporters import The_tele
 from The_turtles.The_player import player
 from Enemy.The_Enemy_Group import bad_guys
-
+from UI.The_hud import Show_hud
 
 class Level_Creater:
     def __init__(self,level:int,room:int):
@@ -127,6 +127,7 @@ class Level_Creater:
         
     def draw_level(self,screen:pygame.Surface)->None:
         self.background.draw(screen)
+        Show_hud(screen,player,self.level,self.room)
         All_walls.draw(screen,player)
         player.draw(screen)
         bad_guys.draw(screen)
