@@ -10,9 +10,9 @@
     },
     "Lock" : {
         "name" : "Lock",
-        "x" : 1000,
+        "x" : 900,
         "y" : 100,
-        "width" : 200,
+        "width" : 400,
         "height" : 64,
         "in_room" : 2,
         "unlocked key" : "Level2 lock unlocked"
