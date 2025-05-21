@@ -1,11 +1,12 @@
 import pygame
 from Level.Level_Creater import Level_Creater
-
+from UI.Title_screen import Title_screen
 import sys
 
 class Turtle_Game:
     def __init__(self):
-        self.playing = True
+        self.playing = False
+        self.game_state = "Title"
         self.screen = pygame.display.get_surface()
         pygame.display.set_caption("Turtle Game")
         self.clock = pygame.time.Clock()
@@ -42,11 +43,22 @@ class Turtle_Game:
         while True:
             dt = self.clock.tick(60.0) / 1000
             self.handle_events()
-            if self.playing:
-                self.current_level.handle_collision(self)
-                self.update_game(dt)
+            
+            if self.playing is False:
+                match self.game_state:
+                    case "Title":
+                        Title_screen.draw_Title_screen(self.screen,self)
+                    case "Game Over":
+                        pass
+            
+            if self.playing is True:
+                match self.game_state:
+                    case "Playing":
+                        self.current_level.handle_collision(self)
+                        self.update_game(dt)
+                        self.draw()
                 
-                self.draw()
+            
                 
             pygame.display.flip()
             
