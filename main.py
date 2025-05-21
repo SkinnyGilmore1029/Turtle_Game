@@ -57,6 +57,8 @@ class Turtle_Game:
                         self.current_level.handle_collision(self)
                         self.update_game(dt)
                         self.draw()
+                    case "Starting Cutscene":
+                        Title_screen.Starting_cutscene(self.screen,self,dt)
                 
             
                 

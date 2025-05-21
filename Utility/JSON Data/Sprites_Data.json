@@ -18,7 +18,9 @@
             "Lizard" : "Pictures/NPC/lizard.png",
             "Boss" : "Pictures/Enemies/Boss.png",
             "Arrow" : "Pictures/Enemies/arrow2.png",
-            "Rat" : "Pictures/Enemies/Rat.png"
+            "Rat" : "Pictures/Enemies/Rat.png",
+            "Starting Scene" : "Pictures/Backgrounds/title bg.png",
+            "Title Screen" : "Pictures/Backgrounds/Title_bg.png"
         },
 
         "Sheets" :{

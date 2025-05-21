@@ -24,7 +24,8 @@ class Bad_guy(pygame.sprite.Sprite):
         self.animation = Image_Animator(self.name)
         self.transformed_frames = {
             "Left": [],
-            "Right": []
+            "Right": [],
+            "Up" : []
         }
         self.pre_load_frames()
         self.current_frame = 0
@@ -46,6 +47,9 @@ class Bad_guy(pygame.sprite.Sprite):
         keyed by direction.
         """
         for frame in self.frames:
+            up_img = pygame.transform.smoothscale(frame, (self.w, self.h))
+            self.transformed_frames["Up"].append(up_img)
+            
             left_img = pygame.transform.flip(frame, True, False)
             left_img = pygame.transform.smoothscale(left_img, (self.w, self.h))
             self.transformed_frames["Left"].append(left_img)
@@ -178,3 +182,12 @@ class The_gators(Bad_guy):
         
     def draw(self,screen:pygame.Surface)->None:
         screen.blit(self.image,self.rect)
+        
+class Main_Boss(Bad_guy):
+    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int,speed:list)->None:
+        super().__init__(name,x,y,width,height,direction,frame_count,in_room,speed)
+        
+    def still_image(self):
+        self.image = data.load_image(self.name)
+        
+boss = Main_Boss("Boss",600,700,96,96,"Up",4,1,[150,150])
