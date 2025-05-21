@@ -8,7 +8,7 @@ class Bad_guy(pygame.sprite.Sprite):
     This is a parent Class for all the rest of
     the class that can kill the player.
     """
-    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int)->None:
+    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int,speed:list)->None:
         super().__init__()
         self.name = name
         self.x = x 
@@ -18,7 +18,7 @@ class Bad_guy(pygame.sprite.Sprite):
         self.in_room = in_room
         self.rect = pygame.FRect(self.x,self.y,self.w,self.h)
         self.direction = direction
-        self.velocity = pygame.Vector2(0,0)
+        self.velocity = pygame.Vector2(speed[0],speed[1])
         self.frame_count = frame_count
         self.frames = data.get_frames(self.name,self.frame_count,self.w,self.h)
         self.animation = Image_Animator(self.name)
@@ -84,11 +84,10 @@ class Bad_guy(pygame.sprite.Sprite):
         pass
 
 class The_cars(Bad_guy):
-    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int)->None:
-        super().__init__(name,x,y,width,height,direction,frame_count,in_room)
+    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int,speed:list)->None:
+        super().__init__(name,x,y,width,height,direction,frame_count,in_room,speed)
 
     def move(self,dt:float)->None:
-        self.velocity.x = 200
         self.rect.x -=self.velocity.x *dt
         if self.rect.x < -128:
             self.rect.x = WIDTH + 30
@@ -101,11 +100,10 @@ class The_cars(Bad_guy):
         screen.blit(self.image,self.rect)
 
 class The_trucks(Bad_guy):
-    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int)->None:
-        super().__init__(name,x,y,width,height,direction,frame_count,in_room)
+    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int,speed:list)->None:
+        super().__init__(name,x,y,width,height,direction,frame_count,in_room,speed)
     
     def move(self,dt:float)->None:
-        self.velocity.x = -200
         self.rect.x -=self.velocity.x *dt
         if self.rect.x > WIDTH+50:
             self.rect.x = -50
@@ -118,9 +116,8 @@ class The_trucks(Bad_guy):
         screen.blit(self.image,self.rect)
         
 class The_bus(Bad_guy):
-    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int)->None:
-        super().__init__(name,x,y,width,height,direction,frame_count,in_room)
-        self.velocity.x = 400
+    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int,speed:list)->None:
+        super().__init__(name,x,y,width,height,direction,frame_count,in_room,speed)
         
     def move(self,dt:float)->None:
         self.rect.x -=self.velocity.x *dt
@@ -135,26 +132,41 @@ class The_bus(Bad_guy):
         screen.blit(self.image,self.rect)
         
 class The_gators(Bad_guy):
-    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int)->None:
-        super().__init__(name,x,y,width,height,direction,frame_count,in_room)
-        self.velocity.x = 300
-        self.velocity.y = 300
+    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int,speed:list)->None:
+        super().__init__(name,x,y,width,height,direction,frame_count,in_room,speed)
     
-    def move_up_down(self,dt:float)->None:
-        self.rect.y -= self.velocity.y * dt
-        #Would like to figure out how to link to walls for collsion but this works for now
-        if self.rect.y <= 150 or self.rect.y >=500:
-            self.velocity.y *=1
+    def move_up_down(self, dt: float) -> None:
+        self.rect.y += self.velocity.y * dt
+
+        if self.rect.y <= 150:
+            self.rect.y = 150
+            self.velocity.y *= -1
+
+        elif self.rect.y >= 500:
+            self.rect.y = 500
+            self.velocity.y *= -1
     
-    def move_left_right(self,dt:float)->None:
+    def move_left_right(self, dt: float) -> None:
         self.rect.x += self.velocity.x * dt
-        if self.rect.x <= 0 or self.rect.x >= WIDTH-self.w:
-            self.velocity.x *=-1
+
+        if self.rect.x <= 0:
+            self.rect.x = 0
+            self.velocity.x *= -1
             match self.direction:
                 case "Left":
                     self.direction = "Right"
                 case "Right":
                     self.direction = "Left"
+
+        elif self.rect.x >= WIDTH - self.w:
+            self.rect.x = WIDTH - self.w
+            self.velocity.x *= -1
+            match self.direction:
+                case "Left":
+                    self.direction = "Right"
+                case "Right":
+                    self.direction = "Left"
+
         
     def move(self,dt:float)->None:
         self.move_left_right(dt)

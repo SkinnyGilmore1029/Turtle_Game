@@ -36,7 +36,8 @@ class The_Bad_Guys(pygame.sprite.Group):
                 height= data["height"],
                 direction= data["direction"],
                 frame_count= data["frame_count"],
-                in_room= data["in_room"]
+                in_room= data["in_room"],
+                speed= data['speed']
             )
 
     def collision_with_player(self,player)->None:
