@@ -25,6 +25,7 @@
 
         "Sheets" :{
             "Turtle" : "Pictures/Turtles/Turtle sheet.png",
+            "Turtle 2" : "Pictures/Turtles/Turtle2_sheet.png",
             "Turtle2" :"Pictures/Turtles/Turtle2 sheet1.png",
             "Boss" : "Pictures/Enemies/Boss.png",
             "Car" : "Pictures/Enemies/car sheet.png",

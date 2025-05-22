@@ -45,6 +45,24 @@ class Player(Turtle_Base):
         self.rect.x += self.velocity.x * dt
         self.rect.y += self.velocity.y *dt
     
+    def move_cutscene(self,dt,game):
+        self.velocity.y = 0
+        if self.chase is True:
+            self.velocity.y = self.speed
+            self.direction = "Down"
+        self.rect.y += self.velocity.y *dt
+        
+        if self.rect.y > HEIGHT:
+            game.game_state = "Playing"
+            self.w = 64
+            self.h = 64
+            self.rect.x = LEVEL1_POS[0]
+            self.rect.y = LEVEL1_POS[1]
+            self.direction = "Up"
+        
+    def update_cutscene(self,dt,game):
+        self.move_cutscene(dt,game)
+        self.handle_animations()
 
     def died(self):
         self.lives -= 1
@@ -74,4 +92,4 @@ class Player(Turtle_Base):
         """
         screen.blit(self.image,self.rect)
         
-player = Player("Turtle",LEVEL1_POS[0],LEVEL1_POS[1],64,64,"Up",3)
+player = Player("Turtle",CUTSCENE_POS[0],CUTSCENE_POS[1],64,64,"Up",3)
