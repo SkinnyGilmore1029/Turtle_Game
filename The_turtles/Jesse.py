@@ -1,9 +1,9 @@
 import pygame
-from .The_player import Player
+from .Turtle_base import Turtle_Base
 from Utility.Settings import HEIGHT
 
 
-class Jesse(Player):
+class Jesse(Turtle_Base):
     def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int):
         super().__init__(name,x,y,width,height,direction,frame_count)
         self.scaled = False
