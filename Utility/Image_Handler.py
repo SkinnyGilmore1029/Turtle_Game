@@ -94,6 +94,10 @@ class DataManager:
             self._loaded_images[sheet_name] = image
         return self._loaded_images[sheet_name]
 
+    def from_cutscene_json(self)->dict[dict[str,str|int]]:
+        path = f"Utility/JSON Data/Cutscene.json"
+        return self._load_json_file(path)
+
     def load_image(self, picture_name: str) -> pygame.Surface:
         if picture_name not in self._loaded_images:
             try:

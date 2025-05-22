@@ -1,6 +1,6 @@
 import pygame
 from .Turtle_base import Turtle_Base
-from Utility.Settings import HEIGHT
+
 
 
 class Jesse(Turtle_Base):
@@ -9,23 +9,8 @@ class Jesse(Turtle_Base):
         self.scaled = False
         self.follow = False
         
-    def getting_captured(self,player:object,boss:object,dt:float)->None:
-        if not self.scaled:
-            self.image = pygame.transform.smoothscale(self.image,(128,128)).convert_alpha()
-            self.image.set_colorkey((255,255,255))
-            self.mask = pygame.mask.from_surface(self.image)
-            self.scaled = True
-            
-        if pygame.sprite.collide_mask(self,boss):
-           self.follow = True
-           print(self.follow)#not getting here
-           
-        if self.follow is True:
-            print("umm")
-            self.rect.y -= boss.speed[1] * dt
-            player.chase = True
-            if self.rect.y >= HEIGHT:
-                self.rect.y = HEIGHT
+    def update(self):
+        self.handle_animations()
     
     def draw(self,screen:pygame.Surface)->None:
         screen.blit(self.image,self.rect)

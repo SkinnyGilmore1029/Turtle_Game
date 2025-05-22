@@ -57,7 +57,8 @@ class Turtle_Game:
                         self.update_game(dt)
                         self.draw()
                     case "Starting Cutscene":
-                        Cut_scenes.Starting_cutscene(self.screen,self,dt)
+                        Cut_scenes.start_game(self)
+                        Cut_scenes.draw(self.screen)
                 
             pygame.display.flip()
             

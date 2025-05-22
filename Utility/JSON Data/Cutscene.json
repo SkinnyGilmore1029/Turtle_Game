@@ -1,0 +1,32 @@
+{
+    "Cut Scene1" :{
+        "player" : {
+            "name" : "Turtle",
+            "x" : 534,
+            "y" : 240,
+            "width" : 128,
+            "height" : 128,
+            "direction" : "Up",
+            "frame_count": 1
+        },
+        "Jesse" : {
+            "name" : "Turtle2",
+            "x" : 472,
+            "y" : 240,
+            "width" : 128,
+            "height" : 128,
+            "direction" : "Up",
+            "frame_count": 1
+        },
+        "Boss" : {
+            "name" : "Boss",
+            "x" : 472,
+            "y" : 700,
+            "width" : 128,
+            "height" : 128,
+            "direction" : "Up",
+            "frame_count": 1,
+            "speed" : [150,150]
+        }
+    }
+}
