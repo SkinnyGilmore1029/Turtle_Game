@@ -1,5 +1,5 @@
 import pygame
-from Utility.Settings import WIDTH,HEIGHT
+from Utility.Settings import HEIGHT,CUTSCENE_POS,LEVEL1_POS
 from .Turtle_base import Turtle_Base
 
 class Player(Turtle_Base):
@@ -9,6 +9,8 @@ class Player(Turtle_Base):
         self.key_count = 0
         self.speed = 300
         self.chase = False
+        self.scaled = False
+        
         
     def move(self,dt:float)->None:
         """
@@ -43,6 +45,23 @@ class Player(Turtle_Base):
         self.rect.x += self.velocity.x * dt
         self.rect.y += self.velocity.y *dt
     
+    def for_cutscene(self,dt:float,game:object):
+        if not self.scaled:
+            self.image = pygame.transform.smoothscale(self.image,(128,128)).convert_alpha()
+            self.rect.x = CUTSCENE_POS[0]
+            self.rect.y = CUTSCENE_POS[1]
+        
+        if self.chase:
+            self.rect.y -= self.speed *dt
+            
+        if self.rect.y > HEIGHT:
+            game.game_state = "Playing"
+            self.rect.x = LEVEL1_POS[0]
+            self.rect.y = LEVEL1_POS[1]
+            self.direction = "Up"
+            print("im broken to")
+            
+    
     
     def died(self):
         self.lives -= 1
@@ -72,4 +91,4 @@ class Player(Turtle_Base):
         """
         screen.blit(self.image,self.rect)
         
-player = Player("Turtle",WIDTH*.5,HEIGHT-64,64,64,"Up",3)
+player = Player("Turtle",0,0,64,64,"Up",3)

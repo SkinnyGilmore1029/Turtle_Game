@@ -10,8 +10,10 @@ class CutScenes(Screens):
         super().__init__(name)
         self.background = data.load_image(name)
         
-    def capture_turtle(self,dt)->None:
+    def capture_turtle(self,dt:float,game:object)->None:
         jesse.getting_captured(player,boss,dt)
+        player.for_cutscene(dt,game)
+        boss.get_turtle(jesse,dt)
         
     def draw(self,screen:pygame.Surface)->None:
         screen.blit(self.background,(0,0))
@@ -21,7 +23,9 @@ class CutScenes(Screens):
         if keys[pygame.K_RETURN]:
             game.game_state = "Playing"
         self.draw(screen)    
-        self.capture_turtle(dt)
         jesse.draw(screen)
+        player.draw(screen)
+        boss.draw_cutscene1(screen)
+        self.capture_turtle(dt,game)
         
 Cut_scenes = CutScenes("Starting Scene")
