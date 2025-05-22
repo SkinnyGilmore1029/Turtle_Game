@@ -12,12 +12,14 @@ class Image_Animator:
         
     def get_image(self,name:str,frame:int,width:int,height:int)->pygame.Surface:
         sheet = data.load_sheet_data(name)
+        #sheet = pygame.transform.smoothscale(sheet,(width,height))
         image = pygame.Surface((width,height),pygame.SRCALPHA).convert_alpha()
+        #image = pygame.transform.smoothscale(image,(width,height))
         image.blit(sheet,(0,0),(frame * width, 0, width, height))
         return image
     
     def load_frames(self,name:str,frame_count:int,width:int,height:int)->None:
-        self.frames = [self.get_image(name,i,width,height) for i in range(frame_count)]
+        self.frames = [pygame.transform.smoothscale(self.get_image(name,i,width,height),(width,height)) for i in range(frame_count)]
         
     def play(self,frame_count:int)->pygame.Surface:
         current_time = pygame.time.get_ticks()

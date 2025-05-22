@@ -31,4 +31,4 @@ class Jesse(Turtle_Base):
     def draw(self,screen:pygame.Surface)->None:
         screen.blit(self.image,self.rect)
     
-jesse = Jesse("Turtle 2",472,210,64,64,"Up",3)
+jesse = Jesse("Turtle 2",472,210,96,96,"Up",3)
