@@ -16,8 +16,6 @@ class Lock(pygame.sprite.Sprite):
         self.locked = True
         self.can_unlock = False
 
-    
-                    
     def lock_collision(self,player)->None:
         if pygame.sprite.collide_mask(self,player):
             if player.key_count < 1:
@@ -32,13 +30,11 @@ class Lock(pygame.sprite.Sprite):
             elif player.key_count >= 1:
                 self.can_unlock = True
                 player.key_count -=1
-                print(player.key_count)
 
     def unlock(self)->None:
         if self.can_unlock == True:
             self.locked = False
         
-
     def update(self,player):
         self.lock_collision(player)
         self.unlock()

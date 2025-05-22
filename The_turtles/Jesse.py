@@ -1,8 +1,6 @@
 import pygame
 from .Turtle_base import Turtle_Base
 
-
-
 class Jesse(Turtle_Base):
     def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int):
         super().__init__(name,x,y,width,height,direction,frame_count)
