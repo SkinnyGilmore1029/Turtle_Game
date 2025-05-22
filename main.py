@@ -1,6 +1,7 @@
 import pygame
 from Level.Level_Creater import Level_Creater
 from UI.Title_screen import Title_screen
+from UI.Cutscenes import Cut_scenes
 import sys
 
 class Turtle_Game:
@@ -19,16 +20,7 @@ class Turtle_Game:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-                    
-    def update_game(self,dt:float)->None:
-        self.change_level_room()
-        self.change_level()
-        self.current_level.update_level(dt,self)
-    
-    def draw(self):
-        self.current_level.draw_level(self.screen)
-    
-            
+
     def change_level(self):
         if (self.current_level.level != self.level):
             self.current_level.clear_level()
@@ -37,8 +29,15 @@ class Turtle_Game:
     def change_level_room(self):
         if (self.current_level.room != self.room):
             self.current_level.change_rooms(self.level,self.room)
-            
     
+    def update_game(self,dt:float)->None:
+        self.change_level_room()
+        self.change_level()
+        self.current_level.update_level(dt,self)
+    
+    def draw(self):
+        self.current_level.draw_level(self.screen)
+            
     def Run(self)->None:
         while True:
             dt = self.clock.tick(60.0) / 1000
@@ -58,9 +57,7 @@ class Turtle_Game:
                         self.update_game(dt)
                         self.draw()
                     case "Starting Cutscene":
-                        Title_screen.Starting_cutscene(self.screen,self,dt)
-                
-            
+                        Cut_scenes.Starting_cutscene(self.screen,self,dt)
                 
             pygame.display.flip()
             
