@@ -65,3 +65,47 @@ class Turtle_Game:
 if __name__ =="__main__":
     game = Turtle_Game()
     game.Run()
+    
+    
+"""
+    turtle 1 calls this
+  def move_turtle3(self) -> pygame.Rect:
+        if self.direction == 'down':
+            self.rect.y += 6
+            if self.rect.y > HEIGHT +self.w:
+                self.unload()
+                self.begging = True
+
+    turtle 2 calls this
+    def move_turtle2(self) -> pygame.Rect:
+        if self.direction == 'down':
+            self.rect.y += 5
+            if self.rect.y >= HEIGHT + self.w:
+                self.unload()
+                All_turtles['turtle1'].direction = 'down'
+                
+    def starting_cut_scene(self,screen:pygame.Surface):
+        if BGF.All_levels['level count'].level == 0:
+            bg = pygame.image.load(join("Other Pictures","title bg.png")).convert()
+            screen.blit(bg,(0,0))
+            TGG.All_turtles['turtle1'].draw(screen)
+            TGG.All_turtles['turtle2'].draw(screen)
+            TGG.All_turtles['turtle2'].move_turtle2()
+            TGG.All_turtles['turtle1'].move_turtle3()
+            BG.All_Badguys['starting villain'].cutscene_1(screen,TGG.All_turtles['turtle2']) 
+            if TGG.All_turtles['turtle2'].direction == 'up':
+                chilling = All_fonts['Title_font'].render("While these turtles are just chilling..",True,"black","white")
+                chilling_rect = chilling.get_rect(topleft=(0,0))
+                screen.blit(chilling,chilling_rect)
+            elif TGG.All_turtles['turtle2'].direction == 'down':
+                taken = All_fonts['Title_font2'].render("This guy kidnapped the Green Turtle's friend",True,"black","white")
+                taken_rect = taken.get_rect(topleft=(0,0))
+                screen.blit(taken,taken_rect)
+            if TGG.All_turtles['turtle1'].direction == 'down':
+                begin = All_fonts['Title_font2'].render("Now begins his journey to save his friend!",True,"black","white")
+                begin_rect = begin.get_rect(topleft=(0,0))
+                screen.blit(begin,begin_rect)
+            if TGG.All_turtles['turtle1'].begging is True:
+                BGF.All_levels['level count'].level = 1
+                
+"""

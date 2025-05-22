@@ -71,6 +71,7 @@ class Player(pygame.sprite.Sprite):
         self.animation_timer = pygame.time.get_ticks()
         self.animation_speed = 200  # ms per frame
         self.speed = 300
+        self.chase = False
         
 
     def pre_load_frames(self):
