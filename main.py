@@ -9,7 +9,7 @@ class Turtle_Game:
         self.playing = False
         self.game_state = "Title"
         self.screen = pygame.display.get_surface()
-        pygame.display.set_caption("Turtle Game")
+        pygame.display.set_caption("Squartle's Quest")
         self.clock = pygame.time.Clock()
         self.level = 1
         self.room = 1
@@ -30,6 +30,7 @@ class Turtle_Game:
         if (self.current_level.room != self.room):
             self.current_level.change_rooms(self.level,self.room)
     
+
     def update_game(self,dt:float)->None:
         self.change_level_room()
         self.change_level()
@@ -47,6 +48,9 @@ class Turtle_Game:
                 match self.game_state:
                     case "Title":
                         Title_screen.draw_Title_screen(self.screen,self)
+                    case "Choosing Level":
+                        Title_screen.draw_choose_level_screen(self.screen,self)
+                        Title_screen.choosing_level(self)
                     case "Game Over":
                         pass
             
@@ -57,9 +61,9 @@ class Turtle_Game:
                         self.update_game(dt)
                         self.draw()
                     case "Starting Cutscene":
-                        Cut_scenes.start_game()
                         Cut_scenes.update(dt,self)
                         Cut_scenes.draw(self.screen)
+                        
                 
             pygame.display.flip()
             
