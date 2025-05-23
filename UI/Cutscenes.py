@@ -11,11 +11,6 @@ class CutScenes(Screens):
         self.background = data.load_image(name)
         self.font = pygame.font.SysFont("Arial",48,True)
 
-    def start_game(self):
-        key = pygame.key.get_pressed()
-        if key[pygame.K_RETURN]:
-            player.chase = True
-
     def Cut_scene1_text(self,screen:pygame.Surface):
         if jesse.follow == False and player.chase == False:
             text = self.font.render("One day while Squartle is chilling with his friend",True,"Black","Light Blue",1200)
