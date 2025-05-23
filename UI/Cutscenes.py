@@ -9,11 +9,21 @@ class CutScenes(Screens):
     def __init__(self,name:str)->None:
         super().__init__(name)
         self.background = data.load_image(name)
+        self.font = pygame.font.SysFont("Arial",48,True)
 
     def start_game(self):
         key = pygame.key.get_pressed()
         if key[pygame.K_RETURN]:
             player.chase = True
+
+    def Cut_scene1_text(self,screen:pygame.Surface):
+        if jesse.follow == False and player.chase == False:
+            text = self.font.render("One day while Squartle is chilling with his friend",True,"Black","Light Blue",1200)
+        elif jesse.follow == True and player.chase == False:
+            text = self.font.render("Some wierd creature comes out of no where and takes Squartle friend!",True,"Black","Light Blue",1200)
+        elif jesse.follow == True and player.chase == True:
+            text = self.font.render("Now begins his journey to save his friend!",True,"Black","Light Blue",1200)
+        screen.blit(text,(0,0))
 
     def update(self,dt,game):
         player.update_cutscene(dt,game)
@@ -22,6 +32,7 @@ class CutScenes(Screens):
         
     def draw(self,screen:pygame.Surface):
         screen.blit(self.background,(0,0))
+        self.Cut_scene1_text(screen)
         player.draw(screen)
         jesse.draw(screen)
         boss.draw(screen)

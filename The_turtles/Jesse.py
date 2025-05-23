@@ -13,6 +13,7 @@ class Jesse(Turtle_Base):
         if pygame.sprite.collide_mask(self,boss):
             self.follow = True
         if self.follow == True:
+            self.direction = "Down"
             self.velocity.y = 150
         self.rect.y += self.velocity.y *dt
         
