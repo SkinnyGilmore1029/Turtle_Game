@@ -87,7 +87,7 @@ class Level_Creater:
         self.level = level
         self.room = room
         self.background = self.get_background(level, room)
-        self.change_room_loction(level)
+        self.room2_location = data.get_room2_location(level)
         bad_guys.get_level_badguys(level, room)
         All_walls.change_room()
         All_walls.load_group(level, room)
@@ -104,10 +104,6 @@ class Level_Creater:
         The_tele.empty()
         bad_guys.empty()
         
-    def change_room_loction(self,level)->None:
-        self.level = level
-        self.room2_location = data.get_room2_location(level)
-    
     def handle_collision(self,game:object):
         #Player death
         if bad_guys.collision_with_player(player):
