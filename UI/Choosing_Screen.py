@@ -16,7 +16,7 @@ class Choose_Level(Screens):
     def __init__(self,name:str)->None:
         super().__init__(name)
     
-    def choosing_level(self,game:object)->None:
+    def choosing_level(self,game:object,dt)->None:
         keys = pygame.key.get_pressed()
         if keys[pygame.K_1]:
             game.level = 1
@@ -74,7 +74,6 @@ class Choose_Level(Screens):
             player.rect.x = LEVEL8_POS[0]
             player.rect.y = LEVEL8_POS[1]
             """
-    
         
     def draw_choose_level_screen(self,screen:pygame.Surface)->None:
         screen.fill("Blue")

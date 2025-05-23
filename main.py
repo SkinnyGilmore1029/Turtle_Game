@@ -27,6 +27,7 @@ class Turtle_Game:
             self.current_level.clear_level()
             self.current_level.change_rooms(self.level, self.room)
             
+            
     def change_level_room(self):
         if (self.current_level.room != self.room):
             self.current_level.change_rooms(self.level,self.room)
@@ -51,7 +52,7 @@ class Turtle_Game:
                         Title_screen.draw_Title_screen(self.screen,self)
                     case "Choosing Level":
                         Choosing_screen.draw_choose_level_screen(self.screen)
-                        Choosing_screen.choosing_level(self)
+                        Choosing_screen.choosing_level(self,dt)
                     case "Game Over":
                         pass
             
