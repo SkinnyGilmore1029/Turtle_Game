@@ -1,6 +1,7 @@
 import pygame
 from Level.Level_Creater import Level_Creater
 from UI.Title_screen import Title_screen
+from UI.Choosing_Screen import Choosing_screen
 from UI.Cutscenes import Cut_scenes
 import sys
 
@@ -49,8 +50,8 @@ class Turtle_Game:
                     case "Title":
                         Title_screen.draw_Title_screen(self.screen,self)
                     case "Choosing Level":
-                        Title_screen.draw_choose_level_screen(self.screen,self)
-                        Title_screen.choosing_level(self)
+                        Choosing_screen.draw_choose_level_screen(self.screen)
+                        Choosing_screen.choosing_level(self)
                     case "Game Over":
                         pass
             
