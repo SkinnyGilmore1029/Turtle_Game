@@ -30,7 +30,7 @@ class Turtle_Base(pygame.sprite.Sprite):
             animation_timer (int): Time of the last frame change.
             animation_speed (int): Milliseconds between animation frames.
         """
-    def __init__(self, name:str, x:float, y:float,width:int, height:int,direction:str,frame_count:int)->None:
+    def __init__(self, name:str, x:float, y:float,width:int, height:int,direction:str,frame_count:int,sheet_size:list)->None:
         """
         Initializes a new Player instance.
 
@@ -50,11 +50,12 @@ class Turtle_Base(pygame.sprite.Sprite):
         self.y = y
         self.w = width
         self.h = height
+        self.sheet_size = sheet_size
         self.rect = pygame.FRect(self.x,self.y,self.w,self.h)
         self.direction = direction
         self.velocity = pygame.Vector2(0,0)
         self.frame_count = frame_count
-        self.frames = data.get_frames(self.name,self.frame_count,self.w,self.h)
+        self.frames = data.get_frames(self.name,self.frame_count,self.w,self.h,self.sheet_size)
         self.animation = Image_Animator(self.name)
         self.transformed_frames = {
             "Up": [],

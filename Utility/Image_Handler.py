@@ -10,16 +10,19 @@ class Image_Animator:
         self.start_time = pygame.time.get_ticks()
         self.frames:list[pygame.Surface] = []
         
-    def get_image(self,name:str,frame:int,width:int,height:int)->pygame.Surface:
+    def get_image(self,name:str,frame:int,frame_count:int,width:int,height:int,sheet_size:list)->pygame.Surface:
         sheet = data.load_sheet_data(name)
-        #sheet = pygame.transform.smoothscale(sheet,(width,height))
-        image = pygame.Surface((width,height),pygame.SRCALPHA).convert_alpha()
-        #image = pygame.transform.smoothscale(image,(width,height))
-        image.blit(sheet,(0,0),(frame * width, 0, width, height))
+        source_w = sheet_size[0]//frame_count
+        source_h = sheet_size[1]
+        rect = pygame.Rect(frame * source_w,0,source_w,source_h)
+        image = pygame.Surface((source_w,source_h),pygame.SRCALPHA).convert_alpha()
+        image.blit(sheet,(0,0),rect)
+        image = pygame.transform.smoothscale(image,(width,height))
+        
         return image
     
-    def load_frames(self,name:str,frame_count:int,width:int,height:int)->None:
-        self.frames = [pygame.transform.smoothscale(self.get_image(name,i,width,height),(width,height)) for i in range(frame_count)]
+    def load_frames(self,name:str,frame_count:int,width:int,height:int,sheet_size:list)->None:
+         self.frames = [self.get_image(name,i,frame_count,width,height,sheet_size) for i in range(frame_count)]
         
     def play(self,frame_count:int)->pygame.Surface:
         current_time = pygame.time.get_ticks()
@@ -110,11 +113,11 @@ class DataManager:
             self._loaded_images[picture_name] = image
         return self._loaded_images[picture_name]
 
-    def get_frames(self, name: str, frame_count: int, w: int, h: int) -> list[pygame.Surface]:
+    def get_frames(self, name: str, frame_count: int, w: int, h: int,sheet_size) -> list[pygame.Surface]:
         key = (name, frame_count, w, h)
         if key not in self._loaded_frames:
             animator = Image_Animator(name)
-            animator.load_frames(name, frame_count, w, h)
+            animator.load_frames(name, frame_count, w, h,sheet_size)
             self._loaded_frames[key] = animator.frames
         return self._loaded_frames[key]
 

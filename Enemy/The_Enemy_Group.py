@@ -6,7 +6,7 @@ from .The_Enemies import (
     The_bus,
     The_gators
 )
-
+#418,283
 class The_Bad_Guys(pygame.sprite.Group):
     badguy_classes = {
             "Car" : The_cars,
@@ -37,7 +37,8 @@ class The_Bad_Guys(pygame.sprite.Group):
                 direction= data["direction"],
                 frame_count= data["frame_count"],
                 in_room= data["in_room"],
-                speed= data['speed']
+                speed= data['speed'],
+                sheet_size= data['sheet size']
             )
 
     def collision_with_player(self,player)->None:

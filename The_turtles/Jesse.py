@@ -3,8 +3,8 @@ from .Turtle_base import Turtle_Base
 from Utility.Settings import HEIGHT
 
 class Jesse(Turtle_Base):
-    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int):
-        super().__init__(name,x,y,width,height,direction,frame_count)
+    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,sheet_size:list):
+        super().__init__(name,x,y,width,height,direction,frame_count,sheet_size)
         self.scaled = False
         self.follow = False
     
@@ -31,4 +31,4 @@ class Jesse(Turtle_Base):
     def draw(self,screen:pygame.Surface)->None:
         screen.blit(self.image,self.rect)
     
-jesse = Jesse("Turtle 2",472,210,96,96,"Up",3)
+jesse = Jesse("Turtle 2",472,210,64,64,"Up",3,[714,247])

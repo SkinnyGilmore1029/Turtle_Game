@@ -3,19 +3,20 @@ from Utility.Image_Handler import Image_Animator,data
 from Utility.Settings import WIDTH,HEIGHT
 
 class Teleporter(pygame.sprite.Sprite):
-    def __init__(self, name:str, x:float, y:float, width:int, height:int, frame_count:int)->None:
+    def __init__(self, name:str, x:float, y:float, width:int, height:int, frame_count:int,sheet_size:list)->None:
         super().__init__()
         self.name = name
         self.x = x
         self.y = y
         self.w = width
         self.h = height
+        self.sheet_size = sheet_size
         self.rect = pygame.FRect(self.x, self.y, self.w, self.h)
         self.frame_count = frame_count
 
         # Use your animator class
         self.animator = Image_Animator(self.name, change_time=150)
-        self.animator.load_frames(self.name, self.frame_count, self.w, self.h)
+        self.animator.load_frames(self.name, self.frame_count, self.w, self.h,sheet_size)
 
         self.image = self.animator.frames[0]
         self.mask = pygame.mask.from_surface(self.image)
@@ -49,7 +50,8 @@ class Tele_Group(pygame.sprite.GroupSingle):
             y= data['y'],
             width= data['width'],
             height = data['height'],
-            frame_count= data['frame_count']
+            frame_count= data['frame_count'],
+            sheet_size= data['sheet size']
         )
 
     def collision_with_player(self,player:object):

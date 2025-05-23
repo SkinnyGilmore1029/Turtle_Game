@@ -8,7 +8,8 @@
         "direction" : "Right",
         "frame_count" : 3,
         "in_room" : 1,
-        "speed": [200,0]
+        "speed": [200,0],
+        "sheet size" : [386,129]
         },
     "car2" :{
         "name" : "Car",
@@ -19,7 +20,8 @@
         "direction" : "Right",
         "frame_count" : 3,
         "in_room" : 1,
-        "speed": [200,0]
+        "speed": [200,0],
+        "sheet size" : [386,129]
         },
     "truck1":{
         "name" : "Truck",
@@ -30,7 +32,8 @@
         "direction" : "Right",
         "frame_count" : 3,
         "in_room" : 1,
-        "speed": [-200,0]
+        "speed": [-200,0],
+        "sheet size" : [769,199]
         },
     "truck2":{
         "name" : "Truck",
@@ -41,7 +44,8 @@
         "direction" : "Right",
         "frame_count" : 3,
         "in_room" : 1,
-        "speed": [-200,0]
+        "speed": [-200,0],
+        "sheet size" : [769,199]
         },
     "truck3":{
         "name" : "Truck",
@@ -52,7 +56,8 @@
         "direction" : "Right",
         "frame_count" : 3,
         "in_room" : 2,
-        "speed": [-200,0]
+        "speed": [-200,0],
+        "sheet size" : [769,199]
         },
     "truck4":{
         "name" : "Truck",
@@ -63,7 +68,8 @@
         "direction" : "Right",
         "frame_count" : 3,
         "in_room" : 2,
-        "speed": [-200,0]
+        "speed": [-200,0],
+        "sheet size" : [769,199]
         },
     "bus" : {
         "name" : "Bus",
@@ -74,6 +80,7 @@
         "direction" : "Left",
         "frame_count" : 3,
         "in_room" : 2,
-        "speed": [400,0]
+        "speed": [400,0],
+        "sheet size" : [1280,150]
         }
 }

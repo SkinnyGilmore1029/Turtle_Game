@@ -8,7 +8,7 @@ class Bad_guy(pygame.sprite.Sprite):
     This is a parent Class for all the rest of
     the class that can kill the player.
     """
-    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int,speed:list)->None:
+    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int,speed:list,sheet_size:list)->None:
         super().__init__()
         self.name = name
         self.x = x 
@@ -16,12 +16,13 @@ class Bad_guy(pygame.sprite.Sprite):
         self.w = width
         self.h = height
         self.in_room = in_room
+        self.sheet_size = sheet_size
         self.rect = pygame.FRect(self.x,self.y,self.w,self.h)
         self.direction = direction
         self.speed:list[int,int] = speed
         self.velocity = pygame.Vector2(speed[0],speed[1])
         self.frame_count = frame_count
-        self.frames = data.get_frames(self.name,self.frame_count,self.w,self.h)
+        self.frames = data.get_frames(self.name,self.frame_count,self.w,self.h,self.sheet_size)
         self.animation = Image_Animator(self.name)
         self.transformed_frames = {
             "Left": [],
@@ -89,8 +90,8 @@ class Bad_guy(pygame.sprite.Sprite):
         pass
 
 class The_cars(Bad_guy):
-    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int,speed:list)->None:
-        super().__init__(name,x,y,width,height,direction,frame_count,in_room,speed)
+    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int,speed:list,sheet_size:list)->None:
+        super().__init__(name,x,y,width,height,direction,frame_count,in_room,speed,sheet_size)
 
     def move(self,dt:float)->None:
         self.rect.x -=self.velocity.x *dt
@@ -105,8 +106,8 @@ class The_cars(Bad_guy):
         screen.blit(self.image,self.rect)
 
 class The_trucks(Bad_guy):
-    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int,speed:list)->None:
-        super().__init__(name,x,y,width,height,direction,frame_count,in_room,speed)
+    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int,speed:list,sheet_size:list)->None:
+        super().__init__(name,x,y,width,height,direction,frame_count,in_room,speed,sheet_size)
     
     def move(self,dt:float)->None:
         self.rect.x -=self.velocity.x *dt
@@ -121,8 +122,8 @@ class The_trucks(Bad_guy):
         screen.blit(self.image,self.rect)
         
 class The_bus(Bad_guy):
-    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int,speed:list)->None:
-        super().__init__(name,x,y,width,height,direction,frame_count,in_room,speed)
+    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int,speed:list,sheet_size:list)->None:
+        super().__init__(name,x,y,width,height,direction,frame_count,in_room,speed,sheet_size)
         
     def move(self,dt:float)->None:
         self.rect.x -=self.velocity.x *dt
@@ -137,8 +138,8 @@ class The_bus(Bad_guy):
         screen.blit(self.image,self.rect)
         
 class The_gators(Bad_guy):
-    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int,speed:list)->None:
-        super().__init__(name,x,y,width,height,direction,frame_count,in_room,speed)
+    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int,speed:list,sheet_size:list)->None:
+        super().__init__(name,x,y,width,height,direction,frame_count,in_room,speed,sheet_size)
     
     def move_up_down(self, dt: float) -> None:
         self.rect.y += self.velocity.y * dt
@@ -185,8 +186,8 @@ class The_gators(Bad_guy):
         screen.blit(self.image,self.rect)
         
 class Main_Boss(Bad_guy):
-    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int,speed:list)->None:
-        super().__init__(name,x,y,width,height,direction,frame_count,in_room,speed)
+    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int,speed:list,sheet_size:list)->None:
+        super().__init__(name,x,y,width,height,direction,frame_count,in_room,speed,sheet_size)
         self.got_turtle = False
     
     def get_turtle(self,jesse,dt):
@@ -207,4 +208,4 @@ class Main_Boss(Bad_guy):
     def draw(self,screen:pygame.Surface)->None:
         screen.blit(self.image,self.rect)
 
-boss = Main_Boss("Boss",472,700,96,96,"Up",4,1,[150,150])
+boss = Main_Boss("Boss",472,700,96,96,"Up",4,1,[150,150],[503,155])

@@ -8,7 +8,8 @@
         "direction" : "Left",
         "frame_count" : 2,
         "in_room" : 1,
-        "speed": [200,150]
+        "speed": [200,150],
+        "sheet size" : [282,143]
         },
     "gator2" :{
         "name" : "Gator",
@@ -19,7 +20,8 @@
         "direction" : "Right",
         "frame_count" : 2,
         "in_room" : 1,
-        "speed": [-250,-200]
+        "speed": [-250,-200],
+        "sheet size" : [282,143]
         },
     "gator3":{
         "name" : "Gator",
@@ -30,7 +32,8 @@
         "direction" : "Left",
         "frame_count" :2,
         "in_room" : 2,
-        "speed": [150,-150]
+        "speed": [150,-150],
+        "sheet size" : [282,143]
         },
      "gator4":{
         "name" : "Gator",
@@ -41,7 +44,8 @@
         "direction" : "Right",
         "frame_count" :2,
         "in_room" : 2,
-        "speed": [-200,200]
+        "speed": [-200,200],
+        "sheet size" : [282,143]
         },
      "gator5":{
         "name" : "Gator",
@@ -52,7 +56,8 @@
         "direction" : "Right",
         "frame_count" :2,
         "in_room" : 2,
-        "speed": [-250,120]
+        "speed": [-250,120],
+        "sheet size" : [282,143]
         }
     
 }

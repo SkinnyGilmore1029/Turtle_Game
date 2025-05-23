@@ -3,8 +3,8 @@ from Utility.Settings import HEIGHT,CUTSCENE_POS,LEVEL1_POS
 from .Turtle_base import Turtle_Base
 
 class Player(Turtle_Base):
-    def __init__(self, name:str, x:float, y:float,width:int, height:int,direction:str,frame_count:int)->None:
-        super().__init__(name,x,y,width,height,direction,frame_count)
+    def __init__(self, name:str, x:float, y:float,width:int, height:int,direction:str,frame_count:int,sheet_size:list)->None:
+        super().__init__(name,x,y,width,height,direction,frame_count,sheet_size)
         self.lives = 5
         self.key_count = 0
         self.speed = 300
@@ -92,4 +92,4 @@ class Player(Turtle_Base):
         """
         screen.blit(self.image,self.rect)
         
-player = Player("Turtle",CUTSCENE_POS[0],CUTSCENE_POS[1],64,64,"Up",3)
+player = Player("Turtle",CUTSCENE_POS[0],CUTSCENE_POS[1],64,64,"Up",3,[192,64])
