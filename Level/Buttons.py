@@ -49,41 +49,45 @@ class The_Buttons(pygame.sprite.Group):
             button_data = data.load_level_data(level,"buttons")
             for b in button_data.values():
                 if b["in_room"] == room:
-                    pushed_key = b['pushed key']
-                    if pushed_key not in self.already_on:
-                        pressed = pushed_key in self.already_on
-                        button = self.create_buttons(b,pressed)
-                        self.add(button)
+                    button = self.create_buttons(b)
+                    if b['pushed key'] in self.already_on:
+                        button.pressed = True
+                        button.on_pressed()
+                    self.add(button)
             self.loaded_rooms.add(set_key)
     
     def clear_buttons_level(self):
         self.empty()
         self.already_in_level.clear()
         self.already_on.clear()
+        self.loaded_rooms.clear()
         
-    def clear_buttons_room(self):
-        pass
+    def clear_buttons_room(self,level,room):
+        self.empty()
+        set_key = ("Buttons",level,room)
+        if set_key in self.loaded_rooms:
+            self.loaded_rooms.remove(set_key)
             
-    def create_buttons(self,data:dict,pressed:bool)->Button:
-        button = Button(
+    def create_buttons(self,data:dict)->Button:
+        return Button(
             x= data['x'],
             y= data['y'],
             width= data['width'],
             height= data['height'],
             pushed_key= data['pushed key']
         )
-        if pressed:
-            button.pressed = True
-            button.on_pressed()
-        return button
         
     def check_if_pushed(self)->None:
         for sprite in self:
             if sprite.getting_pressed():
                 self.already_on.add((sprite.pushed_key))
-                
+    
+    def get_already_on_size(self)->int:
+        return len(self.already_on)
+            
     def update(self)->None:
         self.check_if_pushed()
+        
         
     def draw(self,screen:pygame.Surface)->None:
         for sprite in self:

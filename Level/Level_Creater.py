@@ -94,6 +94,7 @@ class Level_Creater:
         All_walls.load_group(level, room)
         Collect_group.get_level_collectables(level,room)
         the_lock.get_level_lock(level,room)
+        Button_group.clear_buttons_room(level,room)
         Button_group.get_level_buttons(level,room)
         
 
@@ -130,6 +131,7 @@ class Level_Creater:
         self.change_down_up(game)
         if game.level== 2:
             Button_group.update()
+        
         
     def draw_level(self,screen:pygame.Surface,game:object)->None:
         self.background.draw(screen)
