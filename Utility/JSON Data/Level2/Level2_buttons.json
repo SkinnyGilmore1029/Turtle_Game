@@ -1,0 +1,56 @@
+{
+    "Button 1" :{
+        "x" : 120,
+        "y" : 320,
+        "width" : 96,
+        "height" : 96,
+        "pushed key" : "Button1 has been pushed",
+        "in_room" : 1,
+        "name" : "Button1"
+    },
+    "Button 2" :{
+        "x" : 600,
+        "y" : 321,
+        "width" : 96,
+        "height" : 96,
+        "pushed key" : "Button2 has been pushed",
+        "in_room" : 1,
+        "name" : "Button2"
+    },
+    "Button 3" :{
+        "x" : 1080,
+        "y" : 322,
+        "width" : 96,
+        "height" : 96,
+        "pushed key" : "Button3 has been pushed",
+        "in_room" : 1,
+        "name" : "Button3"
+    },
+    "Button 4" :{
+        "x" : 121,
+        "y" : 323,
+        "width" : 96,
+        "height" : 96,
+        "pushed key" : "Button4 has been pushed",
+        "in_room" : 2,
+        "name" : "Button4"
+    },
+    "Button 5" :{
+        "x" : 601,
+        "y" : 324,
+        "width" : 96,
+        "height" : 96,
+        "pushed key" : "Button5 has been pushed",
+        "in_room" : 2,
+        "name" : "Button5"
+    },
+    "Button 6" :{
+        "x" : 1081,
+        "y" : 325,
+        "width" : 96,
+        "height" : 96,
+        "pushed key" : "Button6 has been pushed",
+        "in_room" : 2,
+        "name" : "Button6"
+    }
+}

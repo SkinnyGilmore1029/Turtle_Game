@@ -39,7 +39,7 @@ class Turtle_Game:
         self.current_level.update_level(dt,self)
     
     def draw(self):
-        self.current_level.draw_level(self.screen)
+        self.current_level.draw_level(self.screen,self)
             
     def Run(self)->None:
         while True:

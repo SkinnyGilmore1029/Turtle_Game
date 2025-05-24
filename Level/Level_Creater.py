@@ -6,6 +6,7 @@ from .Wall_manger import All_walls
 from .Collectables_Group import Collect_group
 from .Locks_Group import the_lock
 from .Teleporters import The_tele
+from .Buttons import Button_group
 from The_turtles.The_player import player
 from Enemy.The_Enemy_Group import bad_guys
 from UI.The_hud import Show_hud
@@ -93,6 +94,7 @@ class Level_Creater:
         All_walls.load_group(level, room)
         Collect_group.get_level_collectables(level,room)
         the_lock.get_level_lock(level,room)
+        Button_group.get_level_buttons(level,room)
         
 
     def clear_level(self):
@@ -103,6 +105,7 @@ class Level_Creater:
         the_lock.already_unlocked.clear()
         The_tele.empty()
         bad_guys.empty()
+        Button_group.clear_buttons_level()
         
     def handle_collision(self,game:object):
         #Player death
@@ -125,14 +128,17 @@ class Level_Creater:
         self.change_up_down(game)
         self.change_left_right(game)
         self.change_down_up(game)
+        if game.level== 2:
+            Button_group.update()
         
-    def draw_level(self,screen:pygame.Surface)->None:
+    def draw_level(self,screen:pygame.Surface,game:object)->None:
         self.background.draw(screen)
         Show_hud(screen,player,self.level,self.room)
         All_walls.draw(screen,player)
-        player.draw(screen)
         bad_guys.draw(screen)
         Collect_group.draw(screen)
         the_lock.draw(screen)
         The_tele.draw(screen)
-        
+        if game.level == 2:
+            Button_group.draw(screen)
+        player.draw(screen)
