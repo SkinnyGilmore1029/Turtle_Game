@@ -18,7 +18,8 @@ class Collectable_Group(pygame.sprite.Group):
     def get_level_keys(self,level:int,room:int)->None:
         set_key = ("key",level,room)
         if set_key not in self.already_in_level:
-            level_data = data.load_level_Key_Lock_data(level)
+            level_data = data.load_level_data(level,"Lock_Key")
+            #level_data = data.load_level_Key_Lock_data(level)
             level_keys = level_data["Key"]
             if level_keys['in_room'] == room:
                 collected_key = (level_keys['collected key'])
@@ -31,7 +32,8 @@ class Collectable_Group(pygame.sprite.Group):
     def get_level_OneUps(self,level:int,room:int)->None:
         set_key = ("Oneup",level,room)
         if set_key not in self.already_in_level:
-            oneup_data = data.load_level_collectables_data(level)
+            oneup_data = data.load_level_data(level,"collectables")
+            #oneup_data = data.load_level_collectables_data(level)
             for up in oneup_data.values():
                 if up['in_room'] == room:
                     collected_key = (up['collected key'])

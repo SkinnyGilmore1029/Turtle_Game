@@ -9,7 +9,7 @@ class Lock_Group(pygame.sprite.GroupSingle):
         
     def get_level_lock(self,level:int,room:int)->None:
         self.empty()
-        lock_data = data.load_level_Key_Lock_data(level)
+        lock_data = data.load_level_data(level,"Lock_Key")
         level_lock = lock_data["Lock"]
         if level_lock["in_room"] == room:
             unlocked_key = (level_lock['name'],level_lock['x'],level_lock['y'])

@@ -65,28 +65,12 @@ class DataManager:
                 self._cached_level_data[path] = json.load(f)
         return self._cached_level_data[path]
 
-    def load_level_collectables_data(self,level_num:int)->dict[str,dict]:
-        path = f"Utility/JSON Data/Level{level_num}/Level{level_num}_collectables.json"
+    def load_level_data(self,level_num:int,datatype:str)->dict[str,dict]:
+        path = f"Utility/JSON Data/Level{level_num}/Level{level_num}_{datatype}.json"
         return self._load_json_file(path)
-
-    def load_level_Key_Lock_data(self,level_num:int)->dict[str,dict]:
-        path = f"Utility/JSON Data/Level{level_num}/Level{level_num}_Lock_Key.json"
-        return self._load_json_file(path)
-
-    def load_level_background_data(self, level_num: int) -> dict[str, str]:
-        path = f"Utility/JSON Data/Level{level_num}/Level{level_num}_background.json"
-        return self._load_json_file(path)
-
-    def load_level_enemies_data(self, level_num: int) -> dict[str, dict]:
-        path = f"Utility/JSON Data/Level{level_num}/Level{level_num}_enemies.json"
-        return self._load_json_file(path)
-
-    def load_level_teleporter(self,level_num:int) -> dict[str,dict]:
-        path = f"Utility/JSON Data/Level{level_num}/Level{level_num}_Teleporter.json"
-        return self._load_json_file(path)
-
-    def load_wall_data(self,level_num:int)->dict[str,dict]:
-        path = f"Utility/JSON Data/Level{level_num}/Level{level_num}_walls.json"
+    
+    def from_cutscene_json(self)->dict[dict[str,str|int]]:
+        path = f"Utility/JSON Data/Cutscene.json"
         return self._load_json_file(path)
 
     def load_sheet_data(self, sheet_name: str) -> pygame.Surface:
@@ -98,10 +82,6 @@ class DataManager:
                 image.fill((255, 0, 0))
             self._loaded_images[sheet_name] = image
         return self._loaded_images[sheet_name]
-
-    def from_cutscene_json(self)->dict[dict[str,str|int]]:
-        path = f"Utility/JSON Data/Cutscene.json"
-        return self._load_json_file(path)
 
     def load_image(self, picture_name: str) -> pygame.Surface:
         if picture_name not in self._loaded_images:
@@ -123,7 +103,7 @@ class DataManager:
 
     def load_background_image(self, level_num: int, room: int) -> pygame.Surface:
         room_key = f"Room {room}"
-        room_data = self.load_level_background_data(level_num)
+        room_data = self.load_level_data(level_num,"background")
         image_string = room_data[room_key]
         try:
             background_image = pygame.image.load(image_string).convert_alpha()
@@ -133,17 +113,17 @@ class DataManager:
         return background_image
 
     def get_player_start(self, level_num:int)->list[int,int]:
-        player_spot_data = self.load_level_background_data(level_num)
+        player_spot_data = self.load_level_data(level_num,"background")
         player_spot = player_spot_data["Starting Spot"]
         return player_spot
     
     def get_room2_location(self, level_num:int)->str:
-        room_location_data = self.load_level_background_data(level_num)
+        room_location_data = self.load_level_data(level_num,"background")
         room_location = room_location_data['Room 2 Location']
         return room_location
     
     def get_starting_loction(self, level_num:int)->list[int,int]:
-        starting_loction_data = self.load_level_background_data(level_num)
+        starting_loction_data = self.load_level_data(level_num,"background")
         starting_loction = starting_loction_data["starting_loction"]
         return starting_loction
 

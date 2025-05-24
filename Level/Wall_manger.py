@@ -55,7 +55,8 @@ class The_walls_group(pygame.sprite.Group):
     def load_group(self,level:int,room:int)->None:
         key = (level,room)
         if key not in self.loaded_room:
-            walls = data.load_wall_data(level)
+            walls = data.load_level_data(level,"walls")
+            #walls = data.load_wall_data(level)
             for w in walls.values():
                 if w['room'] == room:
                     wall = The_Walls(name= w.get("name","Fence"),
