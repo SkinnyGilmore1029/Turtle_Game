@@ -1,0 +1,11 @@
+{
+    "Hint 1" : {
+        "name" : "Hint",
+        "x" : 0,
+        "y" : 700,
+        "width" : 96,
+        "height" : 96,
+        "in_room" : 1,
+        "message" : "Collect the Key from traffic to win!"
+    }
+}

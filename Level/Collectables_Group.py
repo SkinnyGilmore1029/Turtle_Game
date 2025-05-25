@@ -4,6 +4,7 @@ from .Collectables import (
     Keys,
     OneUps
 )
+from .Buttons import Button_group
 
 class Collectable_Group(pygame.sprite.Group):
     collect_classes = {
@@ -24,7 +25,11 @@ class Collectable_Group(pygame.sprite.Group):
                 collected_key = (level_keys['collected key'])
                 if collected_key not in self.already_collected:
                     key = self.create_collectable_from_data(level_keys)
-                    self.add(key)
+                    if level != 2:
+                        self.add(key)
+                    elif level == 2 and Button_group.get_already_on_size() == 6:
+                        self.add(key)
+                    
             self.already_in_level.add(set_key)
 
     

@@ -88,7 +88,6 @@ class The_Buttons(pygame.sprite.Group):
     def update(self)->None:
         self.check_if_pushed()
         
-        
     def draw(self,screen:pygame.Surface)->None:
         for sprite in self:
             sprite.draw(screen)

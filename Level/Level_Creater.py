@@ -1,15 +1,16 @@
 import pygame
 from Utility.Image_Handler import data
 from Utility.Settings import WIDTH, HEIGHT
+from The_turtles.The_player import player
+from Enemy.The_Enemy_Group import bad_guys
+from UI.The_hud import Show_hud
 from .Background_manger import Level_Backgrounds
 from .Wall_manger import All_walls
 from .Collectables_Group import Collect_group
 from .Locks_Group import the_lock
 from .Teleporters import The_tele
 from .Buttons import Button_group
-from The_turtles.The_player import player
-from Enemy.The_Enemy_Group import bad_guys
-from UI.The_hud import Show_hud
+from. The_hints import The_hints
 
 class Level_Creater:
     def __init__(self,level:int,room:int):
@@ -94,11 +95,13 @@ class Level_Creater:
         All_walls.load_group(level, room)
         Collect_group.get_level_collectables(level,room)
         the_lock.get_level_lock(level,room)
-        Button_group.clear_buttons_room(level,room)
-        Button_group.get_level_buttons(level,room)
+        The_hints.get_level_Npc(level,room)
+        if level == 2:
+            Button_group.clear_buttons_room(level,room)
+            Button_group.get_level_buttons(level,room)
         
 
-    def clear_level(self):
+    def clear_level(self)->None:
         Collect_group.empty()
         Collect_group.already_in_level.clear()
         Collect_group.already_collected.clear()
@@ -108,7 +111,7 @@ class Level_Creater:
         bad_guys.empty()
         Button_group.clear_buttons_level()
         
-    def handle_collision(self,game:object):
+    def handle_collision(self,game:object)->None:
         #Player death
         if bad_guys.collision_with_player(player):
             player.died()
@@ -129,6 +132,7 @@ class Level_Creater:
         self.change_up_down(game)
         self.change_left_right(game)
         self.change_down_up(game)
+        The_hints.collison_with_player()
         if game.level== 2:
             Button_group.update()
         
@@ -141,6 +145,7 @@ class Level_Creater:
         Collect_group.draw(screen)
         the_lock.draw(screen)
         The_tele.draw(screen)
+        The_hints.draw(screen)
         if game.level == 2:
             Button_group.draw(screen)
         player.draw(screen)
