@@ -1,0 +1,11 @@
+{
+    "OneUp1":{    
+        "name": "1up",
+        "x" : 1080.0,
+        "y" : 560,
+        "width" : 61,
+        "height" : 76,
+        "in_room" : 1,
+        "collected key" : "Level1 Oneup collected"
+    }
+}

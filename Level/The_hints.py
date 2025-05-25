@@ -17,7 +17,7 @@ class Hint_Frog(Npc_Base):
         screen.blit(mes,(400,250))
 
         
-class Hint_Group(pygame.sprite.GroupSingle):
+class Hint_Group(pygame.sprite.Group):
     def __init__(self):
         super().__init__()
         
@@ -40,21 +40,21 @@ class Hint_Group(pygame.sprite.GroupSingle):
             )
     
     def collison_with_player(self):
-        if self.sprite:
-            if pygame.sprite.collide_mask(self.sprite,player):
-                self.sprite.touch = True
+        for sprite in self:
+            if pygame.sprite.collide_mask(sprite,player):
+                sprite.touch = True
                 return True
             else:
-                self.sprite.touch = False
+                sprite.touch = False
                 return False
 
     def update(self)->None:
         self.collison_with_player()
 
     def draw(self,screen:pygame.Surface)->None:
-        if self.sprite:
-            self.sprite.draw(screen)
-            if self.sprite.touch == True:
-                self.sprite.give_hint_message(screen)
+        for sprite in self:
+            sprite.draw(screen)
+            if sprite.touch == True:
+                sprite.give_hint_message(screen)
 
 The_hints = Hint_Group()
