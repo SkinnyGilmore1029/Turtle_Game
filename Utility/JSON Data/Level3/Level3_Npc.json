@@ -7,5 +7,14 @@
         "height" : 128,
         "in_room" : 1,
         "message" : "Push all 6 buttons to get the key!"
+    },
+    "Hint 3" : {
+        "name" : "Hint",
+        "x" : 1000,
+        "y" : 650,
+        "width" : 128,
+        "height" : 128,
+        "in_room" : 2,
+        "message" : "Push all 6 buttons to get the key!"
     }
 }
