@@ -64,10 +64,10 @@ class Player(Turtle_Base):
         self.move_cutscene(dt,game)
         self.handle_animations()
 
-    def died(self):
+    def died(self,level_pos:tuple[int,int])->None:
         self.lives -= 1
-        self.rect.x = self.x
-        self.rect.y = self.y
+        self.rect.x = level_pos[0]
+        self.rect.y = level_pos[1]
     
     def update(self, dt):
         """

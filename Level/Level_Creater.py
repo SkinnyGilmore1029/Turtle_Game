@@ -11,6 +11,17 @@ from .Locks_Group import the_lock
 from .Teleporters import The_tele
 from .Buttons import Button_group
 from. The_hints import The_hints
+from Utility.Settings import (
+    LEVEL1_POS,
+    LEVEL2_POS,
+    LEVEL3_POS,
+    LEVEL4_POS,
+    LEVEL5_POS,
+    LEVEL6_POS,
+    LEVEL7_POS,
+    LEVEL8_POS
+    
+)
 
 class Level_Creater:
     def __init__(self,level:int,room:int):
@@ -96,6 +107,7 @@ class Level_Creater:
         Collect_group.get_level_collectables(level,room)
         the_lock.get_level_lock(level,room)
         The_hints.get_level_Npc(level,room)
+        The_tele.get_tele_data(level,room)
         if level == 2:
             Button_group.clear_buttons_room(level,room)
             Button_group.get_level_buttons(level,room)
@@ -110,11 +122,42 @@ class Level_Creater:
         The_tele.empty()
         bad_guys.empty()
         Button_group.clear_buttons_level()
-        
+    
+    def get_respawn_pos(self)->tuple[int,int]:
+        respwn_pos =[0,0]
+        match self.level:
+            case 1:
+                respwn_pos[0] = LEVEL1_POS[0]
+                respwn_pos[1] = LEVEL1_POS[1]
+            case 2:
+                respwn_pos[0] = LEVEL2_POS[0]
+                respwn_pos[1] = LEVEL2_POS[1]
+            case 3:
+                respwn_pos[0] = LEVEL3_POS[0]
+                respwn_pos[1] = LEVEL3_POS[1]
+            case 4:
+                respwn_pos[0] = LEVEL4_POS[0]
+                respwn_pos[1] = LEVEL4_POS[1]
+            case 5:
+                respwn_pos[0] = LEVEL5_POS[0]
+                respwn_pos[1] = LEVEL5_POS[1]
+            case 6:
+                respwn_pos[0] = LEVEL6_POS[0]
+                respwn_pos[1] = LEVEL6_POS[1]
+            case 7:
+                respwn_pos[0] = LEVEL7_POS[0]
+                respwn_pos[1] = LEVEL7_POS[1]
+            case 8:
+                respwn_pos[0] = LEVEL8_POS[0]
+                respwn_pos[1] = LEVEL8_POS[1]
+                
+        return respwn_pos
+    
     def handle_collision(self,game:object)->None:
         #Player death
         if bad_guys.collision_with_player(player):
-            player.died()
+            player.died(self.get_respawn_pos())
+            game.room = 1
         #Level Win Condition
         if The_tele.collision_with_player(player):
             game.level +=1

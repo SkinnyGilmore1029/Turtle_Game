@@ -4,7 +4,8 @@ from .The_Enemies import (
     The_cars,
     The_trucks,
     The_bus,
-    The_gators
+    The_gators,
+    The_Fish
 )
 #418,283
 class The_Bad_Guys(pygame.sprite.Group):
@@ -12,7 +13,8 @@ class The_Bad_Guys(pygame.sprite.Group):
             "Car" : The_cars,
             "Truck" : The_trucks,
             "Bus" : The_bus,
-            "Gator" : The_gators
+            "Gator" : The_gators,
+            "Fish" : The_Fish
         }
     def __init__(self):
         super().__init__()
