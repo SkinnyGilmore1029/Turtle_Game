@@ -43,7 +43,7 @@
         "name" : "Rock Wall",
         "x" : 0,
         "y" : 630,
-        "width" : 1200,
+        "width" : 1100,
         "height" : 32,
         "direction" : "top",
         "room" : 2,
