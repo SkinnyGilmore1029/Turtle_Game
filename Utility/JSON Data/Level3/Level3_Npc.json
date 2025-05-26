@@ -21,13 +21,24 @@
     },
     "Crabs" :{
         "Crab 1" : {
-            "name" : "Teleporter",
-            "x" : 100,
-            "y" : 200,
-            "width" : 128,
-            "height" : 128,
-            "frame_count" : 4,
-            "in_room" : 1
+            "name" : "Crab",
+            "x" : 420,
+            "y" : 704,
+            "width" : 96,
+            "height" : 96,
+            "in_room" : 1,
+            "direction" : "Up",
+            "name2" : "Crab 1 UP"
+        },
+        "Crab 2" : {
+            "name" : "Crab",
+            "x" : 660,
+            "y" : 0,
+            "width" : 96,
+            "height" : 96,
+            "in_room" : 1,
+            "direction" : "Down",
+            "name2" : "Crab 2 Down"
         }
     }
     

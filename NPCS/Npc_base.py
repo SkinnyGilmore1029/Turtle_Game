@@ -1,8 +1,6 @@
 import pygame
 from Utility.Image_Handler import data
 
-
-
 class Npc_Base(pygame.sprite.Sprite):
     def __init__(self,name:str,x:float,y:float,width:float,height:float)->None:
         super().__init__()

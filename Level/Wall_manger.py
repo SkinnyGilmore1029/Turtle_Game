@@ -46,11 +46,22 @@ class The_Walls(pygame.sprite.Sprite):
         self.wall_collision(josh)
         screen.blit(self.image,self.rect)
         
+class The_vines(The_Walls):
+    def __init__(self,name:str,x:float,y:float,width:float,height:float,direction:str,room:int):
+        super().__init__(name,x,y,width,height,direction,room)
+        self.despawn:bool = False
+        
+        
+        
 class The_walls_group(pygame.sprite.Group):
+    wall_classes:dict = {
+        "Fence" : The_Walls,
+        "Rock Wall" : The_Walls,
+        "Vine" : The_vines
+    }
     def __init__(self):
         super().__init__()
         self.loaded_room = set()
-        
         
     def load_group(self,level:int,room:int)->None:
         key = (level,room)
@@ -59,15 +70,21 @@ class The_walls_group(pygame.sprite.Group):
             #walls = data.load_wall_data(level)
             for w in walls.values():
                 if w['room'] == room:
-                    wall = The_Walls(name= w.get("name","Fence"),
-                                    x= w.get("x",0),
-                                    y= w.get("y",0),
-                                    width= w.get("width",128),
-                                    height= w.get("height",128),
-                                    direction= w.get("direction","up"),
-                                    room= w.get("room",1))
+                    wall = self.create_walls(w)
                     self.add(wall)
             self.loaded_room.add(key)
+    
+    def create_walls(self,data:dict)->None:
+        clas = self.wall_classes.get(data["name"])
+        if clas:
+            return clas(
+                name= data["name"],
+                x= data['x'],
+                y= data['y'],
+                width= data['width'],
+                height= data['height'],
+                direction= data['direction'],
+                room= data['room'])
     
     def change_room(self):
         self.empty()

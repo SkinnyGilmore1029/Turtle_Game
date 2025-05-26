@@ -1,16 +1,5 @@
 import pygame
 from Utility.Image_Handler import data
-from Utility.Settings import WIDTH, HEIGHT
-from The_turtles.The_player import player
-from Enemy.The_Enemy_Group import bad_guys
-from UI.The_hud import Show_hud
-from .Background_manger import Level_Backgrounds
-from .Wall_manger import All_walls
-from .Collectables_Group import Collect_group
-from .Locks_Group import the_lock
-from .Teleporters import The_tele
-from .Buttons import Button_group
-from NPCS.The_hints import The_hints
 from Utility.Settings import (
     LEVEL1_POS,
     LEVEL2_POS,
@@ -19,9 +8,22 @@ from Utility.Settings import (
     LEVEL5_POS,
     LEVEL6_POS,
     LEVEL7_POS,
-    LEVEL8_POS
-    
+    LEVEL8_POS,
+    WIDTH,
+    HEIGHT
 )
+from The_turtles.The_player import player
+from Enemy.The_Enemy_Group import bad_guys
+from UI.The_hud import Show_hud
+from NPCS.The_hints import The_hints
+from NPCS.The_crabs import The_Crabs
+from .Background_manger import Level_Backgrounds
+from .Wall_manger import All_walls
+from .Collectables_Group import Collect_group
+from .Locks_Group import the_lock
+from .Teleporters import The_tele
+from .Buttons import Button_group
+
 
 class Level_Creater:
     def __init__(self,level:int,room:int):
@@ -108,9 +110,13 @@ class Level_Creater:
         the_lock.get_level_lock(level,room)
         The_hints.get_level_Hints(level,room)
         The_tele.get_tele_data(level,room)
-        if level == 2:
-            Button_group.clear_buttons_room(level,room)
-            Button_group.get_level_buttons(level,room)
+        #Handles level specific changes
+        match level:
+            case 2:
+                Button_group.clear_buttons_room(level,room)
+                Button_group.get_level_buttons(level,room)
+            case 3:
+                The_Crabs.get_level_crabs(level,room)
         
 
     def clear_level(self)->None:
@@ -176,9 +182,12 @@ class Level_Creater:
         self.change_left_right(game)
         self.change_down_up(game)
         The_hints.collison_with_player()
-        if game.level== 2:
-            Button_group.update()
-        
+        match game.level:
+            case 2:
+              Button_group.update()
+            case 3:
+                The_Crabs.update(dt)  
+            
         
     def draw_level(self,screen:pygame.Surface,game:object)->None:
         self.background.draw(screen)
@@ -189,6 +198,10 @@ class Level_Creater:
         the_lock.draw(screen)
         The_tele.draw(screen)
         The_hints.draw(screen)
-        if game.level == 2:
-            Button_group.draw(screen)
+        The_Crabs.draw(screen)
+        match game.level:
+            case 2:
+                Button_group.draw(screen)
+            case 3:
+                The_Crabs.draw(screen)
         player.draw(screen)
