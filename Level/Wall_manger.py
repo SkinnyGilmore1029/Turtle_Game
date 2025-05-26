@@ -1,5 +1,6 @@
 import pygame
 from Utility.Image_Handler import data
+from NPCS.The_crabs import The_Crabs
 
 class The_Walls(pygame.sprite.Sprite):
     def __init__(self,name:str,x:float,y:float,width:float,height:float,direction:str,room:int)->None:
@@ -50,7 +51,31 @@ class The_vines(The_Walls):
     def __init__(self,name:str,x:float,y:float,width:float,height:float,direction:str,room:int):
         super().__init__(name,x,y,width,height,direction,room)
         self.despawn:bool = False
+        self.cut:bool = False
+        self.pos:tuple[int,int] = (self.x,self.y)
         
+    def cut_vine(self):
+        for crab in The_Crabs:
+            if pygame.sprite.collide_mask(self,crab):
+                self.cut = True
+    
+    def move(self,dt)->None:
+        if self.cut == True:
+            match self.direction:
+                case "top":
+                    self.rect.y -= 150 * dt
+                    if self.rect.y <= 0 - self.height:
+                        self.despawn = True
+                        self.rect.y = 0 -self.height
+                case "bottom":
+                    self.rect.y += 150 * dt
+                    if self.rect.y >= 800 + self.height:
+                        self.despawn = True 
+                        self.rect.y = 800 + self.height
+                    
+    def update(self,dt):
+        self.cut_vine()
+        self.move(dt)
         
         
 class The_walls_group(pygame.sprite.Group):
@@ -85,10 +110,20 @@ class The_walls_group(pygame.sprite.Group):
                 height= data['height'],
                 direction= data['direction'],
                 room= data['room'])
+
+
+    def update(self,dt):
+        for sprite in list(self):
+            if isinstance(sprite,The_vines):
+                if sprite.despawn == True:
+                    self.remove(sprite)
+                    print("vine despawned")
+                sprite.update(dt)
     
     def change_room(self):
         self.empty()
         self.loaded_room.clear()
+        
     
     def draw(self,screen:pygame.Surface,josh)->None:
         for sprite in self:

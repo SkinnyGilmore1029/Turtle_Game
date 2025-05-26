@@ -118,6 +118,25 @@
         "direction" : "right",
         "room" : 2,
         "level" : 3
+    },
+    "Vine 1" : {
+        "name" : "Vine",
+        "x" : 660,
+        "y" : 10,
+        "width" : 16,
+        "height" : 320,
+        "direction" : "top",
+        "room" : 1,
+        "level" : 3
+    },
+    "Vine 2" : {
+        "name" : "Vine",
+        "x" : 960,
+        "y" : 550,
+        "width" : 16,
+        "height" : 400,
+        "direction" : "bottom",
+        "room" : 1,
+        "level" : 3
     }
-    
 }

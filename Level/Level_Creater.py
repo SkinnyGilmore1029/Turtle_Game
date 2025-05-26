@@ -171,6 +171,7 @@ class Level_Creater:
             player.rect.x = data.get_player_start(game.level)[0]
             player.rect.y = data.get_player_start(game.level)[1]
             self.room2_location = data.get_room2_location(game.level)
+            
     
     def update_level(self,dt:float,game:object)->None:
         player.update(dt)
@@ -186,7 +187,9 @@ class Level_Creater:
             case 2:
               Button_group.update()
             case 3:
-                The_Crabs.update(dt)  
+                The_Crabs.update(dt)
+                All_walls.update(dt)
+                  
             
         
     def draw_level(self,screen:pygame.Surface,game:object)->None:
