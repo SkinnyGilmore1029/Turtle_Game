@@ -1,11 +1,13 @@
 {
-    "Hint 2" : {
-        "name" : "Hint",
-        "x" : 0,
-        "y" : 650,
-        "width" : 128,
-        "height" : 128,
-        "in_room" : 1,
-        "message" : "Push all 6 buttons to get the key!"
+    "Hint_Frog" : {
+        "Hint 2" : {
+            "name" : "Hint",
+            "x" : 0,
+            "y" : 650,
+            "width" : 128,
+            "height" : 128,
+            "in_room" : 1,
+            "message" : "Push all 6 buttons to get the key!"
+        }
     }
 }

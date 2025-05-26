@@ -10,7 +10,7 @@ from .Collectables_Group import Collect_group
 from .Locks_Group import the_lock
 from .Teleporters import The_tele
 from .Buttons import Button_group
-from. The_hints import The_hints
+from NPCS.The_hints import The_hints
 from Utility.Settings import (
     LEVEL1_POS,
     LEVEL2_POS,
@@ -106,7 +106,7 @@ class Level_Creater:
         All_walls.load_group(level, room)
         Collect_group.get_level_collectables(level,room)
         the_lock.get_level_lock(level,room)
-        The_hints.get_level_Npc(level,room)
+        The_hints.get_level_Hints(level,room)
         The_tele.get_tele_data(level,room)
         if level == 2:
             Button_group.clear_buttons_room(level,room)
