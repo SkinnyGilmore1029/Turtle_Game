@@ -1,20 +1,34 @@
 {
-    "Hint 2" : {
-        "name" : "Hint",
-        "x" : 0,
-        "y" : 650,
-        "width" : 128,
-        "height" : 128,
-        "in_room" : 1,
-        "message" : "Push all 6 buttons to get the key!"
+    "Hint_Frog" : {    
+        "Hint 2" : {
+            "name" : "Hint",
+            "x" : 100,
+            "y" : 150,
+            "width" : 128,
+            "height" : 128,
+            "in_room" : 1,
+            "message" : "If you scare the crabs they will let you through!"
+        },
+        "Hint 3" : {
+            "name" : "Hint",
+            "x" : 228,
+            "y" : 0,
+            "width" : 96,
+            "height" : 96,
+            "in_room" : 2,
+            "message" : "The key is in Room 1! Take the small Portal to go back."
+        }
     },
-    "Hint 3" : {
-        "name" : "Hint",
-        "x" : 1000,
-        "y" : 650,
-        "width" : 128,
-        "height" : 128,
-        "in_room" : 2,
-        "message" : "Push all 6 buttons to get the key!"
+    "Crabs" :{
+        "Crab 1" : {
+            "name" : "Teleporter",
+            "x" : 100,
+            "y" : 200,
+            "width" : 128,
+            "height" : 128,
+            "frame_count" : 4,
+            "in_room" : 1
+        }
     }
+    
 }

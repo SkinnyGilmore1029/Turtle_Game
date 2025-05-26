@@ -24,6 +24,7 @@ class Hint_Group(pygame.sprite.Group):
     def get_level_Npc(self,level:int,room:int)->None:
         self.empty()
         in_level = data.load_level_data(level,"Npc")
+        print(in_level)
         for n in in_level.values():
             if n["in_room"] == room:
                 npc = self.create_npc(n)

@@ -31,7 +31,7 @@ class Teleporter(pygame.sprite.Sprite):
         screen.blit(self.image, self.rect)
 
 
-class Tele_Group(pygame.sprite.GroupSingle):
+class Tele_Group(pygame.sprite.Group):
     def __init__(self):
         super().__init__()
         
@@ -55,18 +55,18 @@ class Tele_Group(pygame.sprite.GroupSingle):
         )
 
     def collision_with_player(self,player:object):
-        if self.sprite:
-            if pygame.sprite.collide_mask(self.sprite,player):
-                self.remove(self.sprite)
+        for sprite in self:
+            if pygame.sprite.collide_mask(sprite,player):
+                self.remove(sprite)
                 return True
             return False
 
     def update(self):
-        if self.sprite:
-            self.sprite.update()
+        for sprite in self:
+            sprite.update()
             
     def draw(self,screen):
-        if self.sprite:
-            self.sprite.draw(screen)
+        for sprite in self:
+            sprite.draw(screen)
             
 The_tele = Tele_Group()

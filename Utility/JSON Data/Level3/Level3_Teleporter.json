@@ -1,10 +1,19 @@
 {
     "Tele 3" : {
         "name" : "Teleporter",
-        "x" : 1020,
-        "y" : 150,
+        "x" : 100,
+        "y" : 200,
         "width" : 128,
         "height" : 128,
+        "frame_count" : 4,
+        "in_room" : 2
+    },
+    "Tele 3b" : {
+        "name" : "Teleporter",
+        "x" : 750,
+        "y" : 350,
+        "width" : 64,
+        "height" : 64,
         "frame_count" : 4,
         "in_room" : 2
     }
