@@ -28,7 +28,7 @@
             "height" : 96,
             "in_room" : 1,
             "direction" : "Up",
-            "name2" : "Crab 1 UP"
+            "name2" : "Crab 1 UP is gone"
         },
         "Crab 2" : {
             "name" : "Crab",
@@ -38,7 +38,7 @@
             "height" : 96,
             "in_room" : 1,
             "direction" : "Down",
-            "name2" : "Crab 2 Down"
+            "name2" : "Crab 2 Down is gone"
         }
     }
     

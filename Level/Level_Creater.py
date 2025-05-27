@@ -128,6 +128,8 @@ class Level_Creater:
         The_tele.empty()
         bad_guys.empty()
         Button_group.clear_buttons_level()
+        The_Crabs.clear_level()
+        All_walls.moved_walls.clear()
     
     def get_respawn_pos(self)->tuple[int,int]:
         respwn_pos =[0,0]
@@ -162,16 +164,19 @@ class Level_Creater:
     def handle_collision(self,game:object)->None:
         #Player death
         if bad_guys.collision_with_player(player):
-            player.died(self.get_respawn_pos())
+            player_spawn_postion = self.get_respawn_pos()
+            player.died(player_spawn_postion)
             game.room = 1
         #Level Win Condition
-        if The_tele.collision_with_player(player):
-            game.level +=1
-            game.room = 1
-            player.rect.x = data.get_player_start(game.level)[0]
-            player.rect.y = data.get_player_start(game.level)[1]
-            self.room2_location = data.get_room2_location(game.level)
-            
+        collided_tele = The_tele.collision_with_player(player)
+        if collided_tele:
+            if collided_tele.change_level == True:
+                game.level +=1
+                game.room = 1
+            else:
+                game.room = 1
+            player.rect.x, player.rect.y = data.get_player_start(game.level)
+            self.room2_location = data.get_room2_location(game.level)    
     
     def update_level(self,dt:float,game:object)->None:
         player.update(dt)

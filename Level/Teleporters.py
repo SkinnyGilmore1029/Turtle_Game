@@ -3,13 +3,14 @@ from Utility.Image_Handler import Image_Animator,data
 from Utility.Settings import WIDTH,HEIGHT
 
 class Teleporter(pygame.sprite.Sprite):
-    def __init__(self, name:str, x:float, y:float, width:int, height:int, frame_count:int)->None:
+    def __init__(self, name:str, x:float, y:float, width:int, height:int, frame_count:int,change_level:bool)->None:
         super().__init__()
         self.name = name
         self.x = x
         self.y = y
         self.w = width
         self.h = height
+        self.change_level = change_level
         self.sheet_size:list[int,int] = [520,128]
         self.rect = pygame.FRect(self.x, self.y, self.w, self.h)
         self.frame_count = frame_count
@@ -51,15 +52,14 @@ class Tele_Group(pygame.sprite.Group):
             y= data['y'],
             width= data['width'],
             height = data['height'],
-            frame_count= data['frame_count']
+            frame_count= data['frame_count'],
+            change_level= data["change_level"]
         )
 
     def collision_with_player(self,player:object):
         for sprite in self:
             if pygame.sprite.collide_mask(sprite,player):
-                self.remove(sprite)
-                return True
-            return False
+                return sprite
 
     def update(self):
         for sprite in self:

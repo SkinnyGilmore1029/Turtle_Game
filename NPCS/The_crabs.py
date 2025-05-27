@@ -78,12 +78,14 @@ class Crabby(Npc_Base):
 class The_crabbies(pygame.sprite.Group):
     def __init__(self):
         super().__init__()
+        self.already_in_level = set()
+        self.already_pushed = set()
         
     def get_level_crabs(self,level:int,room:int)->None:
         self.empty()
         in_level = data.load_level_data(level,"Npc")["Crabs"]
         for c in in_level.values():
-            if c["in_room"] == room:
+            if c["in_room"] == room and c['name2'] not in self.already_pushed:
                 crab = self.create_crab(c)
                 self.add(crab)
                 
@@ -101,8 +103,14 @@ class The_crabbies(pygame.sprite.Group):
     def check_despawn(self):
         for sprite in self:
             if sprite.despawn == True:
+                self.already_pushed.add(sprite.name2)
                 self.remove(sprite)
-                print("Goodybye")
+                
+    
+    def clear_level(self):
+        self.empty()
+        self.already_pushed.clear()
+        self.already_pushed.clear()
     
     def update(self,dt:float)->None:
         for sprite in self:

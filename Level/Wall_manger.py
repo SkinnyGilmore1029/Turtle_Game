@@ -5,6 +5,7 @@ from NPCS.The_crabs import The_Crabs
 class The_Walls(pygame.sprite.Sprite):
     def __init__(self,name:str,x:float,y:float,width:float,height:float,direction:str,room:int)->None:
         super().__init__()
+        self.name = name
         self.image = data.load_image(name)
         self.x = x
         self.y = y
@@ -87,14 +88,15 @@ class The_walls_group(pygame.sprite.Group):
     def __init__(self):
         super().__init__()
         self.loaded_room = set()
+        self.moved_walls = set()
         
     def load_group(self,level:int,room:int)->None:
         key = (level,room)
         if key not in self.loaded_room:
             walls = data.load_level_data(level,"walls")
-            #walls = data.load_wall_data(level)
             for w in walls.values():
-                if w['room'] == room:
+                cut_key = (w['name'],w['direction'],w['x'])
+                if w['room'] == room and cut_key not in self.moved_walls:
                     wall = self.create_walls(w)
                     self.add(wall)
             self.loaded_room.add(key)
@@ -115,9 +117,10 @@ class The_walls_group(pygame.sprite.Group):
     def update(self,dt):
         for sprite in list(self):
             if isinstance(sprite,The_vines):
+                cut_key = (sprite.name,sprite.direction,sprite.x)
                 if sprite.despawn == True:
+                    self.moved_walls.add(cut_key)
                     self.remove(sprite)
-                    print("vine despawned")
                 sprite.update(dt)
     
     def change_room(self):

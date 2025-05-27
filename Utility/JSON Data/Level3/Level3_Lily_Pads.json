@@ -1,0 +1,29 @@
+{
+    "Lily 1" :{
+        "name" : "Lily",
+        "x"  : 300,
+        "y" : 50,
+        "width" : 96,
+        "height" : 160,
+        "direction" : "Down",
+        "room" : 1
+    },
+    "Lily 2" :{
+        "name" : "Lily",
+        "x"  : 780,
+        "y" : 50,
+        "width" : 96,
+        "height" : 160,
+        "direction" : "Down",
+        "room" : 1
+    },
+    "Lily 3" :{
+        "name" : "Lily",
+        "x"  : 540,
+        "y" : 850,
+        "width" : 96,
+        "height" : 160,
+        "direction" : "Up",
+        "room" : 1
+    }
+}

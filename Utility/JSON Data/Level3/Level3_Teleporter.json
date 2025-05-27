@@ -6,7 +6,8 @@
         "width" : 128,
         "height" : 128,
         "frame_count" : 4,
-        "in_room" : 2
+        "in_room" : 2,
+        "change_level" : true
     },
     "Tele 3b" : {
         "name" : "Teleporter",
@@ -15,6 +16,7 @@
         "width" : 64,
         "height" : 64,
         "frame_count" : 4,
-        "in_room" : 2
+        "in_room" : 2,
+        "change_level" : false
     }
 }

@@ -127,7 +127,8 @@
         "height" : 320,
         "direction" : "top",
         "room" : 1,
-        "level" : 3
+        "level" : 3,
+        "Cut key" : "Vine 1 has been cut"
     },
     "Vine 2" : {
         "name" : "Vine",
@@ -137,6 +138,7 @@
         "height" : 400,
         "direction" : "bottom",
         "room" : 1,
-        "level" : 3
+        "level" : 3,
+        "Cut key" : "Vine 2 has been cut"
     }
 }
