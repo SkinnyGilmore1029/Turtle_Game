@@ -7,6 +7,7 @@ class The_Walls(pygame.sprite.Sprite):
         super().__init__()
         self.name = name
         self.image = data.load_image(name)
+        
         self.x = x
         self.y = y
         self.width = width
@@ -81,6 +82,8 @@ class The_walls_group(pygame.sprite.Group):
     wall_classes:dict = {
         "Fence" : The_Walls,
         "Rock Wall" : The_Walls,
+        "Desert" : The_Walls,
+        "Desert2" : The_Walls,
         "Vine" : The_vines
     }
     def __init__(self):

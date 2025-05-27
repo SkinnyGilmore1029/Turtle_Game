@@ -1,5 +1,7 @@
 import json
 import pygame
+import pygame.surfarray
+import numpy as np
 
 
 class Image_Animator:
@@ -87,11 +89,24 @@ class DataManager:
         if picture_name not in self._loaded_images:
             try:
                 image = pygame.image.load(self.single_pictures[picture_name]).convert_alpha()
+                arr = pygame.surfarray.pixels3d(image)
+                alpha_arr = pygame.surfarray.pixels_alpha(image)
+
+                # Find white pixels (255,255,255)
+                white_mask = np.all(arr == [255, 255, 255], axis=-1)
+                alpha_arr[white_mask] = 0  # Set alpha to 0 where white
+
+                del arr  # Unlock surface
+                del alpha_arr
+
             except (KeyError, FileNotFoundError):
                 image = pygame.Surface((128, 128), pygame.SRCALPHA)
                 image.fill((255, 0, 0))
+
             self._loaded_images[picture_name] = image
+
         return self._loaded_images[picture_name]
+
 
     def get_frames(self, name: str, frame_count: int, w: int, h: int,sheet_size) -> list[pygame.Surface]:
         key = (name, frame_count, w, h)
