@@ -21,6 +21,7 @@ class The_Bad_Guys(pygame.sprite.Group):
     def __init__(self):
         super().__init__()
         
+        
     def get_level_badguys(self,level:int,room:int):
         self.empty()
         in_level = data.load_level_data(level,"enemies")
@@ -32,6 +33,7 @@ class The_Bad_Guys(pygame.sprite.Group):
         
     def create_badguy_from_data(self,data:dict):
         clas = self.badguy_classes.get(data["name"])
+        print(f"Creating badguy: {data['name']}")
         if clas:
             return clas(
                 name= data["name"],

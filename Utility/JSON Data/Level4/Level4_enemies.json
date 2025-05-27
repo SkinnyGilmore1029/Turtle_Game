@@ -1,5 +1,5 @@
 {
-    "Scorpion 1" : {
+    "scorpion 1" : {
         "name" : "Scorpion",
         "x" : 780.0,
         "y" : 150.0,
@@ -11,7 +11,7 @@
         "speed": [0,200,0],
         "sheet size" : [1024,332]
         },
-    "Scorpion 2" :{
+    "scorpion 2" :{
         "name" : "Scorpion",
         "x" : 360,
         "y" : 650,
@@ -23,7 +23,7 @@
         "speed": [0,200,0],
         "sheet size" : [1024,332]
         },
-    "Scorpion 3":{
+    "scorpion 3":{
         "name" : "Scorpion",
         "x" : 120.0,
         "y" : 80,
@@ -35,7 +35,7 @@
         "speed": [-0,200,0],
         "sheet size" : [1024,332]
         },
-    "Scorpion 4":{
+    "scorpion 4":{
         "name" : "Scorpion",
         "x" : 1020,
         "y" : 650,
@@ -47,7 +47,7 @@
         "speed": [0,-200,0],
         "sheet size" : [1024,332]
         },
-    "Scorpion 5":{
+    "scorpion 5":{
         "name" : "Scorpion",
         "x" : 600,
         "y" : 400,
