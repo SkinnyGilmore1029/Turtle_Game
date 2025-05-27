@@ -6,7 +6,7 @@ from .The_Enemies import (
     The_bus,
     The_gators,
     The_Fish,
-    Scorpion
+    The_Scorpion
 )
 #418,283
 class The_Bad_Guys(pygame.sprite.Group):
@@ -16,7 +16,7 @@ class The_Bad_Guys(pygame.sprite.Group):
             "Bus" : The_bus,
             "Gator" : The_gators,
             "Fish" : The_Fish,
-            "Scorpion" : Scorpion
+            "Scorpion" : The_Scorpion
         }
     def __init__(self):
         super().__init__()
@@ -33,7 +33,6 @@ class The_Bad_Guys(pygame.sprite.Group):
         
     def create_badguy_from_data(self,data:dict):
         clas = self.badguy_classes.get(data["name"])
-        print(f"Creating badguy: {data['name']}")
         if clas:
             return clas(
                 name= data["name"],
