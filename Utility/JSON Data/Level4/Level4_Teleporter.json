@@ -1,11 +1,12 @@
 {
     "Tele 1" : {
         "name" : "Teleporter",
-        "x" : 600.0,
-        "y" : 0,
+        "x" : 0,
+        "y" : 456,
         "width" : 128,
         "height" : 128,
         "frame_count" : 4,
-        "in_room" : 2
+        "in_room" : 2,
+        "change_level" : true
     }
 }

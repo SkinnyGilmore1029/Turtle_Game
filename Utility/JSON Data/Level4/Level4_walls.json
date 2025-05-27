@@ -1,0 +1,52 @@
+{
+     "Rock 1" : {
+        "name" : "Desert",
+        "x" : 0,
+        "y" : 760,
+        "width" : 900,
+        "height" : 40,
+        "direction" : "bottom",
+        "room" : 1,
+        "level" : 4
+    },
+    "Rock 2" : {
+        "name" : "Desert2",
+        "x" : 0,
+        "y" : 0,
+        "width" : 900,
+        "height" : 40,
+        "direction" : "top",
+        "room" : 2,
+        "level" : 4
+    },
+    "Rock 3" : {
+        "name" : "Desert2",
+        "x" : 200,
+        "y" : 200,
+        "width" : 1000,
+        "height" : 40,
+        "direction" : "top",
+        "room" : 2,
+        "level" : 4
+    },
+    "Rock 4" : {
+        "name" : "Desert2",
+        "x" : 0,
+        "y" : 520,
+        "width" : 1000,
+        "height" : 40,
+        "direction" : "top",
+        "room" : 2,
+        "level" : 4
+    },
+    "Rock 5" : {
+        "name" : "Desert2",
+        "x" : 250,
+        "y" : 670,
+        "width" : 32,
+        "height" : 250,
+        "direction" : "left",
+        "room" : 2,
+        "level" : 4
+    }
+}

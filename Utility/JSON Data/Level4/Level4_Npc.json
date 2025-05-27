@@ -1,0 +1,13 @@
+{
+    "Hint_Frog" : {
+        "Hint 2" : {
+            "name" : "Hint",
+            "x" : 600,
+            "y" : 0,
+            "width" : 128,
+            "height" : 128,
+            "in_room" : 1,
+            "message" : "Push all 6 buttons to get the key!"
+        }
+    }
+}
