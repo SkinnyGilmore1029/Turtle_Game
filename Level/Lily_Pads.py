@@ -13,7 +13,7 @@ class Lily_Pad(pygame.sprite.Sprite):
         self.w = width
         self.h = height
         self.image = data.load_image(self.name)
-        self.imgae = pygame.transform.smoothscale(self.image,(self.w,self.h))
+        self.image = pygame.transform.smoothscale(self.image,(self.w,self.h))
         self.rect = pygame.FRect(self.x,self.y,self.w,self.h)
         self.mask = pygame.mask.from_surface(self.image)
         self.direction = direction
@@ -35,9 +35,9 @@ class Lily_Pad(pygame.sprite.Sprite):
         if pygame.sprite.collide_mask(self,player):
             match self.direction:
                 case "Up":
-                    player.rect.y -= 200 *dt
-                case "Down":
                     player.rect.y += 200 *dt
+                case "Down":
+                    player.rect.y -= 200 *dt
                     
     def update(self,dt:float):
         self.move_lily(dt)
@@ -52,6 +52,7 @@ class The_Lily_Pads(pygame.sprite.Group):
         self.loaded_room = set()
         
     def get_lily_data(self,level:int,room:int)->None:
+        #self.empty()
         key = (level,room)
         if key not in self.loaded_room:
             lily_data = data.load_level_data(level,"Lily_Pads")

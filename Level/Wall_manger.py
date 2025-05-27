@@ -67,12 +67,10 @@ class The_vines(The_Walls):
                     self.rect.y -= 150 * dt
                     if self.rect.y <= 0 - self.height:
                         self.despawn = True
-                        self.rect.y = 0 -self.height
                 case "bottom":
                     self.rect.y += 150 * dt
-                    if self.rect.y >= 800 + self.height:
-                        self.despawn = True 
-                        self.rect.y = 800 + self.height
+                    if self.rect.y >= 800:
+                        self.despawn = True
                     
     def update(self,dt):
         self.cut_vine()

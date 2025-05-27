@@ -17,6 +17,7 @@ from Enemy.The_Enemy_Group import bad_guys
 from UI.The_hud import Show_hud
 from NPCS.The_hints import The_hints
 from NPCS.The_crabs import The_Crabs
+from .Lily_Pads import All_Lily
 from .Background_manger import Level_Backgrounds
 from .Wall_manger import All_walls
 from .Collectables_Group import Collect_group
@@ -117,6 +118,9 @@ class Level_Creater:
                 Button_group.get_level_buttons(level,room)
             case 3:
                 The_Crabs.get_level_crabs(level,room)
+                All_Lily.change_room()
+                All_Lily.get_lily_data(level,room)
+                
         
 
     def clear_level(self)->None:
@@ -194,6 +198,7 @@ class Level_Creater:
             case 3:
                 The_Crabs.update(dt)
                 All_walls.update(dt)
+                All_Lily.update(dt)
                   
             
         
@@ -212,4 +217,5 @@ class Level_Creater:
                 Button_group.draw(screen)
             case 3:
                 The_Crabs.draw(screen)
+                All_Lily.draw(screen)
         player.draw(screen)
