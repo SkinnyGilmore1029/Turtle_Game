@@ -204,7 +204,6 @@ class Level_Creater:
         
     def draw_level(self,screen:pygame.Surface,game:object)->None:
         self.background.draw(screen)
-        Show_hud(screen,player,self.level,self.room)
         All_walls.draw(screen,player)
         bad_guys.draw(screen)
         Collect_group.draw(screen)
@@ -219,3 +218,4 @@ class Level_Creater:
                 The_Crabs.draw(screen)
                 All_Lily.draw(screen)
         player.draw(screen)
+        Show_hud(screen,player,self.level,self.room)

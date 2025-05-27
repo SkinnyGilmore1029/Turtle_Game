@@ -1,86 +1,62 @@
 {
-    "car1" : {
-        "name" : "Car",
+    "Scorpion 1" : {
+        "name" : "Scorpion",
         "x" : 400.0,
         "y" : 480.0,
         "width" : 128,
         "height" : 128,
         "direction" : "Right",
-        "frame_count" : 3,
+        "frame_count" : 1,
         "in_room" : 1,
         "speed": [200,0],
         "sheet size" : [386,129]
         },
-    "car2" :{
-        "name" : "Car",
+    "Scorpion 2" :{
+        "name" : "Scorpion",
         "x" : 1080.0,
         "y" : 480.0,
         "width" : 128,
         "height" : 128,
         "direction" : "Right",
-        "frame_count" : 3,
+        "frame_count" : 1,
         "in_room" : 1,
         "speed": [200,0],
         "sheet size" : [386,129]
         },
-    "truck1":{
-        "name" : "Truck",
+    "Scorpion 3":{
+        "name" : "Scorpion",
         "x" : 100.0,
         "y" : 160.0,
         "width" : 256,
         "height" : 192,
         "direction" : "Right",
-        "frame_count" : 3,
+        "frame_count" : 1,
         "in_room" : 1,
         "speed": [-200,0],
         "sheet size" : [769,199]
         },
-    "truck2":{
-        "name" : "Truck",
+    "Scorpion 4":{
+        "name" : "Scorpion",
         "x" : 675.0,
         "y" : 160.0,
         "width" : 256,
         "height" : 192,
         "direction" : "Right",
-        "frame_count" : 3,
+        "frame_count" : 1,
         "in_room" : 1,
         "speed": [-200,0],
         "sheet size" : [769,199]
         },
-    "truck3":{
-        "name" : "Truck",
+    "Scorpion 5":{
+        "name" : "Scorpion",
         "x" : 400.0,
         "y" : 480.0,
         "width" : 256,
         "height" : 192,
         "direction" : "Right",
-        "frame_count" : 3,
+        "frame_count" : 1,
         "in_room" : 2,
         "speed": [-200,0],
         "sheet size" : [769,199]
-        },
-    "truck4":{
-        "name" : "Truck",
-        "x" : 1080.0,
-        "y" : 480.0,
-        "width" : 256,
-        "height" : 192,
-        "direction" : "Right",
-        "frame_count" : 3,
-        "in_room" : 2,
-        "speed": [-200,0],
-        "sheet size" : [769,199]
-        },
-    "bus" : {
-        "name" : "Bus",
-        "x" : 100.0,
-        "y" : 160.0,
-        "width" : 428,
-        "height" : 150,
-        "direction" : "Left",
-        "frame_count" : 3,
-        "in_room" : 2,
-        "speed": [400,0],
-        "sheet size" : [1280,150]
         }
 }

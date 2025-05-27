@@ -229,7 +229,12 @@ class The_Fish(pygame.sprite.Sprite):
         
     def draw(self,screen:pygame.Surface)->None:
         screen.blit(self.image,self.rect)
-        
+
+class Scorpion(Bad_guy):
+    def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int,speed:list,sheet_size:list)->None:
+        super().__init__(name,x,y,width,height,direction,frame_count,in_room,speed,sheet_size)
+
+      
 class Main_Boss(Bad_guy):
     def __init__(self,name:str,x:float,y:float,width:int,height:int,direction:str,frame_count:int,in_room:int,speed:list,sheet_size:list)->None:
         super().__init__(name,x,y,width,height,direction,frame_count,in_room,speed,sheet_size)
