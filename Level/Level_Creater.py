@@ -192,6 +192,7 @@ class Level_Creater:
         self.change_left_right(game)
         self.change_down_up(game)
         The_hints.collison_with_player()
+        All_walls.update(dt)
         match game.level:
             case 2:
               Button_group.update()
@@ -204,7 +205,7 @@ class Level_Creater:
         
     def draw_level(self,screen:pygame.Surface,game:object)->None:
         self.background.draw(screen)
-        All_walls.draw(screen,player)
+        All_walls.draw(screen)
         bad_guys.draw(screen)
         Collect_group.draw(screen)
         the_lock.draw(screen)

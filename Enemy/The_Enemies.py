@@ -60,6 +60,10 @@ class Bad_guy(pygame.sprite.Sprite):
             right_img = pygame.transform.smoothscale(frame, (self.w, self.h))
             self.transformed_frames["Right"].append(right_img)
             
+            down_img = pygame.transform.flip(frame,False,True)
+            down_img = pygame.transform.smoothscale(down_img, (self.w, self.h))
+            self.transformed_frames["Down"].append(down_img)
+            
     def handle_animations(self)->None:
         """
         Handles player animation frame updates based on elapsed time.
@@ -236,7 +240,8 @@ class The_Scorpion(Bad_guy):
         
     
     def move(self,dt):
-        pass
+        self.rect.y += self.velocity.y *dt
+        
     
     def update(self,dt)->None:
         self.move(dt)

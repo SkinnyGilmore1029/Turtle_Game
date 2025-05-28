@@ -1,6 +1,8 @@
 import pygame
 from Utility.Image_Handler import data
 from NPCS.The_crabs import The_Crabs
+from The_turtles.The_player import player
+from Enemy.The_Enemy_Group import bad_guys
 
 class The_Walls(pygame.sprite.Sprite):
     def __init__(self,name:str,x:float,y:float,width:float,height:float,direction:str,room:int)->None:
@@ -34,19 +36,34 @@ class The_Walls(pygame.sprite.Sprite):
                 self.image = pygame.transform.smoothscale(self.image, (self.width, self.height))
         self.mask = pygame.mask.from_surface(self.image)
 
-    def wall_collision(self,josh) -> None:
-        if pygame.sprite.collide_mask(self,josh):
-            if josh.rect.top <= self.rect.top:
-                josh.rect.bottom = self.rect.top
-            elif josh.rect.bottom >= self.rect.bottom:
-                josh.rect.top = self.rect.bottom
-            elif josh.rect.right < self.rect.right:
-                josh.rect.right = self.rect.left
-            elif josh.rect.left > self.rect.left:
-                josh.rect.left = self.rect.right
+    def wall_collision(self) -> None:
+        if pygame.sprite.collide_mask(self,player):
+            if player.rect.top <= self.rect.top:
+                player.rect.bottom = self.rect.top
+            elif player.rect.bottom >= self.rect.bottom:
+                player.rect.top = self.rect.bottom
+            elif player.rect.right < self.rect.right:
+                player.rect.right = self.rect.left
+            elif player.rect.left > self.rect.left:
+                player.rect.left = self.rect.right
 
-    def draw(self,screen,josh):
-        self.wall_collision(josh)
+    def enemy_collision(self)->None:
+        for e in bad_guys:
+            if pygame.sprite.collide_mask(self,e):
+                match e.direction:
+                    case "Up":
+                        e.direction = 'Down'
+                        e.rect.y -= 5 #prevent getting stuck?
+                    case "Down":
+                        e.direction = 'Up'
+                        e.rect.y += 5 #prevent getting stuck ?
+                e.velocity.y *= -1
+
+    def update(self,dt)->None:
+        self.wall_collision()
+        self.enemy_collision()
+
+    def draw(self,screen):
         screen.blit(self.image,self.rect)
         
 class The_vines(The_Walls):
@@ -74,6 +91,7 @@ class The_vines(The_Walls):
                         self.despawn = True
                     
     def update(self,dt):
+        self.wall_collision()
         self.cut_vine()
         self.move(dt)
         
@@ -115,22 +133,26 @@ class The_walls_group(pygame.sprite.Group):
                 room= data['room'])
 
 
-    def update(self,dt):
-        for sprite in list(self):
-            if isinstance(sprite,The_vines):
+    def check_if_vine(self,sprite,dt)->None:
+        if isinstance(sprite,The_vines):
                 cut_key = (sprite.name,sprite.direction,sprite.x)
-                if sprite.despawn == True:
+                if sprite.despawn:
                     self.moved_walls.add(cut_key)
                     self.remove(sprite)
-                sprite.update(dt)
+                #sprite.update(dt)
+
+    def update(self,dt):
+        for sprite in list(self):
+            self.check_if_vine(sprite,dt)
+            sprite.update(dt)
     
     def change_room(self):
         self.empty()
         self.loaded_room.clear()
         
     
-    def draw(self,screen:pygame.Surface,josh)->None:
+    def draw(self,screen:pygame.Surface)->None:
         for sprite in self:
-            sprite.draw(screen,josh)
+            sprite.draw(screen)
             
 All_walls = The_walls_group()
