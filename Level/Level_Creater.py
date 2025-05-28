@@ -17,6 +17,7 @@ from Enemy.The_Enemy_Group import bad_guys
 from UI.The_hud import Show_hud
 from NPCS.The_hints import The_hints
 from NPCS.The_crabs import The_Crabs
+from NPCS.The_Cactus import All_cactus
 from .Lily_Pads import All_Lily
 from .Background_manger import Level_Backgrounds
 from .Wall_manger import All_walls
@@ -40,7 +41,7 @@ class Level_Creater:
         if key not in self.backgrounds:
             self.backgrounds[key] = Level_Backgrounds(level,room)
         return self.backgrounds[key]
-        
+ 
     def change_up_down(self,game) -> None:
         if self.room2_location == "Above":
             if player.rect.x <= 0:
@@ -99,6 +100,18 @@ class Level_Creater:
                 player.rect.x = WIDTH-64
                 The_tele.get_tele_data(game.level, game.room)
     
+    def check_level_only(self,level,room):
+        match level:
+            case 2:
+                Button_group.clear_buttons_room(level,room)
+                Button_group.get_level_buttons(level,room)
+            case 3:
+                The_Crabs.get_level_crabs(level,room)
+                All_Lily.change_room()
+                All_Lily.get_lily_data(level,room)
+            case 4:
+                All_cactus.get_level_cactus(level,room)
+    
     def change_rooms(self, level: int, room: int) -> None:
         self.level = level
         self.room = room
@@ -111,24 +124,11 @@ class Level_Creater:
         the_lock.get_level_lock(level,room)
         The_hints.get_level_Hints(level,room)
         The_tele.get_tele_data(level,room)
-        #Handles level specific changes
-        match level:
-            case 2:
-                Button_group.clear_buttons_room(level,room)
-                Button_group.get_level_buttons(level,room)
-            case 3:
-                The_Crabs.get_level_crabs(level,room)
-                All_Lily.change_room()
-                All_Lily.get_lily_data(level,room)
+        self.check_level_only(level,room)
                 
-        
-
     def clear_level(self)->None:
-        Collect_group.empty()
-        Collect_group.already_in_level.clear()
-        Collect_group.already_collected.clear()
-        the_lock.empty()
-        the_lock.already_unlocked.clear()
+        Collect_group.get_clear_level()
+        the_lock.clear_level()
         The_tele.empty()
         bad_guys.empty()
         Button_group.clear_buttons_level()
@@ -182,6 +182,17 @@ class Level_Creater:
             player.rect.x, player.rect.y = data.get_player_start(game.level)
             self.room2_location = data.get_room2_location(game.level)    
     
+    def level_only_update(self,dt,game)->None:
+        match game.level:
+            case 2:
+              Button_group.update()
+            case 3:
+                The_Crabs.update(dt)
+                All_walls.update(dt)
+                All_Lily.update(dt)
+            case 4:
+                All_cactus.update()
+    
     def update_level(self,dt:float,game:object)->None:
         player.update(dt)
         bad_guys.update(dt)
@@ -193,15 +204,26 @@ class Level_Creater:
         self.change_down_up(game)
         The_hints.collison_with_player()
         All_walls.update(dt)
+        
+        
+        self.level_only_update(dt,game) #<- why is this giving recursion error
+        
+                  
+    def draw_level_only(self,screen,game):
+        """
+        These have json files that other levels
+        dont have could mess things up if ran
+        together.
+        """
         match game.level:
             case 2:
-              Button_group.update()
+                Button_group.draw(screen)
             case 3:
-                The_Crabs.update(dt)
-                All_walls.update(dt)
-                All_Lily.update(dt)
-                  
-            
+                The_Crabs.draw(screen)
+                All_Lily.draw(screen)
+            case 4:
+                All_cactus.draw(screen)
+        
         
     def draw_level(self,screen:pygame.Surface,game:object)->None:
         self.background.draw(screen)
@@ -211,12 +233,6 @@ class Level_Creater:
         the_lock.draw(screen)
         The_tele.draw(screen)
         The_hints.draw(screen)
-        The_Crabs.draw(screen)
-        match game.level:
-            case 2:
-                Button_group.draw(screen)
-            case 3:
-                The_Crabs.draw(screen)
-                All_Lily.draw(screen)
+        self.draw_level_only(screen,game)
         player.draw(screen)
         Show_hud(screen,player,self.level,self.room)

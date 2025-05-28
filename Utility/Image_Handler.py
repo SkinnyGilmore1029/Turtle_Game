@@ -18,6 +18,7 @@ class Image_Animator:
         source_h = sheet_size[1]
         rect = pygame.Rect(frame * source_w,0,source_w,source_h)
         image = pygame.Surface((source_w,source_h),pygame.SRCALPHA).convert_alpha()
+        image.set_colorkey((255,255,255))
         image.blit(sheet,(0,0),rect)
         image = pygame.transform.smoothscale(image,(width,height))
         

@@ -40,6 +40,9 @@ class Lock_Group(pygame.sprite.GroupSingle):
     def draw(self,screen)->None:
         if self.sprite:
             self.sprite.draw(screen)
-        
+    
+    def clear_level(self):
+        self.empty()
+        self.already_unlocked.clear()
         
 the_lock = Lock_Group()

@@ -201,6 +201,7 @@ class The_Fish(pygame.sprite.Sprite):
         self.frame_count = frame_count
         self.in_room = in_room
         self.speed = speed
+        self.velocity = pygame.Vector2(speed[0],speed[1])
         self.sheet_size = sheet_size
         self.image = data.load_image(self.name)
         self.handle_direction()
@@ -218,7 +219,7 @@ class The_Fish(pygame.sprite.Sprite):
                 self.mask = pygame.mask.from_surface(self.image)
 
     def move(self,dt:float)->None:
-        self.rect.y += self.speed[1] *dt
+        self.rect.y += self.velocity.y *dt
         match self.direction:
             case "Up":
                 if self.rect.y < -160:

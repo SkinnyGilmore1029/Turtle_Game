@@ -9,5 +9,40 @@
             "in_room" : 1,
             "message" : "Push all 6 buttons to get the key!"
         }
+    },
+    "The_Cactus" : {
+        "Cactus 1" : {
+            "name" : "Cactus",
+            "x" : 120,
+            "y" : 600 ,
+            "width" : 60,
+            "height" : 112,
+            "direction" : "Up",
+            "frame_count" : 6,
+            "sheet_size" : [362,112],
+            "in_room" : 1
+        },
+        "Cactus 2" : {
+            "name" : "Cactus",
+            "x" : 120,
+            "y" : 160 ,
+            "width" : 60,
+            "height" : 112,
+            "direction" : "Up",
+            "frame_count" : 6,
+            "sheet_size" : [362,112],
+            "in_room" : 1
+        },
+        "Cactus 3" : {
+            "name" : "Cactus",
+            "x" : 240,
+            "y" : 360,
+            "width" : 60,
+            "height" : 112,
+            "direction" : "Up",
+            "frame_count" : 6,
+            "sheet_size" : [362,112],
+            "in_room" : 1
+        }
     }
 }

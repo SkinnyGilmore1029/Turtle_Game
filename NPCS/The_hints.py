@@ -29,7 +29,7 @@ class Hint_Group(pygame.sprite.Group):
                 npc = self.create_npc(n)
                 self.add(npc)
                 
-    def create_npc(self,data:dict)->object:
+    def create_npc(self,data:dict)->Hint_Frog:
         return Hint_Frog(
             name= data["name"],
             x= data['x'],
