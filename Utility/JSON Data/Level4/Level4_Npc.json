@@ -7,7 +7,7 @@
             "width" : 128,
             "height" : 128,
             "in_room" : 1,
-            "message" : "Push all 6 buttons to get the key!"
+            "message" : "Ram the cacuts to get the lizard his meal."
         }
     },
     "The_Cactus" : {
@@ -89,7 +89,7 @@
         "y" : 350,
         "width" : 96,
         "height" : 112,
-        "message" : "If you bring my 3 flies I will give you this 'Shiny Thing'.",
+        "message" : "If you bring my 3 flies, from those cactus, I will give you this 'Shiny Thing'.",
         "in_room" : 1
     }
 }
