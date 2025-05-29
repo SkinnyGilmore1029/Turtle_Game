@@ -10,13 +10,14 @@ class Lizard(Npc_Base):
         self.talk = False
         self.message = message
         self.speed:int = 150
+        self.should_move = True
     
     def move(self,dt)->None:
-        if self.have_flies:
+        if self.have_flies and self.should_move:
             self.rect.y -= self.speed *dt
             if self.rect.y <= 32:
-                self.speed = 0
                 self.rect.y = 32
+                self.should_move = False
     
     def talk_to_player(self,screen:pygame.Surface)->None:
         self.message_to_player(screen)
@@ -42,8 +43,7 @@ class Lizard(Npc_Base):
         else:
             self.talk = False
     
-    def update(self,dt):
-        self.move(dt)
+    def update(self):
         self.collision()
     
     def draw(self,screen:pygame.Surface)->None:
@@ -54,9 +54,10 @@ class The_lizard(pygame.sprite.GroupSingle):
         super().__init__()
         self.flies_collected = 0
     
-    def move_lizard_up(self):
+    def move_lizard_up(self,dt):
         if self.flies_collected == 3:
             self.sprite.have_flies = True
+            self.sprite.move(dt)
     
     def get_lizard_data(self,level:int,room:int):
         self.empty()
@@ -78,8 +79,8 @@ class The_lizard(pygame.sprite.GroupSingle):
         
     def update(self,dt)->None:
         if self.sprite:
-            self.sprite.update(dt)
-        self.move_lizard_up()
+            self.sprite.update()
+            self.move_lizard_up(dt)
             
     def draw(self,screen:pygame.Surface)->None:
         if self.sprite:
