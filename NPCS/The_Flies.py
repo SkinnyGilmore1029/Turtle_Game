@@ -24,7 +24,6 @@ class Fly(Animated_Npc_base):
         if pygame.sprite.collide_mask(self,player):
             if self.collected == False:
                 Lizards.flies_collected +=1
-                print(Lizards.flies_collected)
                 self.collected = True
                 
                 
@@ -61,6 +60,7 @@ class Fly_Group(pygame.sprite.Group):
     
     def get_level_flies(self, level:int, room:int)->None:
         self.empty()
+        self.all_flies.clear()
         in_level = data.load_level_data(level,"Npc")["The_Flies"]
         flies_data = list(in_level.values())
         
