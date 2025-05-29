@@ -18,6 +18,8 @@ from UI.The_hud import Show_hud
 from NPCS.The_hints import The_hints
 from NPCS.The_crabs import The_Crabs
 from NPCS.The_Cactus import All_cactus
+from NPCS.The_Flies import All_Flies
+from NPCS.The_Lizard import Lizards
 from .Lily_Pads import All_Lily
 from .Background_manger import Level_Backgrounds
 from .Wall_manger import All_walls
@@ -111,6 +113,9 @@ class Level_Creater:
                 All_Lily.get_lily_data(level,room)
             case 4:
                 All_cactus.get_level_cactus(level,room)
+                All_Flies.get_level_flies(level,room)
+                Lizards.get_lizard_data(level,room)
+                
     
     def change_rooms(self, level: int, room: int) -> None:
         self.level = level
@@ -192,6 +197,8 @@ class Level_Creater:
                 All_Lily.update(dt)
             case 4:
                 All_cactus.update()
+                All_Flies.update(dt)
+                Lizards.update(dt)
     
     def update_level(self,dt:float,game:object)->None:
         player.update(dt)
@@ -223,6 +230,8 @@ class Level_Creater:
                 All_Lily.draw(screen)
             case 4:
                 All_cactus.draw(screen)
+                All_Flies.draw(screen)
+                Lizards.draw(screen)
         
         
     def draw_level(self,screen:pygame.Surface,game:object)->None:

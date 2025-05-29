@@ -33,7 +33,7 @@ class Animated_Npc_base(pygame.sprite.Sprite):
         self.sheet_size = sheet_size
         self.rect = pygame.FRect(self.x,self.y,self.w,self.h)
         self.direction = direction
-        self.velocity = pygame.Vector2(0,0)
+        #self.velocity = pygame.Vector2(0,0)
         self.frame_count = frame_count
         self.frames = data.get_frames(self.name,self.frame_count,self.w,self.h,self.sheet_size)
         self.animation = Image_Animator(self.name)
@@ -109,7 +109,7 @@ class Animated_Npc_base(pygame.sprite.Sprite):
     
     def draw(self,screen:pygame.Surface)->None:
         #will be updated by children classes
-        pass
+        pass#
         
 
             

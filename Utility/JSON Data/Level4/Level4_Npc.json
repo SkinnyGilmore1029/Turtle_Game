@@ -44,5 +44,52 @@
             "sheet_size" : [362,112],
             "in_room" : 1
         }
+    },
+    "The_Flies" : {
+        "Fly 1" : {
+            "name" : "Fly",
+            "x" : 55,
+            "y" : 600 ,
+            "width" : 32,
+            "height" : 32,
+            "direction" : "Up",
+            "frame_count" : 2,
+            "sheet_size" : [64,32],
+            "speed" : [150,-130],
+            "in_room" : 1
+        },
+        "Fly 2" : {
+            "name" : "Fly",
+            "x" : 55,
+            "y" : 160 ,
+            "width" : 32,
+            "height" : 32,
+            "direction" : "Up",
+            "frame_count" : 2,
+            "sheet_size" : [64,32],
+            "speed" : [-170,-140],
+            "in_room" : 1
+        },
+        "Fly 3" : {
+            "name" : "Fly",
+            "x" : 175,
+            "y" : 360,
+            "width" : 32,
+            "height" : 32,
+            "direction" : "Up",
+            "frame_count" : 2,
+            "sheet_size" : [64,32],
+            "speed" : [-130,120],
+            "in_room" : 1
+        }
+    },
+    "The_Lizard" : {
+        "name" : "Lizard",
+        "x" : 1100,
+        "y" : 350,
+        "width" : 96,
+        "height" : 112,
+        "message" : "If you bring my 3 flies I will give you this 'Shiny Thing'.",
+        "in_room" : 1
     }
 }

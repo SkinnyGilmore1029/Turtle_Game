@@ -9,9 +9,19 @@ class Cactus(Animated_Npc_base):
         self.touched = False
        
     def collision(self):
-        pass
+        if pygame.sprite.collide_mask(self,player):
+            if player.rect.top <= self.rect.top:
+                player.rect.bottom = self.rect.top
+            elif player.rect.bottom >= self.rect.bottom:
+                player.rect.top = self.rect.bottom
+            elif player.rect.right < self.rect.right:
+                player.rect.right = self.rect.left
+            elif player.rect.left > self.rect.left:
+                player.rect.left = self.rect.right
+            self.touched = True
     
     def update(self):
+        self.collision()
         self.handle_animations()
         
     def draw(self,screen)->None:
