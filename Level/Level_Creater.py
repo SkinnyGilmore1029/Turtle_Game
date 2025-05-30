@@ -27,6 +27,7 @@ from .Collectables_Group import Collect_group
 from .Locks_Group import the_lock
 from .Teleporters import The_tele
 from .Buttons import Button_group
+from .Heat_Puddle import All_puddles , heat_bar
 
 
 class Level_Creater:
@@ -115,6 +116,8 @@ class Level_Creater:
                 All_cactus.get_level_cactus(level,room)
                 All_Flies.get_level_flies(level,room)
                 Lizards.get_lizard_data(level,room)
+            case 5:
+                All_puddles.get_puddle_data(level,room)
                 
     
     def change_rooms(self, level: int, room: int) -> None:
@@ -199,6 +202,8 @@ class Level_Creater:
                 All_cactus.update()
                 All_Flies.update(dt)
                 Lizards.update(dt)
+            case 5:
+                All_puddles.update()
     
     def update_level(self,dt:float,game:object)->None:
         player.update(dt)
@@ -232,6 +237,9 @@ class Level_Creater:
                 All_cactus.draw(screen)
                 All_Flies.draw(screen)
                 Lizards.draw(screen)
+            case 5:
+                All_puddles.draw(screen)
+                heat_bar.draw(screen)
         
         
     def draw_level(self,screen:pygame.Surface,game:object)->None:

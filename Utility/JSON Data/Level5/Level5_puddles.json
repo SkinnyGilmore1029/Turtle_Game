@@ -1,0 +1,26 @@
+{
+    "Puddle 1" : {
+        "name" : "Puddle",
+        "x" : 1088,
+        "y" : 696,
+        "width" : 99,
+        "height" :70,
+        "in_room" : 1
+    },
+    "Puddle 2" : {
+        "name" : "Puddle",
+        "x" : 580,
+        "y" : 180,
+        "width" : 99,
+        "height" :70,
+        "in_room" : 1
+    },
+    "Puddle 3" : {
+        "name" : "Puddle",
+        "x" : 0,
+        "y" : 95,
+        "width" : 99,
+        "height" :70,
+        "in_room" : 1
+    }
+}

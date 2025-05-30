@@ -23,7 +23,8 @@
             "Rat" : "Pictures/Enemies/Rat.png",
             "Starting Scene" : "Pictures/Backgrounds/title bg.png",
             "Title Screen" : "Pictures/Backgrounds/Title_bg.png",
-            "Lily" : "Pictures/Misc/Lily Pad.png"
+            "Lily" : "Pictures/Misc/Lily Pad.png",
+            "Puddle" : "Pictures/Misc/puddle.png"
         },
 
         "Sheets" :{
