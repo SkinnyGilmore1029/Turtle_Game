@@ -1,0 +1,6 @@
+{
+    "Room 1" : "Pictures/Backgrounds/level5_bg.png",
+    "Room 2" : "Pictures/Backgrounds/level5_bg.png",
+    "Starting Spot" : [600,736],
+    "Room 2 Location" : "Below"
+}
