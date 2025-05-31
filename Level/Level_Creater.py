@@ -236,7 +236,7 @@ class Level_Creater:
                 Lizards.draw(screen)
             case 5:
                 All_puddles.draw(screen)
-                heat_bar.draw(screen)
+                #heat_bar.draw(screen)
         
         
     def draw_level(self,screen:pygame.Surface,game:object)->None:
