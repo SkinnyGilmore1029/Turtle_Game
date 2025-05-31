@@ -51,7 +51,8 @@ class Turtle_Game:
             if self.playing is False:
                 match self.game_state:
                     case "Title":
-                        Title_screen.draw_Title_screen(self.screen,self)
+                        Title_screen.draw_Title_screen(self.screen)
+                        Title_screen.Title_screen_controls(self)
                     case "Choosing Level":
                         Choosing_screen.draw_choose_level_screen(self.screen)
                         Choosing_screen.choosing_level(self)
