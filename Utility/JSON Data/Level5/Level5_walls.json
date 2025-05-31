@@ -287,7 +287,7 @@
         "height" : 16,
         "direction" : "top",
         "room" : 1,
-        "level" : 1
+        "level" : 5
     },
     "Desert 30" : {
         "name" : "Desert2",
@@ -297,6 +297,36 @@
         "height" : 280,
         "direction" : "right",
         "room" : 1,
-        "level" : 1
+        "level" : 5
+    },
+    "Desert 31" : {
+        "name" : "Desert2",
+        "x" : 730,
+        "y" : 555,
+        "width" : 358,
+        "height" : 16,
+        "direction" : "top",
+        "room" : 2,
+        "level" : 5
+    },
+    "Desert 32" : {
+        "name" : "Desert2",
+        "x" : 730,
+        "y" : 555,
+        "width" : 16,
+        "height" : 280,
+        "direction" : "right",
+        "room" : 2,
+        "level" : 5
+    },
+    "Desert 33" : {
+        "name" : "Desert2",
+        "x" : 130,
+        "y" : 780,
+        "width" : 1075,
+        "height" : 20,
+        "direction" : "bottom",
+        "room" : 1,
+        "level" : 5
     }
 }

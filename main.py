@@ -3,6 +3,7 @@ from Level.Level_Creater import Level_Creater
 from UI.Title_screen import Title_screen
 from UI.Choosing_Screen import Choosing_screen
 from UI.Cutscenes import Cut_scenes
+from UI.Game_Over import Game_over_screen
 import sys
 
 class Turtle_Game:
@@ -34,6 +35,7 @@ class Turtle_Game:
     
 
     def update_game(self,dt:float)->None:
+        Game_over_screen.check_lives(self)
         self.change_level_room()
         self.change_level()
         self.current_level.update_level(dt,self)
@@ -52,9 +54,10 @@ class Turtle_Game:
                         Title_screen.draw_Title_screen(self.screen,self)
                     case "Choosing Level":
                         Choosing_screen.draw_choose_level_screen(self.screen)
-                        Choosing_screen.choosing_level(self,dt)
+                        Choosing_screen.choosing_level(self)
                     case "Game Over":
-                        pass
+                        Game_over_screen.draw_game_over_screen(self.screen)
+                        Game_over_screen.game_over_controls(self)
             
             if self.playing is True:
                 match self.game_state:

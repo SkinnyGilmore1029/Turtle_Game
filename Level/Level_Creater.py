@@ -206,7 +206,6 @@ class Level_Creater:
                 All_puddles.update()
     
     def update_level(self,dt:float,game:object)->None:
-        player.update(dt)
         bad_guys.update(dt)
         Collect_group.update(player)
         the_lock.update(player)
@@ -216,10 +215,8 @@ class Level_Creater:
         self.change_down_up(game)
         The_hints.collison_with_player()
         All_walls.update(dt)
-        
-        
-        self.level_only_update(dt,game) #<- why is this giving recursion error
-        
+        self.level_only_update(dt,game) 
+        player.update(dt)
                   
     def draw_level_only(self,screen,game):
         """

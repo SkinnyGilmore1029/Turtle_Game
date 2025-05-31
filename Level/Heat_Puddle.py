@@ -59,6 +59,7 @@ class The_Puddles(pygame.sprite.Group):
         super().__init__()
         
     def get_puddle_data(self,level:int,room:int)->None:
+        self.empty()
         puddles_data = data.load_level_data(level,"puddles")
         for p in puddles_data.values():
             if p["in_room"] == room:

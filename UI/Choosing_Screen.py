@@ -16,7 +16,7 @@ class Choose_Level(Screens):
     def __init__(self,name:str)->None:
         super().__init__(name)
     
-    def choosing_level(self,game:object,dt)->None:
+    def choosing_level(self,game:object)->None:
         keys = pygame.key.get_pressed()
         if keys[pygame.K_1]:
             game.level = 1

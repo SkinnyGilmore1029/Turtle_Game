@@ -9,6 +9,3 @@ class Screens:
             "Start Button" : pygame.font.SysFont("Arial",32,True)
         }
 
-    def change_scene(self,new_name:str)->None:
-        self.name = new_name
-        self.background = data.load_image(new_name)

@@ -110,6 +110,7 @@ class The_walls_group(pygame.sprite.Group):
         self.moved_walls = set()
         
     def load_group(self,level:int,room:int)->None:
+        self.empty()
         key = (level,room)
         if key not in self.loaded_room:
             walls = data.load_level_data(level,"walls")
