@@ -299,26 +299,6 @@
         "room" : 1,
         "level" : 5
     },
-    "Desert 31" : {
-        "name" : "Desert2",
-        "x" : 730,
-        "y" : 555,
-        "width" : 358,
-        "height" : 16,
-        "direction" : "top",
-        "room" : 2,
-        "level" : 5
-    },
-    "Desert 32" : {
-        "name" : "Desert2",
-        "x" : 730,
-        "y" : 555,
-        "width" : 16,
-        "height" : 280,
-        "direction" : "right",
-        "room" : 2,
-        "level" : 5
-    },
     "Desert 33" : {
         "name" : "Desert2",
         "x" : 130,
@@ -331,9 +311,9 @@
     },
     "Desert 34" : {
         "name" : "Desert2",
-        "x" : 130,
+        "x" : 230,
         "y" : 0,
-        "width" : 1075,
+        "width" : 975,
         "height" : 20,
         "direction" : "bottom",
         "room" : 2,
@@ -341,7 +321,7 @@
     },
     "Desert 35" : {
         "name" : "Desert2",
-        "x" : 130,
+        "x" : 630,
         "y" : 0,
         "width" : 20,
         "height" : 120,
@@ -352,7 +332,7 @@
     "Desert 36" : {
         "name" : "Desert2",
         "x" : 0,
-        "y" : 300,
+        "y" : 230,
         "width" : 1000,
         "height" : 20,
         "direction" : "bottom",
@@ -362,17 +342,17 @@
     "Desert 37" : {
         "name" : "Desert2",
         "x" : 1000,
-        "y" : 270,
-        "width" : 16,
-        "height" : 300,
+        "y" : 120,
+        "width" : 32,
+        "height" : 500,
         "direction" : "right",
         "room" : 2,
         "level" : 5
     },
     "Desert 38" : {
         "name" : "Desert2",
-        "x" : 1000,
-        "y" : 270,
+        "x" : 1010,
+        "y" : 160,
         "width" : 100,
         "height" : 20,
         "direction" : "bottom",
@@ -382,7 +362,7 @@
     "Desert 39" : {
         "name" : "Desert2",
         "x" : 1100,
-        "y" : 370,
+        "y" : 270,
         "width" : 100,
         "height" : 20,
         "direction" : "bottom",
@@ -392,7 +372,7 @@
     "Desert 40" : {
         "name" : "Desert2",
         "x" : 1000,
-        "y" : 470,
+        "y" : 370,
         "width" : 100,
         "height" : 20,
         "direction" : "bottom",
@@ -402,7 +382,7 @@
     "Desert 41" : {
         "name" : "Desert2",
         "x" : 1100,
-        "y" : 520,
+        "y" : 470,
         "width" : 110,
         "height" : 20,
         "direction" : "bottom",
@@ -411,7 +391,7 @@
     },
     "Desert 42" : {
         "name" : "Desert2",
-        "x" : 1100,
+        "x" : 1000,
         "y" : 570,
         "width" : 100,
         "height" : 20,
@@ -423,7 +403,7 @@
         "name" : "Desert2",
         "x" : 700,
         "y" : 570,
-        "width" : 75,
+        "width" : 175,
         "height" : 20,
         "direction" : "bottom",
         "room" : 2,
@@ -432,7 +412,7 @@
     "Desert 44" : {
         "name" : "Desert2",
         "x" : 130,
-        "y" : 470,
+        "y" : 370,
         "width" : 570,
         "height" : 20,
         "direction" : "bottom",
@@ -441,29 +421,29 @@
     },
     "Desert 45" : {
         "name" : "Desert2",
-        "x" : 360,
-        "y" : 470,
+        "x" : 700,
+        "y" : 370,
         "width" : 20,
-        "height" : 330,
+        "height" : 500,
         "direction" : "right",
         "room" : 2,
         "level" : 5
     },
     "Desert 46" : {
         "name" : "Desert2",
-        "x" : 130,
-        "y" : 780,
+        "x" : 400,
+        "y" : 370,
         "width" : 20,
-        "height" : 100,
+        "height" : 150,
         "direction" : "right",
         "room" : 2,
         "level" : 5
     },
     "Desert 47" : {
         "name" : "Desert2",
-        "x" : 230,
+        "x" : 500,
         "y" : 570,
-        "width" : 220,
+        "width" : 200,
         "height" : 20,
         "direction" : "top",
         "room" : 2,
@@ -472,7 +452,7 @@
     "Desert 48" : {
         "name" : "Desert2",
         "x" : 0,
-        "y" : 700,
+        "y" : 550,
         "width" : 200,
         "height" : 20,
         "direction" : "top",
@@ -482,9 +462,39 @@
     "Desert 49" : {
         "name" : "Desert2",
         "x" : 200,
-        "y" : 70,
+        "y" : 550,
         "width" : 20,
-        "height" : 36,
+        "height" : 100,
+        "direction" : "right",
+        "room" : 2,
+        "level" : 5
+    },
+    "Desert 50" : {
+        "name" : "Desert2",
+        "x" : 0,
+        "y" : 800,
+        "width" : 1200,
+        "height" : 24,
+        "direction" : "right",
+        "room" : 2,
+        "level" : 5
+    },
+    "Desert 51" : {
+        "name" : "Desert2",
+        "x" : -24,
+        "y" : 0,
+        "width" : 30,
+        "height" : 800,
+        "direction" : "right",
+        "room" : 2,
+        "level" : 5
+    },
+    "Desert 52" : {
+        "name" : "Desert2",
+        "x" : 1200,
+        "y" : 0,
+        "width" : 16,
+        "height" : 800,
         "direction" : "right",
         "room" : 2,
         "level" : 5

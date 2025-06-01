@@ -54,10 +54,19 @@ class The_Walls(pygame.sprite.Sprite):
                     case "Up":
                         e.direction = 'Down'
                         e.rect.y -= 5 #prevent getting stuck?
+                        e.velocity.y *= -1
                     case "Down":
                         e.direction = 'Up'
                         e.rect.y += 5 #prevent getting stuck ?
-                e.velocity.y *= -1
+                        e.velocity.y *= -1
+                    case "Right":
+                        e.direction = "Left"
+                        e.rect.x += 5
+                        e.velocity.x *= -1
+                    case "Left":
+                        e.direction = "Right"
+                        e.rect.x -= 5
+                        e.velocity.x *= -1
 
     def update(self,dt)->None:
         self.wall_collision()

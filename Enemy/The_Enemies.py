@@ -50,19 +50,25 @@ class Bad_guy(pygame.sprite.Sprite):
         keyed by direction.
         """
         for frame in self.frames:
+            # Up: just scale
             up_img = pygame.transform.smoothscale(frame, (self.w, self.h))
             self.transformed_frames["Up"].append(up_img)
             
-            left_img = pygame.transform.flip(frame, True, False)
+            # Down: flip vertically + scale
+            down_img = pygame.transform.flip(frame, False, True)
+            down_img = pygame.transform.smoothscale(down_img, (self.w, self.h))
+            self.transformed_frames["Down"].append(down_img)
+            
+            # Left: rotate -90 and flip horizontally + scale
+            left_img = pygame.transform.rotate(frame, -90)
+            left_img = pygame.transform.flip(left_img, True, False)
             left_img = pygame.transform.smoothscale(left_img, (self.w, self.h))
             self.transformed_frames["Left"].append(left_img)
             
-            right_img = pygame.transform.smoothscale(frame, (self.w, self.h))
+            # Right: rotate -90 + scale
+            right_img = pygame.transform.rotate(frame, -90)
+            right_img = pygame.transform.smoothscale(right_img, (self.w, self.h))
             self.transformed_frames["Right"].append(right_img)
-            
-            down_img = pygame.transform.flip(frame,False,True)
-            down_img = pygame.transform.smoothscale(down_img, (self.w, self.h))
-            self.transformed_frames["Down"].append(down_img)
             
     def handle_animations(self)->None:
         """
@@ -241,7 +247,10 @@ class The_Scorpion(Bad_guy):
         
     
     def move(self,dt):
-        self.rect.y += self.velocity.y *dt
+        if self.direction == "Up" or self.direction == "Down":
+            self.rect.y += self.velocity.y *dt
+        elif self.direction == "Left" or self.direction == "Right":
+            self.rect.x += self.velocity.x *dt
         
     
     def update(self,dt)->None:

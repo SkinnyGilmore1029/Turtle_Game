@@ -1,3 +1,38 @@
 {
-    
+    "scorpion 1" : {
+        "name" : "Scorpion",
+        "x" : 100.0,
+        "y" : 130.0,
+        "width" : 96,
+        "height" : 96,
+        "direction" : "Left",
+        "frame_count" : 3,
+        "in_room" : 2,
+        "speed": [200,200],
+        "sheet size" : [1024,332]
+        },
+    "scorpion 2" :{
+        "name" : "Scorpion",
+        "x" : 200,
+        "y" : 700,
+        "width" : 96,
+        "height" : 96,
+        "direction" : "Left",
+        "frame_count" : 3,
+        "in_room" : 2,
+        "speed": [200,200],
+        "sheet size" : [1024,332]
+        },
+    "scorpion 3":{
+        "name" : "Scorpion",
+        "x" : 800.0,
+        "y" : 700,
+        "width" : 96,
+        "height" : 96,
+        "direction" : "Right",
+        "frame_count" : 3,
+        "in_room" : 2,
+        "speed": [-200,-200],
+        "sheet size" : [1024,332]
+        }
 }

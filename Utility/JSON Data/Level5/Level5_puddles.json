@@ -22,5 +22,21 @@
         "width" : 99,
         "height" :70,
         "in_room" : 1
+    },
+    "Puddle 4" : {
+        "name" : "Puddle",
+        "x" : 1100,
+        "y" : 50,
+        "width" : 99,
+        "height" :70,
+        "in_room" : 2
+    },
+    "Puddle 5" : {
+        "name" : "Puddle",
+        "x" : 0,
+        "y" : 400,
+        "width" : 99,
+        "height" :70,
+        "in_room" : 2
     }
 }
