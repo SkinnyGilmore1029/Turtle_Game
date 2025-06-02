@@ -1,6 +1,6 @@
 import pygame
 from Utility.Image_Handler import Image_Animator,data
-from Utility.Settings import WIDTH,HEIGHT
+
 
 class Teleporter(pygame.sprite.Sprite):
     def __init__(self, name:str, x:float, y:float, width:int, height:int, frame_count:int,change_level:bool)->None:
@@ -39,7 +39,6 @@ class Tele_Group(pygame.sprite.Group):
     def get_tele_data(self,level:int,room:int)->None:
         self.empty()
         tele_data = data.load_level_data(level,"Teleporter")
-        #tele_data = data.load_level_teleporter(level)
         for t in tele_data.values():
             if t['in_room'] == room:
                 teleporter = self.create_teleporter(t)

@@ -10,12 +10,12 @@ class The_gators(Bad_guy):
     def move_up_down(self, dt: float) -> None:
         self.rect.y += self.velocity.y * dt
 
-        if self.rect.y <= 150:
-            self.rect.y = 150
+        if self.rect.y <= 170:
+            self.rect.y = 170
             self.velocity.y *= -1
 
-        elif self.rect.y >= 500:
-            self.rect.y = 500
+        elif self.rect.y >= 480:
+            self.rect.y = 480
             self.velocity.y *= -1
     
     def move_left_right(self, dt: float) -> None:

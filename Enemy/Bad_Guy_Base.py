@@ -59,14 +59,14 @@ class Bad_guy(pygame.sprite.Sprite):
             self.transformed_frames["Down"].append(down_img)
             
             # Left: rotate -90 and flip horizontally + scale
-            left_img = pygame.transform.rotate(frame, -90)
-            left_img = pygame.transform.flip(left_img, True, False)
+            #left_img = pygame.transform.rotate(frame, -90)
+            left_img = pygame.transform.flip(frame, True, False)
             left_img = pygame.transform.smoothscale(left_img, (self.w, self.h))
             self.transformed_frames["Left"].append(left_img)
             
             # Right: rotate -90 + scale
-            right_img = pygame.transform.rotate(frame, -90)
-            right_img = pygame.transform.smoothscale(right_img, (self.w, self.h))
+            #right_img = pygame.transform.rotate(frame, -90)
+            right_img = pygame.transform.smoothscale(frame, (self.w, self.h))
             self.transformed_frames["Right"].append(right_img)
             
     def handle_animations(self)->None:

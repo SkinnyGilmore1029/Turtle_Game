@@ -137,11 +137,7 @@ class DataManager:
         room_location_data = self.load_level_data(level_num,"background")
         room_location = room_location_data['Room 2 Location']
         return room_location
-    
-    def get_starting_loction(self, level_num:int)->list[int,int]:
-        starting_loction_data = self.load_level_data(level_num,"background")
-        starting_loction = starting_loction_data["starting_loction"]
-        return starting_loction
+
 
 # Initialize the data manager once:
 data = DataManager()
