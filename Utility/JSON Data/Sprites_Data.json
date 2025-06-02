@@ -6,6 +6,7 @@
             "Rock Wall" : "Pictures/Walls/Rock.png",
             "Desert" : "Pictures/Walls/level4_bored.png",
             "Desert2" : "Pictures/Walls/desert_rock.png",
+            "Cliffs" :  "Pictures/Walls/cliff.png",
             "Key" : "Pictures/Misc/key.png",
             "Lock" : "Pictures/Misc/Locked.png",
             "Red Star" : "Pictures/Misc/Star.png",
@@ -37,7 +38,7 @@
             "Bus" : "Pictures/Enemies/Bus_sheet.png",
             "Gator" : "Pictures/Enemies/Gator_sheet.png",
             "Scorpion" : "Pictures/Enemies/ScorpionSheet.png",
-            "Bolder" : "Pictures/Enemies/bolder2.png",
+            "Bolder" : "Pictures/Enemies/bolder2v.2.png",
             "Teleporter" : "Pictures/Misc/tele_sheet.png",
             "Cactus" : "Pictures/NPC/cactus_sheet.png",
             "Fly" : "Pictures/NPC/fly_sheet.png"

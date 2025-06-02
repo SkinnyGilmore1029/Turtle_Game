@@ -111,7 +111,8 @@ class The_walls_group(pygame.sprite.Group):
         "Rock Wall" : The_Walls,
         "Desert" : The_Walls,
         "Desert2" : The_Walls,
-        "Vine" : The_vines
+        "Vine" : The_vines,
+        "Cliffs" : The_Walls
     }
     def __init__(self):
         super().__init__()
