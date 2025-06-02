@@ -74,7 +74,7 @@
     "bus" : {
         "name" : "Bus",
         "x" : 100.0,
-        "y" : 160.0,
+        "y" : 180.0,
         "width" : 428,
         "height" : 150,
         "direction" : "Left",
