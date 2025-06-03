@@ -9,8 +9,15 @@ class Tornado(Bad_guy):
     def move(self,dt):
         self.rect.x += self.speed[0] * dt
         self.rect.y += self.speed[1] * dt
+        
+    def check_borders(self):
+        if self.rect.x <= 0 or self.rect.x >= 1200-self.w:
+            self.speed[0] *= -1
+        if self.rect.y <=0 or self.rect.y >= 800 - self.h:
+            self.speed[1] *= -1
     
     def update(self,dt):
+        self.check_borders()
         self.move(dt)
         self.handle_animations()
         

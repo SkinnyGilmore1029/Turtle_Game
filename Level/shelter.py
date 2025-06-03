@@ -1,5 +1,6 @@
 import pygame
 from Utility.Image_Handler import data
+from Enemy.The_Enemy_Group import bad_guys
 
 class Shelters(pygame.sprite.Sprite):
     def __init__(self,name:str,x:float,y:float,width:int,height:int):
@@ -13,9 +14,15 @@ class Shelters(pygame.sprite.Sprite):
         self.image = pygame.transform.smoothscale(self.image,(self.w,self.h))
         self.rect = pygame.FRect(self.x,self.y,self.w,self.h)
         self.mask = pygame.mask.from_surface(self.image)
-        
+    
+    def tornado_colission(self):
+        for e in bad_guys:
+            if pygame.sprite.collide_mask(self,e):
+                e.speed[0] *= -1
+                e.speed[1] *= -1
+       
     def update(self):
-        pass
+        self.tornado_colission()
     
     def draw(self,screen)->None:
         screen.blit(self.image,self.rect)
@@ -42,7 +49,11 @@ class Shelter_group(pygame.sprite.Group):
         )
         
     def update(self):
-        pass
+        for sprite in self:
+            sprite.update()
+            
+    def change_level(self):
+        self.empty()
     
     def draw(self,screen)->None:
         for sprite in self:

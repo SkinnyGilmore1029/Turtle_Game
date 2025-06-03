@@ -11,7 +11,7 @@
     "Lock" : {
         "name" : "Lock",
         "x" : -64,
-        "y" : 525,
+        "y" : 575,
         "width" : 250,
         "height" : 64,
         "in_room" : 2,

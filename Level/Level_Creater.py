@@ -145,6 +145,7 @@ class Level_Creater:
         Button_group.clear_buttons_level()
         The_Crabs.clear_level()
         All_walls.moved_walls.clear()
+        The_shelters.change_level()
     
     def get_respawn_pos(self)->tuple[int,int]:
         respwn_pos =[0,0]
