@@ -28,6 +28,7 @@ from .Locks_Group import the_lock
 from .Teleporters import The_tele
 from .Buttons import Button_group
 from .Heat_Puddle import All_puddles , heat_bar
+from .shelter import The_shelters
 
 
 class Level_Creater:
@@ -118,6 +119,8 @@ class Level_Creater:
                 Lizards.get_lizard_data(level,room)
             case 5:
                 All_puddles.get_puddle_data(level,room)
+            case 6:
+                The_shelters.get_shelter_data(level,room)
                 
     
     def change_rooms(self, level: int, room: int) -> None:
@@ -205,6 +208,8 @@ class Level_Creater:
                 Lizards.update(dt)
             case 5:
                 All_puddles.update()
+            case 6:
+                The_shelters.update()
     
     def update_level(self,dt:float,game:object)->None:
         bad_guys.update(dt)
@@ -238,6 +243,8 @@ class Level_Creater:
             case 5:
                 All_puddles.draw(screen)
                 heat_bar.draw(screen)
+            case 6:
+                The_shelters.draw(screen)
         
         
     def draw_level(self,screen:pygame.Surface,game:object)->None:

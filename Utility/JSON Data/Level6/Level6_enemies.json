@@ -46,5 +46,42 @@
         "in_room" : 1,
         "speed": [-100,150],
         "sheet size" : [387,128]
+        },
+    "Tornado 1" :{
+        "name" : "Tornado",
+        "x" : 100,
+        "y" : 100,
+        "width" : 96,
+        "height" : 96,
+        "direction" : "Up",
+        "frame_count" : 3,
+        "in_room" : 2,
+        "speed": [15,17],
+        "sheet size" : [384,128]
+        },
+    "Tornado 2":{
+        "name" : "Tornado",
+        "x" : 200.0,
+        "y" : 200,
+        "width" : 96,
+        "height" : 96,
+        "direction" : "Up",
+        "frame_count" : 3,
+        "in_room" : 2,
+        "speed": [-15,20],
+        "sheet size" : [384,128]
+        },
+    "Tornado 3":{
+        "name" : "Tornado",
+        "x" : 300.0,
+        "y" : 300,
+        "width" : 96,
+        "height" : 96,
+        "direction" : "Up",
+        "frame_count" : 3,
+        "in_room" : 2,
+        "speed": [-10,15],
+        "sheet size" : [384,128]
         }
+        
 }

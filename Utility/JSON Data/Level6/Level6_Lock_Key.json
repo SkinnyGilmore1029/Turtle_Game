@@ -6,15 +6,15 @@
         "width" : 64,
         "height" : 64,
         "in_room" : 1,
-        "collected key" : "Level5 key collected"
+        "collected key" : "Level6 key collected"
     },
     "Lock" : {
         "name" : "Lock",
-        "x" : 0,
-        "y" : 425,
-        "width" : 128,
-        "height" : 200,
+        "x" : -64,
+        "y" : 525,
+        "width" : 250,
+        "height" : 64,
         "in_room" : 2,
-        "unlocked key" : "Level5 lock unlocked"
+        "unlocked key" : "Level6 lock unlocked"
     }
 }

@@ -25,7 +25,8 @@
             "Starting Scene" : "Pictures/Backgrounds/title bg.png",
             "Title Screen" : "Pictures/Backgrounds/Title_bg.png",
             "Lily" : "Pictures/Misc/Lily Pad.png",
-            "Puddle" : "Pictures/Misc/puddle.png"
+            "Puddle" : "Pictures/Misc/puddle.png",
+            "Shelter" : "Pictures/Misc/shelter.png"
         },
 
         "Sheets" :{
@@ -41,7 +42,8 @@
             "Bolder" : "Pictures/Enemies/bolder2v.2.png",
             "Teleporter" : "Pictures/Misc/tele_sheet.png",
             "Cactus" : "Pictures/NPC/cactus_sheet.png",
-            "Fly" : "Pictures/NPC/fly_sheet.png"
+            "Fly" : "Pictures/NPC/fly_sheet.png",
+            "Tornado" : "Pictures/Enemies/Tornado_sheet.png"
         }
     
 }
