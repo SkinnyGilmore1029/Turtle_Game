@@ -178,6 +178,7 @@ class Level_Creater:
         if bad_guys.collision_with_player(player):
             player_spawn_postion = self.get_respawn_pos()
             player.died(player_spawn_postion)
+            self.change_rooms(game.level,game.room)
             game.room = 1
         #Level Win Condition
         collided_tele = The_tele.collision_with_player(player)

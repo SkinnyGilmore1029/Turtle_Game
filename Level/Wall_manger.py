@@ -49,7 +49,7 @@ class The_Walls(pygame.sprite.Sprite):
 
     def enemy_collision(self)->None:
         for e in bad_guys:
-            if pygame.sprite.collide_mask(self,e):
+            if pygame.sprite.collide_mask(self,e) and e.name != "Bolder":
                 match e.direction:
                     case "Up":
                         e.direction = 'Down'
