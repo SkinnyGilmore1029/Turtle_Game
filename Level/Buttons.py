@@ -3,9 +3,10 @@ from Utility.Image_Handler import data
 from The_turtles.The_player import player
 
 class Button(pygame.sprite.Sprite):
-    def __init__(self,x:float, y:float, width:int, height:int,pushed_key:str):
+    def __init__(self,x:float, y:float, width:int, height:int,pushed_key:str,name2:str):
         super().__init__()
         self.name = "Red Star"
+        self.name2 = name2
         self.x = x
         self.y = y
         self.w = width
@@ -74,7 +75,8 @@ class The_Buttons(pygame.sprite.Group):
             y= data['y'],
             width= data['width'],
             height= data['height'],
-            pushed_key= data['pushed key']
+            pushed_key= data['pushed key'],
+            name2 = data['name']
         )
         
     def check_if_pushed(self)->None:

@@ -3,6 +3,7 @@ from Utility.Image_Handler import data
 from NPCS.The_crabs import The_Crabs
 from The_turtles.The_player import player
 from Enemy.The_Enemy_Group import bad_guys
+from .Buttons import The_Buttons
 
 class The_Walls(pygame.sprite.Sprite):
     def __init__(self,name:str,x:float,y:float,width:float,height:float,direction:str,room:int)->None:
@@ -10,7 +11,7 @@ class The_Walls(pygame.sprite.Sprite):
         self.name = name
         self.image = data.load_image(name)
         self.ignore = ["Bolder","Tornado"]
-        
+        self.wall_id = ""
         self.x = x
         self.y = y
         self.width = width
@@ -111,7 +112,7 @@ class Cage_Doors(The_Walls):
         super().__init__(name,x,y,width,height,direction,room)
         
     def check_buttons(self):
-        pass
+        ...
     
     def move(self,dt:float):
         pass
@@ -141,13 +142,19 @@ class The_walls_group(pygame.sprite.Group):
     def load_group(self,level:int,room:int)->None:
         self.empty()
         key = (level,room)
+        
         if key not in self.loaded_room:
             walls = data.load_level_data(level,"walls")
+            
             for w in walls.values():
                 cut_key = (w['name'],w['direction'],w['x'])
+                
                 if w['room'] == room and cut_key not in self.moved_walls:
                     wall = self.create_walls(w)
+                    wall.wall_id = w['level']
+                    print(wall.wall_id)  
                     self.add(wall)
+                  
             self.loaded_room.add(key)
     
     def create_walls(self,data:dict)->None:
