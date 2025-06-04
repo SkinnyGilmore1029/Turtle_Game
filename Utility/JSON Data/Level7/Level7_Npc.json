@@ -2,12 +2,12 @@
     "Hint_Frog" : {
         "Hint 1" : {
             "name" : "Hint",
-            "x" : 950,
+            "x" : 100,
             "y" : 150,
             "width" : 96,
             "height" : 96,
             "in_room" : 1,
-            "message" : "This is the hottest part of the desert! The Puddles will cool you down."
+            "message" : "This is the Creatures Home. You are getting so Close to your Friend."
         }
     }
 }

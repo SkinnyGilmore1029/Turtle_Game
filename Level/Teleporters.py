@@ -21,6 +21,7 @@ class Teleporter(pygame.sprite.Sprite):
 
         self.image = self.animator.frames[0]
         self.mask = pygame.mask.from_surface(self.image)
+        self.change_level = change_level
 
     
 

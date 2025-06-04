@@ -121,7 +121,9 @@ class Level_Creater:
                 All_puddles.get_puddle_data(level,room)
             case 6:
                 The_shelters.get_shelter_data(level,room)
-                
+            case 7:
+                Button_group.clear_buttons_room(level,room)
+                Button_group.get_level_buttons(level,room)
     
     def change_rooms(self, level: int, room: int) -> None:
         self.level = level
@@ -211,6 +213,8 @@ class Level_Creater:
                 All_puddles.update()
             case 6:
                 The_shelters.update()
+            case 7:
+                Button_group.update()
     
     def update_level(self,dt:float,game:object)->None:
         bad_guys.update(dt)
@@ -246,6 +250,8 @@ class Level_Creater:
                 heat_bar.draw(screen)
             case 6:
                 The_shelters.draw(screen)
+            case 7:
+                Button_group.draw(screen)
         
         
     def draw_level(self,screen:pygame.Surface,game:object)->None:

@@ -105,6 +105,20 @@ class The_vines(The_Walls):
         self.cut_vine()
         self.move(dt)
         
+
+class Cage_Doors(The_Walls):
+    def __init__(self,name:str,x:float,y:float,width:float,height:float,direction:str,room:int):
+        super().__init__(name,x,y,width,height,direction,room)
+        
+    def check_buttons(self):
+        pass
+    
+    def move(self,dt:float):
+        pass
+    
+    def update(self,dt):
+        self.wall_collision()
+
         
 class The_walls_group(pygame.sprite.Group):
     wall_classes:dict = {
@@ -113,7 +127,11 @@ class The_walls_group(pygame.sprite.Group):
         "Desert" : The_Walls,
         "Desert2" : The_Walls,
         "Vine" : The_vines,
-        "Cliffs" : The_Walls
+        "Cliffs" : The_Walls,
+        "Fort Wall" : The_Walls,
+        "Cage Front" : Cage_Doors,
+        "Cage Gate" :  Cage_Doors,
+        "Fort Top" : The_Walls
     }
     def __init__(self):
         super().__init__()

@@ -1,0 +1,38 @@
+{
+    "Button 1" :{
+        "x" : 1100,
+        "y" : 130,
+        "width" : 64,
+        "height" : 64,
+        "pushed key" : "Button1 has been pushed",
+        "in_room" : 1,
+        "name" : "Button1"
+    },
+    "Button 2" :{
+        "x" : 1100,
+        "y" : 350,
+        "width" : 64,
+        "height" : 64,
+        "pushed key" : "Button2 has been pushed",
+        "in_room" : 1,
+        "name" : "Button2"
+    },
+    "Button 3" :{
+        "x" : 1100,
+        "y" : 650,
+        "width" : 64,
+        "height" : 64,
+        "pushed key" : "Button3 has been pushed",
+        "in_room" : 1,
+        "name" : "Button3"
+    },
+    "Button 4" :{
+        "x" : 750,
+        "y" : 675,
+        "width" : 64,
+        "height" : 64,
+        "pushed key" : "Button4 has been pushed",
+        "in_room" : 1,
+        "name" : "Button4"
+    }
+}
