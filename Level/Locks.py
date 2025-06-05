@@ -1,6 +1,7 @@
 import pygame
 from Utility.Image_Handler import data
 
+
 class Lock(pygame.sprite.Sprite):
     def __init__(self,name:str,x:float,y:float,width:int,height:int):
         super().__init__()
@@ -34,7 +35,7 @@ class Lock(pygame.sprite.Sprite):
     def unlock(self)->None:
         if self.can_unlock == True:
             self.locked = False
-        
+
     def update(self,player):
         self.lock_collision(player)
         self.unlock()

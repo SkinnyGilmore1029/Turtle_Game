@@ -3,7 +3,8 @@ from Utility.Image_Handler import data
 from NPCS.The_crabs import The_Crabs
 from The_turtles.The_player import player
 from Enemy.The_Enemy_Group import bad_guys
-from .Buttons import The_Buttons
+from .Buttons import Button_group
+from .Locks_Group import the_lock
 
 class The_Walls(pygame.sprite.Sprite):
     def __init__(self,name:str,x:float,y:float,width:float,height:float,direction:str,room:int)->None:
@@ -110,15 +111,54 @@ class The_vines(The_Walls):
 class Cage_Doors(The_Walls):
     def __init__(self,name:str,x:float,y:float,width:float,height:float,direction:str,room:int):
         super().__init__(name,x,y,width,height,direction,room)
+        self.can_move:bool = False
+        self.can_unlock: bool = False
+        self.pos:tuple[int,int] = (self.x,self.y)
+        self.speed = 100
         
     def check_buttons(self):
-        ...
+        for button in Button_group:
+            if button.name2 == self.wall_id and button.pressed:
+                self.can_move = True
     
-    def move(self,dt:float):
-        pass
+    def check_lock(self):
+        if the_lock.sprite is None:
+            self.can_unlock = True
+    
+    def move_cages(self,dt:float):
+        if self.can_move:
+            match self.wall_id:
+                case "Button4":
+                    self.rect.x += self.speed *dt
+                    if self.rect.x >= self.pos[0] + self.width:
+                        self.speed = 0
+                case "Button3":
+                    self.rect.x -= self.speed * dt
+                    if self.rect.x <= self.pos[0] - self.width:
+                        self.speed = 0
+                case "Button1":
+                    self.rect.x += self.speed * dt
+                    if self.rect.x >= self.pos[0] + self.width:
+                        self.speed = 0
+    
+    def unlock_doors(self,dt:float):
+        if self.can_unlock:
+            match self.wall_id:
+                case "Lock Top":
+                    self.rect.y -= self.speed *dt
+                    if self.rect.y <= self.pos[1] - self.height:
+                        self.speed = 0
+                case "Lock Bottom":
+                    self.rect.y += self.speed *dt
+                    if self.rect.y >= self.pos[1] + self.height:
+                        self.speed = 0
     
     def update(self,dt):
+        self.check_lock()
+        self.check_buttons()
         self.wall_collision()
+        self.move_cages(dt)
+        self.unlock_doors(dt)
 
         
 class The_walls_group(pygame.sprite.Group):
@@ -152,7 +192,6 @@ class The_walls_group(pygame.sprite.Group):
                 if w['room'] == room and cut_key not in self.moved_walls:
                     wall = self.create_walls(w)
                     wall.wall_id = w['level']
-                    print(wall.wall_id)  
                     self.add(wall)
                   
             self.loaded_room.add(key)
@@ -170,17 +209,16 @@ class The_walls_group(pygame.sprite.Group):
                 room= data['room'])
 
 
-    def check_if_vine(self,sprite,dt)->None:
+    def check_if_vine(self,sprite)->None:
         if isinstance(sprite,The_vines):
                 cut_key = (sprite.name,sprite.direction,sprite.x)
                 if sprite.despawn:
                     self.moved_walls.add(cut_key)
                     self.remove(sprite)
-                #sprite.update(dt)
 
     def update(self,dt):
         for sprite in list(self):
-            self.check_if_vine(sprite,dt)
+            self.check_if_vine(sprite)
             sprite.update(dt)
     
     def change_room(self):

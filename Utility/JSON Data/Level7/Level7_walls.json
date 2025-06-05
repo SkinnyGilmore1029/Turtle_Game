@@ -5,7 +5,7 @@
         "y" : 550,
         "width" : 32,
         "height" : 248,
-        "direction" : "right",
+        "direction" : "top",
         "room" : 1,
         "level" : 7
     },
@@ -15,7 +15,7 @@
         "y" : 550,
         "width" : 32,
         "height" : 248,
-        "direction" : "left",
+        "direction" : "top",
         "room" : 1,
         "level" : 7
     },
@@ -25,7 +25,7 @@
         "y" : 550,
         "width" : 32,
         "height" : 248,
-        "direction" : "right",
+        "direction" : "top",
         "room" : 1,
         "level" : 7
     },
@@ -35,7 +35,7 @@
         "y" : 550,
         "width" : 32,
         "height" : 248,
-        "direction" : "right",
+        "direction" : "top",
         "room" : 1,
         "level" : 7
     },
@@ -45,7 +45,7 @@
         "y" : 100,
         "width" : 32,
         "height" : 180,
-        "direction" : "left",
+        "direction" : "top",
         "room" : 1,
         "level" : 7
     },
@@ -55,7 +55,7 @@
         "y" : 100,
         "width" : 32,
         "height" : 180,
-        "direction" : "right",
+        "direction" : "top",
         "room" : 1,
         "level" : 7
     },
@@ -75,7 +75,7 @@
         "y" : 265,
         "width" : 150,
         "height" : 20,
-        "direction" : "top",
+        "direction" : "left",
         "room" : 1,
         "level" : 7
     },
@@ -85,7 +85,7 @@
         "y" : 535,
         "width" : 150,
         "height" : 20,
-        "direction" : "top",
+        "direction" : "left",
         "room" : 1,
         "level" : 7
     },
@@ -95,9 +95,9 @@
         "y" : 410,
         "width" : 16,
         "height" : 127,
-        "direction" : "right",
+        "direction" : "top",
         "room" : 1,
-        "level" : 7
+        "level" : "Lock Bottom"
     },
     "Wall 11" : {
         "name" : "Cage Front",
@@ -105,9 +105,9 @@
         "y" : 285,
         "width" : 16,
         "height" : 150,
-        "direction" : "right",
+        "direction" : "top",
         "room" : 1,
-        "level" : 7
+        "level" : "Lock Top"
     },
     "Wall 12" : {
         "name" : "Cage Gate",
@@ -115,9 +115,9 @@
         "y" : 550,
         "width" : 100,
         "height" : 24,
-        "direction" : "bottom",
+        "direction" : "top",
         "room" : 1,
-        "level" : "Cage Gate 1"
+        "level" : "Button1"
     },
     "Wall 13" : {
         "name" : "Cage Gate",
@@ -127,7 +127,7 @@
         "height" : 24,
         "direction" : "top",
         "room" : 1,
-        "level" : "Cage Gate 2"
+        "level" : "Button3"
     },
     "Wall 14" : {
         "name" : "Cage Gate",
@@ -137,6 +137,6 @@
         "height" : 12,
         "direction" : "top",
         "room" : 1,
-        "level" : "Cage Gate 3"
+        "level" : "Button4"
     }
 }

@@ -192,11 +192,15 @@ class Level_Creater:
             if collided_tele.change_level == True:
                 game.level +=1
                 game.room = 1
-            else:
+                player.rect.x, player.rect.y = data.get_player_start(game.level)
+                self.room2_location = data.get_room2_location(game.level)        
+            elif game.level ==3:
                 game.room = 1
-            player.rect.x, player.rect.y = data.get_player_start(game.level)
-            self.room2_location = data.get_room2_location(game.level)    
-    
+                player.rect.x, player.rect.y =  data.get_player_start(game.level)
+            elif game.level == 7:
+                game.room = 2
+                player.rect.x, player.rect.y = (10, 400)
+
     def level_only_update(self,dt,game)->None:
         match game.level:
             case 2:

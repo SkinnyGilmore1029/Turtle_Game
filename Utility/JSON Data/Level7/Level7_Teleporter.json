@@ -2,7 +2,7 @@
     "Tele 1" : {
         "name" : "Teleporter",
         "x" : 0.0,
-        "y" : 675,
+        "y" : 0.0,
         "width" : 128,
         "height" : 128,
         "frame_count" : 4,
