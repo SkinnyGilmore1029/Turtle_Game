@@ -9,6 +9,7 @@ from .The_scorpion import The_Scorpion
 from .The_cars import The_cars
 from .The_Bolders import The_Bolders
 from .Tornados import Tornado
+from .Rats import The_Rats
    
 #418,283
 class The_Bad_Guys(pygame.sprite.Group):
@@ -20,7 +21,8 @@ class The_Bad_Guys(pygame.sprite.Group):
             "Fish" : The_Fish,
             "Scorpion" : The_Scorpion,
             "Bolder" : The_Bolders,
-            "Tornado" : Tornado
+            "Tornado" : Tornado,
+            "Rat" : The_Rats
         }
     def __init__(self):
         super().__init__()

@@ -1,3 +1,14 @@
 {
-    
+    "Rat 1":{
+        "name" : "Rat",
+        "x" : 900.0,
+        "y" : 200,
+        "width" : 96,
+        "height" : 96,
+        "direction" : "Up",
+        "frame_count" : 1,
+        "in_room" : 1,
+        "speed": [-100,150],
+        "sheet size" : [64,64]
+        }
 }
