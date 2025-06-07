@@ -4,7 +4,7 @@
         "x" : 155,
         "y" : 550,
         "width" : 32,
-        "height" : 248,
+        "height" : 348,
         "direction" : "top",
         "room" : 1,
         "level" : 7
@@ -14,7 +14,7 @@
         "x" : 295,
         "y" : 550,
         "width" : 32,
-        "height" : 248,
+        "height" : 348,
         "direction" : "top",
         "room" : 1,
         "level" : 7
@@ -24,7 +24,7 @@
         "x" : 675,
         "y" : 550,
         "width" : 32,
-        "height" : 248,
+        "height" : 348,
         "direction" : "top",
         "room" : 1,
         "level" : 7
@@ -34,7 +34,7 @@
         "x" : 840,
         "y" : 550,
         "width" : 32,
-        "height" : 248,
+        "height" : 348,
         "direction" : "top",
         "room" : 1,
         "level" : 7
@@ -138,5 +138,25 @@
         "direction" : "top",
         "room" : 1,
         "level" : "Button4"
+    },
+    "Wall 15" : {
+        "name" : "Cage Gate",
+        "x" : 485,
+        "y" : 600,
+        "width" : 12,
+        "height" : 225,
+        "direction" : "right",
+        "room" : 1,
+        "level" : "Button2"
+    },
+    "Wall 16" : {
+        "name" : "Fort Wall",
+        "x" : 485,
+        "y" : 600,
+        "width" : 220,
+        "height" : 20,
+        "direction" : "right",
+        "room" : 1,
+        "level" : 7
     }
 }

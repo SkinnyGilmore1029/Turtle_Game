@@ -5,6 +5,7 @@ from The_turtles.The_player import player
 from Enemy.The_Enemy_Group import bad_guys
 from .Buttons import Button_group
 from .Locks_Group import the_lock
+from Utility.Settings import HEIGHT
 
 class The_Walls(pygame.sprite.Sprite):
     def __init__(self,name:str,x:float,y:float,width:float,height:float,direction:str,room:int)->None:
@@ -139,6 +140,10 @@ class Cage_Doors(The_Walls):
                 case "Button1":
                     self.rect.x += self.speed * dt
                     if self.rect.x >= self.pos[0] + self.width:
+                        self.speed = 0
+                case "Button2":
+                    self.rect.y -= self.speed * dt
+                    if self.rect.y <= self.pos[1] - self.height:
                         self.speed = 0
     
     def unlock_doors(self,dt:float):

@@ -2,5 +2,5 @@
     "Room 1" : "Pictures/Backgrounds/level7_bg.png",
     "Room 2" : "Pictures/Backgrounds/level7_bg.png",
     "Starting Spot" : [0,400],
-    "Room 2 Location" : "Side"
+    "Room 2 Location" : "Tele"
 }

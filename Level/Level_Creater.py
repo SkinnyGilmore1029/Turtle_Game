@@ -104,6 +104,17 @@ class Level_Creater:
                 player.rect.x = WIDTH-64
                 The_tele.get_tele_data(game.level, game.room)
     
+    def tele_second_room(self):
+        if self.room2_location == "Tele":
+            if player.rect.y <= 0:
+                player.rect.y = 0
+            elif player.rect.y >= HEIGHT - 64:
+                player.rect.y = HEIGHT-64
+            if player.rect.x <= 0:
+                player.rect.x = 0
+            elif player.rect.x >= WIDTH-64:
+                player.rect.x = WIDTH-64
+    
     def check_level_only(self,level,room):
         match level:
             case 2:
@@ -228,6 +239,7 @@ class Level_Creater:
         self.change_up_down(game)
         self.change_left_right(game)
         self.change_down_up(game)
+        self.tele_second_room()
         The_hints.collison_with_player()
         All_walls.update(dt)
         self.level_only_update(dt,game) 

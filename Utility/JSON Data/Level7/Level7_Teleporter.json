@@ -12,7 +12,7 @@
     },
     "Tele 2" : {
         "name" : "Teleporter",
-        "x" : 0.0,
+        "x" : 550.0,
         "y" : 675,
         "width" : 128,
         "height" : 128,
