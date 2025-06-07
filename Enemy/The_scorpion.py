@@ -45,13 +45,13 @@ class The_Scorpion(Bad_guy):
             self.image = pygame.transform.rotate(self.image,-90)
             self.image = pygame.transform.flip(self.image,True,False)
         elif self.direction == "Right":
-            self.iamge = pygame.transform.rotate(self.image,-90)
+            self.image = pygame.transform.rotate(self.image,-90)
     
     def move(self,dt):
         if self.direction == "Up" or self.direction == "Down":
-            self.rect.y += self.velocity.y *dt
+            self.rect.y -= self.velocity.y *dt
         elif self.direction == "Left" or self.direction == "Right":
-            self.rect.x += self.velocity.x *dt
+            self.rect.x -= self.velocity.x *dt
         
     
     def update(self,dt)->None:

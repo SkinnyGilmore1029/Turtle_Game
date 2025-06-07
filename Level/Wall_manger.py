@@ -5,14 +5,14 @@ from The_turtles.The_player import player
 from Enemy.The_Enemy_Group import bad_guys
 from .Buttons import Button_group
 from .Locks_Group import the_lock
-from Utility.Settings import HEIGHT
+
 
 class The_Walls(pygame.sprite.Sprite):
     def __init__(self,name:str,x:float,y:float,width:float,height:float,direction:str,room:int)->None:
         super().__init__()
         self.name = name
         self.image = data.load_image(name)
-        self.ignore = ["Bolder","Tornado","Rat"]
+        self.ignore = ["Bolder","Tornado","Fish"]
         self.wall_id = ""
         self.x = x
         self.y = y
@@ -51,26 +51,36 @@ class The_Walls(pygame.sprite.Sprite):
             elif player.rect.left > self.rect.left:
                 player.rect.left = self.rect.right
 
-    def enemy_collision(self)->None:
+    def enemy_collision(self) -> None:
         for e in bad_guys:
-            if pygame.sprite.collide_mask(self,e) and e.name not in self.ignore:
-                match e.direction:
-                    case "Up":
-                        e.direction = 'Down'
-                        e.rect.y -= 5 #prevent getting stuck?
-                        e.velocity.y *= -1
-                    case "Down":
-                        e.direction = 'Up'
-                        e.rect.y += 5 #prevent getting stuck ?
-                        e.velocity.y *= -1
-                    case "Right":
-                        e.direction = "Left"
-                        e.rect.x += 5
-                        e.velocity.x *= -1
-                    case "Left":
-                        e.direction = "Right"
-                        e.rect.x -= 5
-                        e.velocity.x *= -1
+            if self.rect.colliderect(e.rect) and e.name not in self.ignore:
+                dx_left = abs(self.rect.left - e.rect.right)
+                dx_right = abs(self.rect.right - e.rect.left)
+                dy_top = abs(self.rect.top - e.rect.bottom)
+                dy_bottom = abs(self.rect.bottom - e.rect.top)
+
+                min_dist = min(dx_left, dx_right, dy_top, dy_bottom)
+
+                if min_dist == dy_top:
+                    # hit from top
+                    e.rect.bottom = self.rect.top
+                    e.velocity.y *= -1
+                    e.direction = 'Down'
+                elif min_dist == dy_bottom:
+                    # hit from bottom
+                    e.rect.top = self.rect.bottom
+                    e.velocity.y *= -1
+                    e.direction = 'Up'
+                elif min_dist == dx_left:
+                    # hit from left
+                    e.rect.right = self.rect.left
+                    e.velocity.x *= -1
+                    e.direction = 'Right'
+                elif min_dist == dx_right:
+                    # hit from right
+                    e.rect.left = self.rect.right
+                    e.velocity.x *= -1
+                    e.direction = 'Left'
 
     def update(self,dt)->None:
         self.wall_collision()
@@ -162,6 +172,7 @@ class Cage_Doors(The_Walls):
         self.check_lock()
         self.check_buttons()
         self.wall_collision()
+        self.enemy_collision()
         self.move_cages(dt)
         self.unlock_doors(dt)
 

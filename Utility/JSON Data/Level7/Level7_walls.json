@@ -175,7 +175,17 @@
         "y" : 0,
         "width" : 20,
         "height" : 850,
-        "direction" : "left",
+        "direction" : "right",
+        "room" : 1,
+        "level" : 7
+    },
+    "Wall 19" : {
+        "name" : "Fort Top",
+        "x" : 0,
+        "y" : 800,
+        "width" : 1200,
+        "height" : 16,
+        "direction" : "top",
         "room" : 1,
         "level" : 7
     }
