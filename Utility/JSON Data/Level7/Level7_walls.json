@@ -158,5 +158,25 @@
         "direction" : "right",
         "room" : 1,
         "level" : 7
+    },
+    "Wall 17" : {
+        "name" : "Fort Top",
+        "x" : 0,
+        "y" : 0,
+        "width" : 20,
+        "height" : 850,
+        "direction" : "right",
+        "room" : 1,
+        "level" : 7
+    },
+    "Wall 18" : {
+        "name" : "Fort Top",
+        "x" : 1180,
+        "y" : 0,
+        "width" : 20,
+        "height" : 850,
+        "direction" : "left",
+        "room" : 1,
+        "level" : 7
     }
 }

@@ -47,7 +47,8 @@
             "Teleporter" : "Pictures/Misc/tele_sheet.png",
             "Cactus" : "Pictures/NPC/cactus_sheet.png",
             "Fly" : "Pictures/NPC/fly_sheet.png",
-            "Tornado" : "Pictures/Enemies/Tornado_sheet.png"
+            "Tornado" : "Pictures/Enemies/Tornado_sheet.png",
+            "Rat" : "Pictures/Enemies/Rat.png"
         }
     
 }
