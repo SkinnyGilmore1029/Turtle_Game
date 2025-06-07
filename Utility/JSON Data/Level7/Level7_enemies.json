@@ -10,5 +10,17 @@
         "in_room" : 1,
         "speed": [200,150],
         "sheet size" : [64,64]
+        },
+    "Rat 2":{
+        "name" : "Rat",
+        "x" : 220.0,
+        "y" : 650,
+        "width" : 96,
+        "height" : 96,
+        "direction" : "Up",
+        "frame_count" : 1,
+        "in_room" : 1,
+        "speed": [200,150],
+        "sheet size" : [64,64]
         }
 }

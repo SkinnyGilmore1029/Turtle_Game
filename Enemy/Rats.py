@@ -34,6 +34,7 @@ class The_Rats(pygame.sprite.Sprite):
         self.rect.x += self.velocity.x *dt
     
     def update(self,dt)->None:
+        self.turn_rat_side()
         self.move(dt)
         
     def draw(self,screen:pygame.Surface)->None:
