@@ -67,14 +67,14 @@ class Choose_Level(Screens):
             game.game_state = "Playing"
             player.rect.x = LEVEL7_POS[0]
             player.rect.y = LEVEL7_POS[1]
-        """"  
+ 
         elif keys[pygame.K_8]:
             game.level = 8
             game.playing = True
             game.game_state = "Playing"
             player.rect.x = LEVEL8_POS[0]
             player.rect.y = LEVEL8_POS[1]
-        """
+
         
     def draw_choose_level_screen(self,screen:pygame.Surface)->None:
         screen.fill("Blue")
@@ -87,9 +87,6 @@ class Choose_Level(Screens):
         level6 = self.fonts["Start Button"].render("Level 6: press 6",True,"#F5E800")
         level7 = self.fonts["Start Button"].render("Level 7: press 7",True,"#F5E800")
         level8 = self.fonts["Start Button"].render("Level 8: press 8",True,"#F5E800")
-        """
-            (level8,(200,480))
-        """
         screen.blits([
             (Instruction,(400,0)),
             (level1,(200,200)),
@@ -99,6 +96,7 @@ class Choose_Level(Screens):
             (level5,(200,360)),
             (level6,(200,400)),
             (level7,(200,440)),
+            (level8,(200,480))
         ])
         
 Choosing_screen = Choose_Level('Title Screen')
