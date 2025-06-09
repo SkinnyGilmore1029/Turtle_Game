@@ -1,5 +1,5 @@
 {
-    "Tele 1" : {
+    "Tele 1 level 7" : {
         "name" : "Teleporter",
         "x" : 0.0,
         "y" : 0.0,
@@ -10,7 +10,7 @@
         "sheet size" : [520,128],
         "change_level" : true
     },
-    "Tele 2" : {
+    "Tele 2 level 7" : {
         "name" : "Teleporter",
         "x" : 550.0,
         "y" : 675,

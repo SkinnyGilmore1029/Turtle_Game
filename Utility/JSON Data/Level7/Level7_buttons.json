@@ -1,37 +1,37 @@
 {
-    "Button 1" :{
+    "Button 1 level 7" :{
         "x" : 1100,
         "y" : 130,
         "width" : 64,
         "height" : 64,
-        "pushed key" : "Button1 has been pushed",
+        "pushed key" : "Button1 l7 has been pushed",
         "in_room" : 1,
         "name" : "Button1"
     },
-    "Button 2" :{
+    "Button 2 level 7" :{
         "x" : 1100,
         "y" : 350,
         "width" : 64,
         "height" : 64,
-        "pushed key" : "Button2 has been pushed",
+        "pushed key" : "Button2 l7 has been pushed",
         "in_room" : 1,
         "name" : "Button2"
     },
-    "Button 3" :{
+    "Button 3 level 7" :{
         "x" : 1100,
         "y" : 650,
         "width" : 64,
         "height" : 64,
-        "pushed key" : "Button3 has been pushed",
+        "pushed key" : "Button3 l7 has been pushed",
         "in_room" : 1,
         "name" : "Button3"
     },
-    "Button 4" :{
+    "Button 4 level 7" :{
         "x" : 750,
         "y" : 675,
         "width" : 64,
         "height" : 64,
-        "pushed key" : "Button4 has been pushed",
+        "pushed key" : "Button4 l7 has been pushed",
         "in_room" : 1,
         "name" : "Button4"
     }
