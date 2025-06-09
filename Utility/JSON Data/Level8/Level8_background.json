@@ -1,6 +1,6 @@
 {
-    "Room 1" : "Pictures/Backgrounds/level5_bg.png",
-    "Room 2" : "Pictures/Backgrounds/level5_bg.png",
+    "Room 1" : "Pictures/Backgrounds/level8_bg.png",
+    "Room 2" : "Pictures/Backgrounds/lvl8_room2.png",
     "Starting Spot" : [0,100],
-    "Room 2 Location" : "Below"
+    "Room 2 Location" : "Side"
 }

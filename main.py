@@ -14,7 +14,7 @@ class Turtle_Game:
         pygame.display.set_caption("Squartle's Quest")
         self.clock = pygame.time.Clock()
         self.level = 1
-        self.room = 1
+        self.room = 2
         self.current_level = Level_Creater(self.level,self.room)
     
     def handle_events(self):

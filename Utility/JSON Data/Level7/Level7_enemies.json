@@ -15,12 +15,36 @@
         "name" : "Rat",
         "x" : 220.0,
         "y" : 650,
-        "width" : 96,
-        "height" : 96,
+        "width" : 64,
+        "height" : 64,
         "direction" : "Up",
         "frame_count" : 1,
         "in_room" : 1,
         "speed": [200,150],
+        "sheet size" : [64,64]
+        },
+    "Rat 3":{
+        "name" : "Rat",
+        "x" : 220.0,
+        "y" : 750,
+        "width" : 32,
+        "height" : 32,
+        "direction" : "Up",
+        "frame_count" : 1,
+        "in_room" : 2,
+        "speed": [-200,-150],
+        "sheet size" : [64,64]
+        },
+    "Rat 4":{
+        "name" : "Rat",
+        "x" : 720.0,
+        "y" : 450,
+        "width" : 32,
+        "height" : 32,
+        "direction" : "Up",
+        "frame_count" : 1,
+        "in_room" : 2,
+        "speed": [-200,-150],
         "sheet size" : [64,64]
         }
 }

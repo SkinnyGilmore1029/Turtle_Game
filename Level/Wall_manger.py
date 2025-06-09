@@ -139,14 +139,6 @@ class Cage_Doors(The_Walls):
     def move_cages(self,dt:float):
         if self.can_move:
             match self.wall_id:
-                case "Button4":
-                    self.rect.x += self.speed *dt
-                    if self.rect.x >= self.pos[0] + self.width:
-                        self.speed = 0
-                case "Button3":
-                    self.rect.x -= self.speed * dt
-                    if self.rect.x <= self.pos[0] - self.width:
-                        self.speed = 0
                 case "Button1":
                     self.rect.x += self.speed * dt
                     if self.rect.x >= self.pos[0] + self.width:
@@ -155,7 +147,23 @@ class Cage_Doors(The_Walls):
                     self.rect.y -= self.speed * dt
                     if self.rect.y <= self.pos[1] - self.height:
                         self.speed = 0
-    
+                case "Button3":
+                    self.rect.x -= self.speed * dt
+                    if self.rect.x <= self.pos[0] - self.width:
+                        self.speed = 0
+                case "Button4":
+                    self.rect.x += self.speed *dt
+                    if self.rect.x >= self.pos[0] + self.width:
+                        self.speed = 0
+                case "Button5":
+                    self.rect.x -= self.speed *dt
+                    if self.rect.x <= self.pos[0] - self.width:
+                        self.speed = 0
+                case "Button6":
+                    self.rect.y -= self.speed *dt
+                    if self.rect.y <= self.pos[1] - self.height:
+                        self.speed = 0
+
     def unlock_doors(self,dt:float):
         if self.can_unlock:
             match self.wall_id:

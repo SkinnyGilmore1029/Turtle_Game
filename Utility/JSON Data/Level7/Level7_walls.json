@@ -188,5 +188,125 @@
         "direction" : "top",
         "room" : 1,
         "level" : 7
+    },
+    "Wall 20" : {
+        "name" : "Fort Top",
+        "x" : 0,
+        "y" : 70,
+        "width" : 1200,
+        "height" : 54,
+        "direction" : "top",
+        "room" : 2,
+        "level" : 7
+    },
+    "Wall 21" : {
+        "name" : "Fort Wall",
+        "x" : 0,
+        "y" : 248,
+        "width" : 450,
+        "height" : 32,
+        "direction" : "right",
+        "room" : 2,
+        "level" : 7
+    },
+    "Wall 22" : {
+        "name" : "Fort Wall",
+        "x" : 0,
+        "y" : 530,
+        "width" : 1000,
+        "height" : 32,
+        "direction" : "right",
+        "room" : 2,
+        "level" : 7
+    },
+    "Wall 23" : {
+        "name" : "Fort Wall",
+        "x" : 600,
+        "y" : 248,
+        "width" : 200,
+        "height" : 32,
+        "direction" : "right",
+        "room" :2,
+        "level" : 7
+    },
+    "Wall 24" : {
+        "name" : "Fort Wall",
+        "x" : 600,
+        "y" : 70,
+        "width" : 32,
+        "height" : 210,
+        "direction" : "top",
+        "room" : 2,
+        "level" : 7
+    },
+    "Wall 25" : {
+        "name" : "Fort Wall",
+        "x" : 968,
+        "y" : 248,
+        "width" : 32,
+        "height" : 300,
+        "direction" : "top",
+        "room" : 2,
+        "level" : 7
+    },
+    "Wall 26" : {
+        "name" : "Fort Wall",
+        "x" : 500,
+        "y" : 530,
+        "width" : 32,
+        "height" : 125,
+        "direction" : "top",
+        "room" : 2,
+        "level" : 7
+    },
+    "Wall 27" : {
+        "name" : "Fort Top",
+        "x" : 0,
+        "y" : 750,
+        "width" : 1200,
+        "height" : 54,
+        "direction" : "bottom",
+        "room" : 2,
+        "level" : 7
+    },
+    "Wall 28" : {
+        "name" : "Fort Top",
+        "x" : -32,
+        "y" : 0,
+        "width" : 32,
+        "height" : 815,
+        "direction" : "top",
+        "room" : 2,
+        "level" : 7
+    },
+    "Wall 29" : {
+        "name" : "Fort Top",
+        "x" : 1200,
+        "y" : 0,
+        "width" : 32,
+        "height" : 815,
+        "direction" : "top",
+        "room" : 2,
+        "level" : 7
+    },
+    "Wall 30" : {
+        "name" : "Cage Gate",
+        "x" : 450,
+        "y" : 245,
+        "width" : 150,
+        "height" : 15,
+        "direction" : "top",
+        "room" : 2,
+        "level" : "Button5"
+    },
+    "Wall 31" : {
+        "name" : "Cage Gate",
+        "x" : 776,
+        "y" : 114,
+        "width" : 24,
+        "height" : 144,
+        "direction" : "right",
+        "room" : 2,
+        "level" : "Button6"
     }
 }

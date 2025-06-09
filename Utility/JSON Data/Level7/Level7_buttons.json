@@ -34,5 +34,23 @@
         "pushed key" : "Button4 l7 has been pushed",
         "in_room" : 1,
         "name" : "Button4"
+    },
+    "Button 5 level 7" :{
+        "x" : 650,
+        "y" : 150,
+        "width" : 64,
+        "height" : 64,
+        "pushed key" : "Button5 l7 has been pushed",
+        "in_room" : 2,
+        "name" : "Button5"
+    },
+    "Button 6 level 7" :{
+        "x" : 50,
+        "y" : 625,
+        "width" : 64,
+        "height" : 64,
+        "pushed key" : "Button6 l7 has been pushed",
+        "in_room" : 2,
+        "name" : "Button6"
     }
 }
