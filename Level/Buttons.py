@@ -1,6 +1,7 @@
 import pygame
 from Utility.Image_Handler import data
 from The_turtles.The_player import player
+from Enemy.The_Villian import boss2
 
 class Button(pygame.sprite.Sprite):
     def __init__(self,x:float, y:float, width:int, height:int,pushed_key:str,name2:str):
@@ -19,7 +20,7 @@ class Button(pygame.sprite.Sprite):
         self.pressed = False
     
     def getting_pressed(self)->bool:
-        if not self.pressed and pygame.sprite.collide_mask(self,player):
+        if not self.pressed and pygame.sprite.collide_mask(self,player) or pygame.sprite.collide_mask(self,boss2):
             self.pressed = True
             self.on_pressed()
             return True
@@ -29,7 +30,7 @@ class Button(pygame.sprite.Sprite):
         self.name = "Green Star"
         self.image = data.load_image(self.name)
         self.image = pygame.transform.smoothscale(self.image,(self.w,self.h))
-        self.mask = None
+        self.mask = pygame.mask.from_surface(self.image)
     
     def update(self):
         ...

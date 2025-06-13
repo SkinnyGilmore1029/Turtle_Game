@@ -67,7 +67,7 @@
         "height" : 310,
         "direction" : "top",
         "room" : 1,
-        "level" : 8
+        "level" : "Level 8 Door"
     },
     "Wall 8" : {
         "name" : "Arrow Wall",
@@ -157,6 +157,6 @@
         "height" : 290,
         "direction" : "top",
         "room" : 2,
-        "level" : 8
+        "level" : "Button2 l8"
     }
 }

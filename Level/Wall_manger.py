@@ -163,6 +163,10 @@ class Cage_Doors(The_Walls):
                     self.rect.y -= self.speed *dt
                     if self.rect.y <= self.pos[1] - self.height:
                         self.speed = 0
+                case "Button2 l8":
+                    self.rect.y -= (self.speed *2) *dt
+                    if self.rect.y <= self.pos[1] - self.height:
+                        self.speed = 0
 
     def unlock_doors(self,dt:float):
         if self.can_unlock:
@@ -172,6 +176,10 @@ class Cage_Doors(The_Walls):
                     if self.rect.y <= self.pos[1] - self.height:
                         self.speed = 0
                 case "Lock Bottom":
+                    self.rect.y += self.speed *dt
+                    if self.rect.y >= self.pos[1] + self.height:
+                        self.speed = 0
+                case "Level 8 Door":
                     self.rect.y += self.speed *dt
                     if self.rect.y >= self.pos[1] + self.height:
                         self.speed = 0

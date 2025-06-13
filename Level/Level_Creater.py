@@ -13,6 +13,7 @@ from Utility.Settings import (
     HEIGHT
 )
 from The_turtles.The_player import player
+from Enemy.The_Villian import boss2
 from Enemy.The_Enemy_Group import bad_guys
 from UI.The_hud import Show_hud
 from NPCS.The_hints import The_hints
@@ -235,6 +236,8 @@ class Level_Creater:
                 Button_group.update()
             case 8:
                 Button_group.update()
+                if game.room == 2:
+                    boss2.update(dt)
 
     def update_level(self,dt:float,game:object)->None:
         bad_guys.update(dt)
@@ -275,7 +278,8 @@ class Level_Creater:
                 Button_group.draw(screen)
             case 8:
                 Button_group.draw(screen)
-
+                if game.room == 2:
+                    boss2.draw(screen)
 
     def draw_level(self,screen:pygame.Surface,game:object)->None:
         self.background.draw(screen)
