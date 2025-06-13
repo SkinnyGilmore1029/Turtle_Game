@@ -98,7 +98,7 @@
     "Arrow 7" : {
         "name" : "Arrow",
         "x" : 550.0,
-        "y" : 160,
+        "y" : 185,
         "width" : 32,
         "height" : 16,
         "direction" : "Left",
