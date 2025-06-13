@@ -196,7 +196,9 @@ class The_walls_group(pygame.sprite.Group):
         "Fort Wall" : The_Walls,
         "Cage Front" : Cage_Doors,
         "Cage Gate" :  Cage_Doors,
-        "Fort Top" : The_Walls
+        "Fort Top" : The_Walls,
+        "Castle Top" : The_Walls,
+        "Castle Wall" : The_Walls
     }
     def __init__(self):
         super().__init__()

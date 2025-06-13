@@ -1,3 +1,162 @@
 {
-    
+    "Wall 1" : {
+        "name" : "Castle Top",
+        "x" : 0,
+        "y" : 60,
+        "width" : 1200,
+        "height" : 32,
+        "direction" : "top",
+        "room" : 1,
+        "level" : 8
+    },
+    "Wall 2" : {
+        "name" : "Castle Top",
+        "x" : 30,
+        "y" : 765,
+        "width" : 1200,
+        "height" : 32,
+        "direction" : "bottom",
+        "room" : 1,
+        "level" : 8
+    },
+    "Wall 3" : {
+        "name" : "Castle Wall",
+        "x" : 1160,
+        "y" : 65,
+        "width" : 42,
+        "height" : 210,
+        "direction" : "top",
+        "room" : 1,
+        "level" : 8
+    },
+    "Wall 4" : {
+        "name" : "Castle Wall",
+        "x" : 1160,
+        "y" : 535,
+        "width" : 42,
+        "height" : 243,
+        "direction" : "top",
+        "room" : 1,
+        "level" : 8
+    },
+    "Wall 5" : {
+        "name" : "Castle Wall",
+        "x" : 0,
+        "y" : 65,
+        "width" : 42,
+        "height" : 210,
+        "direction" : "top",
+        "room" : 1,
+        "level" : 8
+    },
+    "Wall 6" : {
+        "name" : "Castle Wall",
+        "x" : 0,
+        "y" : 535,
+        "width" : 42,
+        "height" : 260,
+        "direction" : "top",
+        "room" : 1,
+        "level" : 8
+    },
+    "Wall 7" : {
+        "name" : "Cage Front",
+        "x" : 1140,
+        "y" : 250,
+        "width" : 16,
+        "height" : 310,
+        "direction" : "top",
+        "room" : 1,
+        "level" : 8
+    },
+    "Wall 8" : {
+        "name" : "Castle Wall",
+        "x" : 0,
+        "y" : 535,
+        "width" : 42,
+        "height" : 260,
+        "direction" : "top",
+        "room" : 2,
+        "level" : 8
+    },
+    "Wall 9" : {
+        "name" : "Castle Wall",
+        "x" : 0,
+        "y" : 535,
+        "width" : 42,
+        "height" : 260,
+        "direction" : "top",
+        "room" : 2,
+        "level" : 8
+    },
+    "Wall 10" : {
+        "name" : "Castle Wall",
+        "x" : 0,
+        "y" : 535,
+        "width" : 42,
+        "height" : 260,
+        "direction" : "top",
+        "room" : 2,
+        "level" : 8
+    },
+    "Wall 11" : {
+        "name" : "Castle Wall",
+        "x" : 0,
+        "y" : 535,
+        "width" : 42,
+        "height" : 260,
+        "direction" : "top",
+        "room" : 2,
+        "level" : 8
+    },
+    "Wall 12" : {
+        "name" : "Castle Wall",
+        "x" : 0,
+        "y" : 535,
+        "width" : 42,
+        "height" : 260,
+        "direction" : "top",
+        "room" : 2,
+        "level" : 8
+    },
+    "Wall 13" : {
+        "name" : "Castle Wall",
+        "x" : 0,
+        "y" : 535,
+        "width" : 42,
+        "height" : 260,
+        "direction" : "top",
+        "room" : 2,
+        "level" : 8
+    },
+    "Wall 14" : {
+        "name" : "Castle Wall",
+        "x" : 0,
+        "y" : 535,
+        "width" : 42,
+        "height" : 260,
+        "direction" : "top",
+        "room" : 2,
+        "level" : 8
+    },
+    "Wall 15" : {
+        "name" : "Castle Wall",
+        "x" : 0,
+        "y" : 535,
+        "width" : 42,
+        "height" : 260,
+        "direction" : "top",
+        "room" : 2,
+        "level" : 8
+    },
+    "Wall 16" : {
+        "name" : "Castle Wall",
+        "x" : 0,
+        "y" : 535,
+        "width" : 42,
+        "height" : 260,
+        "direction" : "top",
+        "room" : 2,
+        "level" : 8
+    }
 }
