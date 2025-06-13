@@ -11,6 +11,7 @@ from .The_Bolders import The_Bolders
 from .Tornados import Tornado
 from .Rats import The_Rats
 from .Arrows import The_arrows
+from .Spike_pit import The_spikes
    
 #418,283
 class The_Bad_Guys(pygame.sprite.Group):
@@ -24,7 +25,8 @@ class The_Bad_Guys(pygame.sprite.Group):
             "Bolder" : The_Bolders,
             "Tornado" : Tornado,
             "Rat" : The_Rats,
-            "Arrow" : The_arrows
+            "Arrow" : The_arrows,
+            "Spikes" : The_spikes
         }
     def __init__(self):
         super().__init__()

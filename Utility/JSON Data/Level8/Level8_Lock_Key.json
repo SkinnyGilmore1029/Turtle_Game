@@ -1,12 +1,12 @@
 {
     "Key" : {
         "name" : "Key",
-        "x" : 920,
+        "x" : 320,
         "y" : 200,
         "width" : 64,
         "height" : 64,
         "in_room" : 1,
-        "collected key" : "Level5 key collected"
+        "collected key" : "Level 8 key collected"
     },
     "Lock" : {
         "name" : "Lock",
@@ -15,6 +15,6 @@
         "width" : 96,
         "height" : 96,
         "in_room" : 1,
-        "unlocked key" : "Level5 lock unlocked"
+        "unlocked key" : "Level 8 lock unlocked"
     }
 }

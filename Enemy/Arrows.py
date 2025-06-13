@@ -18,7 +18,7 @@ class The_arrows(Bad_guy):
         self.rect.y += self.speed[1] * dt            
 
     def update(self,dt)->None:
-        #self.move(dt)
+        self.move(dt)
         self.handle_animations()
         
     def draw(self,screen:pygame.Surface)->None:

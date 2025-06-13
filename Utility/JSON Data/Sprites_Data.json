@@ -54,7 +54,8 @@
             "Fly" : "Pictures/NPC/fly_sheet.png",
             "Tornado" : "Pictures/Enemies/Tornado_sheet.png",
             "Rat" : "Pictures/Enemies/Rat.png",
-            "Arrow" : "Pictures/Enemies/arrow.png"
+            "Arrow" : "Pictures/Enemies/arrow.png",
+            "Spikes" : "Pictures/Enemies/spike_pit.png"
         }
     
 }
