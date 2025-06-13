@@ -135,7 +135,10 @@ class Level_Creater:
             case 7:
                 Button_group.clear_buttons_room(level,room)
                 Button_group.get_level_buttons(level,room)
-    
+            case 8:
+                Button_group.clear_buttons_room(level,room)
+                Button_group.get_level_buttons(level,room)
+
     def change_rooms(self, level: int, room: int) -> None:
         self.level = level
         self.room = room
@@ -230,7 +233,9 @@ class Level_Creater:
                 The_shelters.update()
             case 7:
                 Button_group.update()
-    
+            case 8:
+                Button_group.update()
+
     def update_level(self,dt:float,game:object)->None:
         bad_guys.update(dt)
         Collect_group.update(player)
@@ -268,8 +273,10 @@ class Level_Creater:
                 The_shelters.draw(screen)
             case 7:
                 Button_group.draw(screen)
-        
-        
+            case 8:
+                Button_group.draw(screen)
+
+
     def draw_level(self,screen:pygame.Surface,game:object)->None:
         self.background.draw(screen)
         All_walls.draw(screen)

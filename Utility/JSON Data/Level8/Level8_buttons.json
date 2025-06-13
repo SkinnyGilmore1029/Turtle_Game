@@ -1,0 +1,29 @@
+{
+    "Button 1 level 8" :{
+        "x" : 150,
+        "y" : 175,
+        "width" : 64,
+        "height" : 64,
+        "pushed key" : "Button1 l8 has been pushed",
+        "in_room" : 2,
+        "name" : "Button1 l8"
+    },
+    "Button 2 level 8" :{
+        "x" : 750,
+        "y" : 400,
+        "width" : 64,
+        "height" : 64,
+        "pushed key" : "Button2 l8 has been pushed",
+        "in_room" : 2,
+        "name" : "Button2 l8"
+    },
+    "Button 3 level 8" :{
+        "x" : 150,
+        "y" : 625,
+        "width" : 64,
+        "height" : 64,
+        "pushed key" : "Button3 l8 has been pushed",
+        "in_room" : 2,
+        "name" : "Button3 l8"
+    }
+}
