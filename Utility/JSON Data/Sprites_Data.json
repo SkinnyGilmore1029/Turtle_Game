@@ -29,7 +29,7 @@
             "Hint" : "Pictures/NPC/Hint.png",
             "Lizard" : "Pictures/NPC/lizard.png",
             "Boss" : "Pictures/Enemies/Boss.png",
-            "Arrow" : "Pictures/Enemies/arrow2.png",
+            "Arrow" : "Pictures/Enemies/arrow.png",
             "Rat" : "Pictures/Enemies/Rat.png",
             "Starting Scene" : "Pictures/Backgrounds/title bg.png",
             "Title Screen" : "Pictures/Backgrounds/Title_bg.png",
@@ -53,7 +53,8 @@
             "Cactus" : "Pictures/NPC/cactus_sheet.png",
             "Fly" : "Pictures/NPC/fly_sheet.png",
             "Tornado" : "Pictures/Enemies/Tornado_sheet.png",
-            "Rat" : "Pictures/Enemies/Rat.png"
+            "Rat" : "Pictures/Enemies/Rat.png",
+            "Arrow" : "Pictures/Enemies/arrow.png"
         }
     
 }

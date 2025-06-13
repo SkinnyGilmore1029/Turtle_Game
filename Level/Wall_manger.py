@@ -12,7 +12,7 @@ class The_Walls(pygame.sprite.Sprite):
         super().__init__()
         self.name = name
         self.image = data.load_image(name)
-        self.ignore = ["Bolder","Tornado","Fish"]
+        self.ignore = ["Bolder","Tornado","Fish","Arrow"]
         self.wall_id = ""
         self.x = x
         self.y = y
