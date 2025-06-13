@@ -97,26 +97,26 @@
        },
     "Arrow 7" : {
         "name" : "Arrow",
-        "x" : 220.0,
-        "y" : 750,
+        "x" : 550.0,
+        "y" : 160,
         "width" : 32,
         "height" : 16,
         "direction" : "Left",
         "frame_count" : 1,
         "in_room" : 2,
-        "speed": [-200,-150],
+        "speed": [200,-150],
         "sheet size" : [154,1196]
     },
     "Arrow 8" : {
         "name" : "Arrow",
-        "x" : 220.0,
-        "y" : 750,
+        "x" : 550.0,
+        "y" : 6900,
         "width" : 32,
         "height" : 16,
         "direction" : "Left",
         "frame_count" : 1,
         "in_room" : 2,
-        "speed": [-200,-150],
+        "speed": [200,-150],
         "sheet size" : [154,1196]
     },
     "Spike Pit" : {
