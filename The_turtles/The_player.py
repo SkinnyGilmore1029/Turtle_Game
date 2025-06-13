@@ -5,7 +5,7 @@ from .Turtle_base import Turtle_Base
 class Player(Turtle_Base):
     def __init__(self, name:str, x:float, y:float,width:int, height:int,direction:str,frame_count:int,sheet_size:list)->None:
         super().__init__(name,x,y,width,height,direction,frame_count,sheet_size)
-        self.lives = 5
+        self.lives = 15
         self.key_count = 0
         self.speed = 300
         self.chase = False

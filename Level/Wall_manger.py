@@ -164,7 +164,7 @@ class Cage_Doors(The_Walls):
                     if self.rect.y <= self.pos[1] - self.height:
                         self.speed = 0
                 case "Button2 l8":
-                    self.rect.y -= (self.speed *2) *dt
+                    self.rect.y -= (self.speed *4) *dt
                     if self.rect.y <= self.pos[1] - self.height:
                         self.speed = 0
 

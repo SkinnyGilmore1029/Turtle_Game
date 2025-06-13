@@ -17,8 +17,8 @@ class Main_Boss(Bad_guy):
             self.rect.y -= self.speed[1] * dt
     
     def shut_level8(self,dt):
-        if player.rect.x >= 350:
-            self.rect.x -= (self.speed[0] * 2) *dt
+        if player.rect.x >= 125:
+            self.rect.x -= (self.speed[0] * 3) *dt
             if self.rect.x <= 750:
                 self.rect.x = 750
     
