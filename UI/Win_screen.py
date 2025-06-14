@@ -13,7 +13,7 @@ class Win_Screen(Screens):
         game.game_state = "Choosing Level"
     
     def go_title(self,game)->None:
-        game.game_state = "Title Screen"
+        game.game_state = "Title"
 
     def controls(self,game):
         keys = pygame.key.get_pressed()
@@ -30,11 +30,13 @@ class Win_Screen(Screens):
         win_text = self.fonts["Title"].render("You Win!",True,"#FFFB00")
         continue_text = self.fonts["Start Button"].render("Press L to choose level again.",True,"#FFFB00")
         title_text = self.fonts["Start Button"].render("Press T to go to title screen.",True,"#FFFB00")
+        exit_text = self.fonts['Start Button'].render("Press ESC to exit.",True,"#FFFB00")
 
         screen.blits([
             (win_text,(400,0)),
             (continue_text,(300,700)),
-            (title_text,(300,750))
+            (title_text,(300,750)),
+            (exit_text,(300,650))
         ])
 
 Win = Win_Screen("Win Screen")
