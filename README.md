@@ -48,7 +48,4 @@ A simple 2D pixel-art game built with Pygame.
     python3 main.py
     ```
 
----
-
-**requirements.txt**
 
