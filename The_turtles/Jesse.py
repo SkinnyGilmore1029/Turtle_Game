@@ -23,10 +23,12 @@ class Jesse(Turtle_Base):
     
     def saved(self,player,game):
         if pygame.sprite.collide_mask(self,player):
-            ...
+            game.playing = False
+            game.game_state = "Win Screen"
     
     
-    def update(self):
+    def update(self,player,game):
+        self.saved(player,game)
         self.handle_animations()
         
     def update_cutscene(self,dt,boss,player):

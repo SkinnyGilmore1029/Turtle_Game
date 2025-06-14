@@ -1,5 +1,4 @@
 import pygame
-from Utility.Image_Handler import data
 
 class Screens:
     def __init__(self,name:str):

@@ -25,12 +25,12 @@ class GameOver(Screens):
         ])
         
     def continue_from(self,game)-> None:
-        player.lives = 5
+        player.lives = 15
         game.game_state = "Playing"
         game.playing = True
         
     def choose_level_again(self,game)->None:
-        player.lives = 5
+        player.lives = 15
         game.game_state = "Choosing Level"
         
     def game_over_controls(self,game)->None:

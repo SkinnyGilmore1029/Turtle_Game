@@ -4,6 +4,7 @@ from UI.Title_screen import Title_screen
 from UI.Choosing_Screen import Choosing_screen
 from UI.Cutscenes import Cut_scenes
 from UI.Game_Over import Game_over_screen
+from UI.Win_screen import Win
 from Utility.Music_Manger import music
 import sys
 pygame.init()
@@ -62,8 +63,9 @@ class Turtle_Game:
                         Game_over_screen.draw_game_over_screen(self.screen)
                         Game_over_screen.game_over_controls(self)
                     case "Win Screen":
-                        ...
-            
+                        Win.draw(self.screen)
+                        Win.controls(self)
+                        
             if self.playing is True:
                 music.play_music("Music_Sounds/the-wandering-samurai-344699.mp3")
                 match self.game_state:

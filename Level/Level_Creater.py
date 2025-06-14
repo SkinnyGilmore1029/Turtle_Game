@@ -239,7 +239,7 @@ class Level_Creater:
                 Button_group.update()
                 if game.room == 2:
                     boss2.update(dt)
-                    jesse2.update()
+                    jesse2.update(player,game)
                     
 
     def update_level(self,dt:float,game:object)->None:
