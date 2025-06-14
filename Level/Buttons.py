@@ -25,7 +25,7 @@ class Button(pygame.sprite.Sprite):
             self.on_pressed()
             return True
         return False
-    
+
     def on_pressed(self)->None:
         self.name = "Green Star"
         self.image = data.load_image(self.name)

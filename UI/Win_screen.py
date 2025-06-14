@@ -26,10 +26,10 @@ class Win_Screen(Screens):
             sys.exit()
 
     def draw(self,screen:pygame.Surface)->None:
-        screen.fill("Green")
-        win_text = self.fonts["Title"].render("You Win!",True,"#00FF00")
-        continue_text = self.fonts["Start Button"].render("Press L to choose level again.",True,"#00FF00")
-        title_text = self.fonts["Start Button"].render("Press T to go to title screen.",True,"#00FF00")
+        screen.fill("Blue")
+        win_text = self.fonts["Title"].render("You Win!",True,"#FFFB00")
+        continue_text = self.fonts["Start Button"].render("Press L to choose level again.",True,"#FFFB00")
+        title_text = self.fonts["Start Button"].render("Press T to go to title screen.",True,"#FFFB00")
 
         screen.blits([
             (win_text,(400,0)),

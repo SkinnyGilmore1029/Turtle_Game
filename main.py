@@ -52,6 +52,7 @@ class Turtle_Game:
             self.handle_events()
             
             if self.playing is False:
+                music.stop_music()
                 match self.game_state:
                     case "Title":
                         Title_screen.draw_Title_screen(self.screen)

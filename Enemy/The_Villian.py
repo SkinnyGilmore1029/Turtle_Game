@@ -21,7 +21,8 @@ class Main_Boss(Bad_guy):
             self.rect.x -= (self.speed[0] * 3) *dt
             if self.rect.x <= 750:
                 self.rect.x = 750
-    
+                self.speed[0] = 0
+
     def update(self,dt)->None:
         self.handle_animations()
         self.shut_level8(dt)

@@ -215,9 +215,11 @@ class The_walls_group(pygame.sprite.Group):
         super().__init__()
         self.loaded_room = set()
         self.moved_walls = set()
+        self.wall_lookup = {}
         
     def load_group(self,level:int,room:int)->None:
         self.empty()
+        self.wall_lookup.clear()
         key = (level,room)
         
         if key not in self.loaded_room:
@@ -230,6 +232,7 @@ class The_walls_group(pygame.sprite.Group):
                     wall = self.create_walls(w)
                     wall.wall_id = w['level']
                     self.add(wall)
+                    self.wall_lookup[wall.name] = wall
                   
             self.loaded_room.add(key)
     
@@ -245,6 +248,8 @@ class The_walls_group(pygame.sprite.Group):
                 direction= data['direction'],
                 room= data['room'])
 
+    def get_wall_by_name(self, name: str):
+        return self.wall_lookup.get(name)
 
     def check_if_vine(self,sprite)->None:
         if isinstance(sprite,The_vines):
@@ -261,6 +266,7 @@ class The_walls_group(pygame.sprite.Group):
     def change_room(self):
         self.empty()
         self.loaded_room.clear()
+        self.wall_lookup.clear()
         
     
     def draw(self,screen:pygame.Surface)->None:

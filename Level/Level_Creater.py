@@ -16,6 +16,7 @@ from The_turtles.The_player import player
 from Enemy.The_Villian import boss2
 from The_turtles.Jesse import jesse2
 from Enemy.The_Enemy_Group import bad_guys
+from Enemy.The_Bolders import final_bolder
 from UI.The_hud import Show_hud
 from NPCS.The_hints import The_hints
 from NPCS.The_crabs import The_Crabs
@@ -240,6 +241,7 @@ class Level_Creater:
                 if game.room == 2:
                     boss2.update(dt)
                     jesse2.update(player,game)
+                    final_bolder.final_update(All_walls.get_wall_by_name("Cage Front"),dt)
                     
 
     def update_level(self,dt:float,game:object)->None:
@@ -284,6 +286,7 @@ class Level_Creater:
                 if game.room == 2:
                     boss2.draw(screen)
                     jesse2.draw(screen)
+                    final_bolder.draw_final(screen)
 
     def draw_level(self,screen:pygame.Surface,game:object)->None:
         self.background.draw(screen)
