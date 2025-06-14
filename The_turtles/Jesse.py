@@ -20,7 +20,12 @@ class Jesse(Turtle_Base):
         if self.rect.y > HEIGHT:
             player.chase = True
             self.rect.y = HEIGHT
-     
+    
+    def saved(self,player,game):
+        if pygame.sprite.collide_mask(self,player):
+            ...
+    
+    
     def update(self):
         self.handle_animations()
         
@@ -33,3 +38,4 @@ class Jesse(Turtle_Base):
         screen.blit(self.image,self.rect)
     
 jesse = Jesse("Turtle 2",472,210,64,64,"Up",3,[714,247])
+jesse2 = Jesse("Turtle2",1000,620,64,64,"Up",6,[383,64])

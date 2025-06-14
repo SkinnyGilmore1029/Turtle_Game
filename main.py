@@ -61,6 +61,8 @@ class Turtle_Game:
                     case "Game Over":
                         Game_over_screen.draw_game_over_screen(self.screen)
                         Game_over_screen.game_over_controls(self)
+                    case "Win Screen":
+                        ...
             
             if self.playing is True:
                 music.play_music("Music_Sounds/the-wandering-samurai-344699.mp3")
