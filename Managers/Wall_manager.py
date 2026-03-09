@@ -3,8 +3,8 @@ from Utility.Image_Handler import data
 from NPCS.The_crabs import The_Crabs
 from The_turtles.The_player import player
 from Enemy.The_Enemy_Group import bad_guys
-from .Buttons import Button_group
-from .Locks_Group import the_lock
+from Level.Buttons import Button_group
+from Level.Locks_Group import the_lock
 
 
 class The_Walls(pygame.sprite.Sprite):
@@ -42,14 +42,21 @@ class The_Walls(pygame.sprite.Sprite):
 
     def wall_collision(self) -> None:
         if pygame.sprite.collide_mask(self,player):
-            if player.rect.top <= self.rect.top:
-                player.rect.bottom = self.rect.top
-            elif player.rect.bottom >= self.rect.bottom:
-                player.rect.top = self.rect.bottom
-            elif player.rect.right < self.rect.right:
-                player.rect.right = self.rect.left
-            elif player.rect.left > self.rect.left:
-                player.rect.left = self.rect.right
+            # Calculate overlap in both axes
+            x_overlap = min(player.rect.right, self.rect.right) - max(player.rect.left, self.rect.left)
+            y_overlap = min(player.rect.bottom, self.rect.bottom) - max(player.rect.top, self.rect.top)
+
+            # Resolve in the direction of least penetration
+            if x_overlap < y_overlap:
+                if player.rect.centerx > self.rect.centerx:
+                    player.rect.left = self.rect.right
+                else:
+                    player.rect.right = self.rect.left
+            else:
+                if player.rect.centery > self.rect.centery:
+                    player.rect.top = self.rect.bottom
+                else:
+                    player.rect.bottom = self.rect.top
 
     def enemy_collision(self) -> None:
         for e in bad_guys:

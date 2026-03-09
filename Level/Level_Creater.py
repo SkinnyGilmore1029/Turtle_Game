@@ -24,8 +24,8 @@ from NPCS.The_Cactus import All_cactus
 from NPCS.The_Flies import All_Flies
 from NPCS.The_Lizard import Lizards
 from .Lily_Pads import All_Lily
-from .Background_manger import Level_Backgrounds
-from .Wall_manger import All_walls
+from Managers.Background_manager import Level_Backgrounds
+from Managers.Wall_manager import All_walls
 from .Collectables_Group import Collect_group
 from .Locks_Group import the_lock
 from .Teleporters import The_tele
@@ -42,7 +42,7 @@ class Level_Creater:
         self.room2_location = data.get_room2_location(level)
         self.background = Level_Backgrounds(level,room)
         self.change_rooms(level,room)
-        
+
     def get_background(self,level:int,room:int):
         key = (level, room)
         if key not in self.backgrounds:
@@ -210,7 +210,7 @@ class Level_Creater:
                 game.level +=1
                 game.room = 1
                 player.rect.x, player.rect.y = data.get_player_start(game.level)
-                self.room2_location = data.get_room2_location(game.level)        
+                self.room2_location = data.get_room2_location(game.level)
             elif game.level ==3:
                 game.room = 1
                 player.rect.x, player.rect.y =  data.get_player_start(game.level)
@@ -242,7 +242,6 @@ class Level_Creater:
                     boss2.update(dt)
                     jesse2.update(player,game)
                     final_bolder.final_update(All_walls.get_wall_by_name("Cage Front"),dt)
-                    
 
     def update_level(self,dt:float,game:object)->None:
         bad_guys.update(dt)
@@ -257,7 +256,7 @@ class Level_Creater:
         All_walls.update(dt)
         self.level_only_update(dt,game) 
         player.update(dt)
-                  
+
     def draw_level_only(self,screen,game):
         """
         These have json files that other levels

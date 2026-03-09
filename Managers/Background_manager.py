@@ -7,6 +7,6 @@ class Level_Backgrounds:
         self.image = data.load_background_image(self.level_num,self.room_num)
         self.rect = self.image.get_frect()
         self.room_list = []
-        
+
     def draw(self,screen):
         screen.blit(self.image,self.rect)
