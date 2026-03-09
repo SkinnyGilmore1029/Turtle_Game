@@ -9,6 +9,7 @@ from Managers.Music_Manager import music
 from Managers.Controller_Manager import the_controller
 import sys
 pygame.init()
+pygame.joystick.init()
 
 
 
@@ -22,23 +23,25 @@ class Turtle_Game:
         self.level = 1
         self.room = 1
         self.current_level = Level_Creater(self.level,self.room)
-
+        self.running: bool = True
+        self.joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
+        
     def handle_events(self):
         event_queue = pygame.event.get()
+
         for event in event_queue:
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+                self.running = False
 
-            elif event.type in (
+            if event.type in (
                 pygame.KEYDOWN,
                 pygame.JOYBUTTONDOWN,
                 pygame.KEYUP,
                 pygame.JOYBUTTONUP,
-                pygame.JOYAXISMOTION,
-                pygame.JOYHATMOTION
+                pygame.JOYHATMOTION,
+                pygame.JOYAXISMOTION
                 ):
-                print("hello")
+
                 the_controller.player_controller(event)
 
     def change_level(self):
@@ -61,11 +64,11 @@ class Turtle_Game:
         self.current_level.draw_level(self.screen,self)
 
     def Run(self)->None:
-        while True:
+        while self.running:
             dt = self.clock.tick(60.0) / 1000
             self.handle_events()
 
-            if self.playing is False:
+            if not self.playing:
                 music.stop_music()
                 match self.game_state:
                     case "Title":
@@ -81,7 +84,7 @@ class Turtle_Game:
                         Win.draw(self.screen)
                         Win.controls(self)
 
-            if self.playing is True:
+            else:
                 music.play_music("Music_Sounds/the-wandering-samurai-344699.mp3")
                 match self.game_state:
                     case "Playing":
@@ -94,8 +97,9 @@ class Turtle_Game:
 
 
             pygame.display.flip()
+        pygame.quit()
+        sys.exit()
 
-
+game = Turtle_Game()
 if __name__ =="__main__":
-    game = Turtle_Game()
     game.Run()

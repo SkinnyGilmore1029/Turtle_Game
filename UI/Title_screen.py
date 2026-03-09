@@ -21,7 +21,7 @@ class Title(Screens):
     def Title_screen_controls(self,game)->None:
         self.choose_level(game)
         self.begin_game(game)
-            
+
 
     def Title_screen_text(self,screen:pygame.Surface):
         Title = self.fonts["Title"].render("Squartle Quest!",True,"#F5E800")

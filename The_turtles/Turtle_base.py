@@ -69,7 +69,7 @@ class Turtle_Base(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
         self.animation_timer = pygame.time.get_ticks()
         self.animation_speed = 200  # ms per frame
-        
+
     def pre_load_frames(self):
         """
         Prepares and transforms the player's animation frames for each facing direction.

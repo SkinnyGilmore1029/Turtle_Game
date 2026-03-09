@@ -22,27 +22,23 @@ class Player(Turtle_Base):
             self.direction = "Up"
             self.velocity.y = -self.speed
             self.rect.y += self.velocity.y *dt
-            self.button_pushed["up"] = False
 
     def move_down(self,dt:float) -> None:
         if self.button_pushed["down"]:
             self.velocity.y = self.speed
             self.direction = "Down"
             self.rect.y += self.velocity.y *dt
-            self.button_pushed['down'] = False
 
     def move_left(self, dt:float) -> None:
         if self.button_pushed["left"]:
             self.velocity.x = -self.speed
             self.direction = "Left"
-            self.button_pushed["left"] = False
             self.rect.x += self.velocity.x * dt
 
     def move_right(self, dt:float) -> None:
         if self.button_pushed["right"]:
-            self.velocity.x = -self.speed
+            self.velocity.x = self.speed
             self.direction = "Right"
-            self.button_pushed["right"] = False
             self.rect.x += self.velocity.x * dt
 
     def move(self,dt:float)->None:
@@ -113,7 +109,7 @@ class Player(Turtle_Base):
         """
 
         # Move player
-        self.move(dt)
+        #self.move(dt)
         self.move_down(dt)
         self.move_up(dt)
         self.move_left(dt)
