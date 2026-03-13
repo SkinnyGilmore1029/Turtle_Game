@@ -38,5 +38,13 @@
         "width" : 99,
         "height" :70,
         "in_room" : 2
+    },
+    "Puddle 6" : {
+        "name" : "Puddle",
+        "x" : 50,
+        "y" : 50,
+        "width" : 99,
+        "height" :70,
+        "in_room" : 2
     }
 }
