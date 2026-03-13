@@ -21,6 +21,7 @@ from NPCS.The_crabs import The_Crabs
 from Managers.Background_manager import Level_Backgrounds
 from Managers.Wall_manager import All_walls
 from Managers.Room_Manager import Room_Handler
+from .Check_Points import Check_point
 from .Collectables_Group import Collect_group
 from .Locks_Group import the_lock
 from .Teleporters import The_tele
@@ -89,44 +90,54 @@ class Level_Creater:
         The_Crabs.clear_level()
         All_walls.moved_walls.clear()
         The_shelters.change_level()
+        Check_point.empty_cp()
 
     def get_respawn_pos(self)->tuple[int,int]:
         respwn_pos =[0,0]
-        match self.level:
-            case 1:
-                respwn_pos[0] = LEVEL1_POS[0]
-                respwn_pos[1] = LEVEL1_POS[1]
-            case 2:
-                respwn_pos[0] = LEVEL2_POS[0]
-                respwn_pos[1] = LEVEL2_POS[1]
-            case 3:
-                respwn_pos[0] = LEVEL3_POS[0]
-                respwn_pos[1] = LEVEL3_POS[1]
-            case 4:
-                respwn_pos[0] = LEVEL4_POS[0]
-                respwn_pos[1] = LEVEL4_POS[1]
-            case 5:
-                respwn_pos[0] = LEVEL5_POS[0]
-                respwn_pos[1] = LEVEL5_POS[1]
-            case 6:
-                respwn_pos[0] = LEVEL6_POS[0]
-                respwn_pos[1] = LEVEL6_POS[1]
-            case 7:
-                respwn_pos[0] = LEVEL7_POS[0]
-                respwn_pos[1] = LEVEL7_POS[1]
-            case 8:
-                respwn_pos[0] = LEVEL8_POS[0]
-                respwn_pos[1] = LEVEL8_POS[1]
-
+        if not Check_point.sprite.acquired:
+            match self.level:
+                case 1:
+                    respwn_pos[0] = LEVEL1_POS[0]
+                    respwn_pos[1] = LEVEL1_POS[1]
+                case 2:
+                    respwn_pos[0] = LEVEL2_POS[0]
+                    respwn_pos[1] = LEVEL2_POS[1]
+                case 3:
+                    respwn_pos[0] = LEVEL3_POS[0]
+                    respwn_pos[1] = LEVEL3_POS[1]
+                case 4:
+                    respwn_pos[0] = LEVEL4_POS[0]
+                    respwn_pos[1] = LEVEL4_POS[1]
+                case 5:
+                    respwn_pos[0] = LEVEL5_POS[0]
+                    respwn_pos[1] = LEVEL5_POS[1]
+                case 6:
+                    respwn_pos[0] = LEVEL6_POS[0]
+                    respwn_pos[1] = LEVEL6_POS[1]
+                case 7:
+                    respwn_pos[0] = LEVEL7_POS[0]
+                    respwn_pos[1] = LEVEL7_POS[1]
+                case 8:
+                    respwn_pos[0] = LEVEL8_POS[0]
+                    respwn_pos[1] = LEVEL8_POS[1]
+        elif Check_point.sprite.acquired:
+            respwn_pos[0] = Check_point.sprite.rect.x
+            respwn_pos[1] = Check_point.sprite.rect.y
         return respwn_pos
 
-    def handle_collision(self,game:object)->None:
+    def handle_collision_death(self,game:object)->None:
         #Player death
         if bad_guys.collision_with_player(player):
             player_spawn_postion = self.get_respawn_pos()
             player.died(player_spawn_postion)
+
+            if not Check_point.sprite.acquired:
+                game.room = 1
+            elif Check_point.sprite.acquired:
+                game.room = 2
             self.change_rooms(game.level,game.room)
-            game.room = 1
+
+    def handle_collision_winning(self, game:object) -> None:
         #Level Win Condition
         collided_tele = The_tele.collision_with_player(player)
         if collided_tele:

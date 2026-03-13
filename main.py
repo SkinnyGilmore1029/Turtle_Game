@@ -90,7 +90,8 @@ class Turtle_Game:
                 music.play_music("Music_Sounds/the-wandering-samurai-344699.mp3")
                 match self.game_state:
                     case "Playing":
-                        self.current_level.handle_collision(self)
+                        self.current_level.handle_collision_death(self)
+                        self.current_level.handle_collision_winning(self)
                         self.update_game(dt)
                         self.draw()
                     case "Starting Cutscene":

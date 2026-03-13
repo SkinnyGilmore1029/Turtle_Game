@@ -1,0 +1,12 @@
+{
+    "CheckPoint1" :{
+        "x" : 600,
+        "y" : 375,
+        "width" : 64,
+        "height" : 64,
+        "acquired" : false,
+        "level" : 2,
+        "save key" : "Level 2 CheckPoint",
+        "color" : "#0A135E"
+    }
+}

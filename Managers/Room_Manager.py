@@ -29,6 +29,7 @@ from Level.Teleporters import The_tele
 from Level.Buttons import Button_group
 from Level.Heat_Puddle import All_puddles , heat_bar
 from Level.shelter import The_shelters
+from Level.Check_Points import Check_point
 from Managers.Data_Manager import data
 
 class Room_Handler:
@@ -260,6 +261,17 @@ class Room_Handler:
         All_walls.change_room()
         All_walls.load_group(level, room)
 
+    def room_checkpoints(self, level:int) -> None:
+        """Responsible for loading the correct check points
+        for the room and level.
+
+        Args:
+            level (int): The current level.
+            room (int): The current room.
+        """
+
+        Check_point.get_check_data(level)
+
     def room_hints(self, level:int, room:int) -> None:
         """Responsible for loading the correct hint frogs for the
         room and level.
@@ -319,6 +331,7 @@ class Room_Handler:
         self.room_locks(level,room)
         self.win_condition(level, room)
         self.room_hints(level, room)
+        self.room_checkpoints(level)
 
     def tele_second_room(self):
         if self.room2_location == "Tele":
@@ -346,6 +359,7 @@ class Room_Handler:
         The_hints.collison_with_player()
         All_walls.update(dt)
         self.unique_only_updates(dt, game)
+        Check_point.update(game)
 
     def draw(self, screen: pygame.Surface)-> None:
         """Puts everything on the screen.
@@ -360,3 +374,4 @@ class Room_Handler:
         the_lock.draw(screen)
         The_tele.draw(screen)
         The_hints.draw(screen)
+        Check_point.draw(screen)
