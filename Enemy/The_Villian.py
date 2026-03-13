@@ -15,7 +15,7 @@ class Main_Boss(Bad_guy):
             self.rect.y += self.speed[1] *dt
         elif self.got_turtle is False:
             self.rect.y -= self.speed[1] * dt
-    
+
     def shut_level8(self,dt):
         if player.rect.x >= 125:
             self.rect.x -= (self.speed[0] * 3) *dt
@@ -26,12 +26,12 @@ class Main_Boss(Bad_guy):
     def update(self,dt)->None:
         self.handle_animations()
         self.shut_level8(dt)
-        
-        
+
+
     def update_cutscene(self,jesse,dt):
         self.get_turtle(jesse,dt)
         self.handle_animations()
-    
+
     def draw(self,screen:pygame.Surface)->None:
         screen.blit(self.image,self.rect)
 

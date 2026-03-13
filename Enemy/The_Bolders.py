@@ -9,8 +9,8 @@ class The_Bolders(Bad_guy):
         super().__init__(name,x,y,width,height,direction,frame_count,in_room,speed,sheet_size)
         self.start_pos = (x,y)
         self.final_spawn = False
-    
-    
+
+
     def final_bolder(self):
         buttons_needed = ["Button1 l8","Button3 l8"]
         for button in Button_group:
@@ -23,35 +23,32 @@ class The_Bolders(Bad_guy):
             if self.rect.x >= 1200:
                 self.rect.x = 1200
                 self.speed[0] = 0
-    
+
     def smash_door(self,wall,dt):
         if pygame.sprite.collide_mask(self,wall):
             wall.rect.x += (self.speed[0] * 2) * dt
             if wall.rect.x >= 1200:
                 wall.rect.x = 1200
-                
-                
-    
+
     def smash_villian(self):
         if pygame.sprite.collide_mask(self,boss2):
             boss2.rect.x = 1200
             boss2.rect.y = 0
-            
-                
+
     def final_update(self,wall,dt):
         self.final_bolder()
         if self.final_spawn:
             self.move_final_bolder(dt)
             self.smash_door(wall,dt)
             self.smash_villian()
-        
+
     def draw_final(self,screen):
         if self.final_spawn:
             screen.blit(self.image,self.rect)
 
     def move_down(self,dt):
         self.rect.y += self.speed[1] * dt
-        
+
         if self.rect.y >= HEIGHT:
             self.rect.y = -64
 

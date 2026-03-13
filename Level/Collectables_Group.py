@@ -1,5 +1,5 @@
 import pygame
-from Utility.Image_Handler import data
+from Managers.Data_Manager import data
 from .Collectables import (
     Keys,
     OneUps
@@ -15,7 +15,7 @@ class Collectable_Group(pygame.sprite.Group):
         super().__init__()
         self.already_in_level = set()
         self.already_collected = set()
-        
+
     def get_level_keys(self,level:int,room:int)->None:
         set_key = ("key",level,room)
         if set_key not in self.already_in_level:
@@ -29,14 +29,14 @@ class Collectable_Group(pygame.sprite.Group):
                         self.add(key)
                     elif level == 2 and Button_group.get_already_on_size() == 6:
                         self.add(key)
-                    
+
             self.already_in_level.add(set_key)
 
     def get_clear_level(self):
         self.empty()
         self.already_in_level.clear()
         self.already_collected.clear()
-    
+
     def get_level_OneUps(self,level:int,room:int)->None:
         set_key = ("Oneup",level,room)
         if set_key not in self.already_in_level:
@@ -48,7 +48,7 @@ class Collectable_Group(pygame.sprite.Group):
                         oneup = self.create_collectable_from_data(up)
                         self.add(oneup)
             self.already_in_level.add(set_key)
-            
+
     def get_level_collectables(self,level:int,room:int)->None:
         self.empty()
         self.already_in_level.clear()
@@ -66,20 +66,20 @@ class Collectable_Group(pygame.sprite.Group):
                 height= data['height'],
                 collected_key= data['collected key']
             )
-    
+
     def check_collected(self):
         for sprite in self:
             if sprite.collected == True :
                 self.already_collected.add((sprite.collected_key))
                 self.remove(sprite)
-       
+
     def update(self,player):
         for sprite in self:
             sprite.update(player)
         self.check_collected()
-            
+
     def draw(self,screen:pygame.Surface):
         for sprite in self:
             sprite.draw(screen)
-            
+
 Collect_group = Collectable_Group()

@@ -1,5 +1,5 @@
 import pygame
-from Utility.Image_Handler import data
+from Managers.Data_Manager import data
 from Utility.Settings import WIDTH
 from The_turtles.The_player import player
 
@@ -12,18 +12,18 @@ class HeatBar:
         self.hp = max_hp
         self.max_hp = max_hp
         self.lose_hp = .25
-        
+
     def draw(self,screen: pygame.Surface) -> None:
         ratio = self.hp/self.max_hp
         pygame.draw.rect(screen,"red",(self.x,self.y,self.w,self.h))
         pygame.draw.rect(screen,"green",(self.x,self.y,self.w*ratio, self.h))
-        self.hp -=self.lose_hp  
+        self.hp -=self.lose_hp
         if self.hp <=0:
-            player.lives -=1 
+            player.lives -=1
             player.rect.y = 0
             player.rect.x = WIDTH*.9
-            self.hp=self.max_hp    
-            
+            self.hp=self.max_hp
+
 heat_bar = HeatBar(WIDTH//3,0,175,32,175)
 
 class Puddles(pygame.sprite.Sprite):
@@ -38,26 +38,24 @@ class Puddles(pygame.sprite.Sprite):
         self.image = pygame.transform.smoothscale(self.image,(self.w,self.h))
         self.rect = pygame.FRect(self.x,self.y,self.w,self.h)
         self.mask = pygame.mask.from_surface(self.image)
-    
+
     def in_puddle(self) -> None:
             soaked = pygame.sprite.collide_mask(self,player)
             if soaked:
                 heat_bar.hp +=1
                 if heat_bar.hp >= heat_bar.max_hp:
                     heat_bar.hp = heat_bar.max_hp
-    
-    
+
     def update(self):
         self.in_puddle()
-    
+
     def draw(self,screen: pygame.Surface) -> pygame.Surface:
         screen.blit(self.image,self.rect)
 
-        
 class The_Puddles(pygame.sprite.Group):
     def __init__(self):
         super().__init__()
-        
+
     def get_puddle_data(self,level:int,room:int)->None:
         self.empty()
         puddles_data = data.load_level_data(level,"puddles")
@@ -65,7 +63,7 @@ class The_Puddles(pygame.sprite.Group):
             if p["in_room"] == room:
                 puddle = self.create_puddle(p)
                 self.add(puddle)
-                
+
     def create_puddle(self,data:dict)->Puddles:
         return Puddles(
             name= data["name"],
@@ -74,13 +72,13 @@ class The_Puddles(pygame.sprite.Group):
             width= data['width'],
             height= data['height']
         )
-        
+
     def update(self):
         for sprite in self:
             sprite.update()
-        
+
     def draw(self,screen:pygame.Surface)->None:
         for sprite in self:
             sprite.draw(screen)
-        
+
 All_puddles = The_Puddles()

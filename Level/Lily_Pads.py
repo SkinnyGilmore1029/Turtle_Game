@@ -1,5 +1,6 @@
 import pygame
-from Utility.Image_Handler import data
+from Managers.Image_Manager import my_image
+from Managers.Data_Manager import data
 from Utility.Settings import HEIGHT
 from The_turtles.The_player import player
 
@@ -12,14 +13,13 @@ class Lily_Pad(pygame.sprite.Sprite):
         self.y = y
         self.w = width
         self.h = height
-        self.image = data.load_image(self.name)
+        self.image = my_image.load_image(self.name)
         self.image = pygame.transform.smoothscale(self.image,(self.w,self.h))
         self.rect = pygame.FRect(self.x,self.y,self.w,self.h)
         self.mask = pygame.mask.from_surface(self.image)
         self.direction = direction
         self.speed = 200
 
-    
     def move_lily(self,dt):
         match self.direction:
             case "Up":
@@ -30,7 +30,7 @@ class Lily_Pad(pygame.sprite.Sprite):
                 self.rect.y -= self.speed *dt
                 if self.rect.y < 0:
                     self.rect.y = HEIGHT
-    
+
     def transport(self,dt):
         if pygame.sprite.collide_mask(self,player):
             match self.direction:
@@ -38,19 +38,19 @@ class Lily_Pad(pygame.sprite.Sprite):
                     player.rect.y += 200 *dt
                 case "Down":
                     player.rect.y -= 200 *dt
-                    
+
     def update(self,dt:float):
         self.move_lily(dt)
         self.transport(dt)
-        
+
     def draw(self,screen:pygame.Surface)->None:
         screen.blit(self.image,self.rect)
-        
+
 class The_Lily_Pads(pygame.sprite.Group):
     def __init__(self):
         super().__init__()
         self.loaded_room = set()
-        
+
     def get_lily_data(self,level:int,room:int)->None:
         #self.empty()
         key = (level,room)
@@ -61,7 +61,7 @@ class The_Lily_Pads(pygame.sprite.Group):
                     lily_pad = self.create_lilies(l)
                     self.add(lily_pad)
             self.loaded_room.add(key)
-            
+
     def create_lilies(self,data:dict)->Lily_Pad:
         return Lily_Pad(
             name= data["name"],
@@ -71,17 +71,17 @@ class The_Lily_Pads(pygame.sprite.Group):
             height= data['height'],
             direction= data['direction']
         )
-        
+
     def update(self,dt:float)->None:
         for sprite in list(self):
             sprite.update(dt)
-    
+
     def change_room(self):
         self.empty()
         self.loaded_room.clear()
-    
+
     def draw(self,screen:pygame.Surface)->None:
         for sprite in self:
             sprite.draw(screen)
-    
+
 All_Lily = The_Lily_Pads()

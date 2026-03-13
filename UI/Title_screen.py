@@ -1,23 +1,23 @@
 import pygame
 from .Screen_base import Screens
-from Utility.Image_Handler import data
-       
+from Managers.Image_Manager import my_image
+
 class Title(Screens):
     def __init__(self,name:str)->None:
         super().__init__(name)
-        self.background = data.load_image(name)
-        
+        self.background = my_image.load_image(name)
+
     def begin_game(self,game:object)->None:
         keys = pygame.key.get_pressed()
         if keys[pygame.K_s]:
             game.playing = True
             game.game_state = "Starting Cutscene"
-        
+
     def choose_level(self,game:object)->None:
         keys = pygame.key.get_pressed()
         if keys[pygame.K_l]:
             game.game_state = "Choosing Level"
-        
+
     def Title_screen_controls(self,game)->None:
         self.choose_level(game)
         self.begin_game(game)
@@ -34,10 +34,9 @@ class Title(Screens):
             (or_text,(200,675)),
             (Level_select,(100,710))
             ])
-        
+
     def draw_Title_screen(self,screen:pygame.Surface)->None:
         screen.blit(self.background,(0,0))
         self.Title_screen_text(screen)
-        
-    
+
 Title_screen = Title('Title Screen')

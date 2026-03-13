@@ -1,6 +1,7 @@
 import pygame
 from Utility.Settings import WIDTH,HEIGHT
-from Utility.Image_Handler import Image_Animator, data
+from Managers.Image_Manager import Image_Animator
+from Managers.Data_Manager import data
 
 class Turtle_Base(pygame.sprite.Sprite):
     """
@@ -55,8 +56,8 @@ class Turtle_Base(pygame.sprite.Sprite):
         self.direction = direction
         self.velocity = pygame.Vector2(0,0)
         self.frame_count = frame_count
-        self.frames = data.get_frames(self.name,self.frame_count,self.w,self.h,self.sheet_size)
         self.animation = Image_Animator(self.name)
+        self.frames = self.animation.get_frames(self.name,self.frame_count,self.w,self.h,self.sheet_size)
         self.transformed_frames = {
             "Up": [],
             "Down": [],

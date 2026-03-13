@@ -2,7 +2,7 @@ import pygame
 from .Npc_base import Npc_Base
 from The_turtles.The_player import player
 from Utility.Settings import HEIGHT , WIDTH
-from Utility.Image_Handler import data
+from Managers.Data_Manager import data
 
 
 class Crabby(Npc_Base):
@@ -15,33 +15,33 @@ class Crabby(Npc_Base):
         self.direction = direction
         self.name2 = name2
         self.rotate_crabs()
-    
+
     def rotate_crabs(self):
         match self.direction:
             case "Up":
-                self.imgae = pygame.transform.flip(self.image,False,False)
+                self.image = pygame.transform.flip(self.image,False,False)
                 self.mask = pygame.mask.from_surface(self.image)
             case "Down":
-                self.imgae = pygame.transform.flip(self.image,False,True)
+                self.image = pygame.transform.flip(self.image,False,True)
                 self.mask = pygame.mask.from_surface(self.image)
-    
+
     def get_pushed(self):
         if pygame.sprite.collide_mask(self,player):
             self.go_down = True
-        
+
     def move_down(self,dt:float):
         if self.go_down == True:
             match self.direction:
                 case "Up":
-                    #crab on the bottum
+                    #crab on the bottom
                     self.rect.y += self.speed[1] * dt
                     if self.rect.top >= HEIGHT:
                         self.go_down = False
                         self.cross_screen = True
                         self.direction = "Left" #move left from the right
                         self.rect.y = HEIGHT*.3
-                        self.rect.x = WIDTH -self.w  
-                        
+                        self.rect.x = WIDTH -self.w
+
                 case "Down":
                     #crab on top
                     self.rect.y -= self.speed[1] * dt
@@ -52,7 +52,7 @@ class Crabby(Npc_Base):
                         self.rect.x = -96
                         self.rect.y = HEIGHT *.7
 
-    
+
     def moving_across(self,dt:float):
         if self.cross_screen == True:
             match self.direction :

@@ -14,8 +14,8 @@ class The_cars(Bad_guy):
     def update(self,dt):
         self.move(dt)
         self.handle_animations()
-        
+
     def draw(self,screen:pygame.Surface)->None:
         screen.blit(self.image,self.rect)
 
-       
+

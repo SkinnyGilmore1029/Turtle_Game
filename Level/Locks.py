@@ -1,5 +1,5 @@
 import pygame
-from Utility.Image_Handler import data
+from Managers.Data_Manager import data
 
 
 class Lock(pygame.sprite.Sprite):

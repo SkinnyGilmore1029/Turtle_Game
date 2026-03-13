@@ -1,5 +1,5 @@
 import pygame
-from Utility.Image_Handler import data
+from Managers.Data_Manager import data
 from The_turtles.The_player import player
 from .Npc_base import Npc_Base
 
@@ -8,19 +8,18 @@ class Hint_Frog(Npc_Base):
         super().__init__(name,x,y,width,height)
         self.message = message
         self.touch = False
-        
+
     def giving_hint(self,screen)->bool:
         self.give_hint_message(screen)
-    
+
     def give_hint_message(self,screen:pygame.Surface)->None:
         mes = self.font.render(self.message,True,"Black","White",450)
         screen.blit(mes,(400,250))
 
-        
 class Hint_Group(pygame.sprite.Group):
     def __init__(self):
         super().__init__()
-        
+
     def get_level_Hints(self,level:int,room:int)->None:
         self.empty()
         in_level = data.load_level_data(level,"Npc")["Hint_Frog"]
@@ -28,7 +27,7 @@ class Hint_Group(pygame.sprite.Group):
             if n["in_room"] == room:
                 npc = self.create_npc(n)
                 self.add(npc)
-                
+
     def create_npc(self,data:dict)->Hint_Frog:
         return Hint_Frog(
             name= data["name"],

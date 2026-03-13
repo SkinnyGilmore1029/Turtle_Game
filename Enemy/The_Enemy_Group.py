@@ -1,5 +1,5 @@
 import pygame
-from Utility.Image_Handler import data
+from Managers.Data_Manager import data
 from .The_cars import The_cars
 from .The_trucks import The_trucks
 from .The_Gators import The_gators
@@ -12,7 +12,7 @@ from .Tornados import Tornado
 from .Rats import The_Rats
 from .Arrows import The_arrows
 from .Spike_pit import The_spikes
-   
+
 #418,283
 class The_Bad_Guys(pygame.sprite.Group):
     badguy_classes = {
@@ -30,8 +30,7 @@ class The_Bad_Guys(pygame.sprite.Group):
         }
     def __init__(self):
         super().__init__()
-        
-        
+
     def get_level_badguys(self,level:int,room:int):
         self.empty()
         in_level = data.load_level_data(level,"enemies")
@@ -39,7 +38,7 @@ class The_Bad_Guys(pygame.sprite.Group):
             if m['in_room'] == room:
                 badguy = self.create_badguy_from_data(m)
                 self.add(badguy)
-        
+
     def create_badguy_from_data(self,data:dict):
         clas = self.badguy_classes.get(data["name"])
         if clas:
@@ -65,7 +64,7 @@ class The_Bad_Guys(pygame.sprite.Group):
     def update(self,dt:float):
         for sprite in self:
             sprite.update(dt)
-            
+
     def draw(self,screen:pygame.Surface):
         for sprite in self:
             sprite.draw(screen)

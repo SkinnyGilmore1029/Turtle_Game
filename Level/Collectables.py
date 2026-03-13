@@ -1,5 +1,5 @@
 import pygame
-from Utility.Image_Handler import data
+from Managers.Image_Manager import my_image
 
 class Collectable(pygame.sprite.Sprite):
     def __init__(self,name:str, x:float, y:float,width:int,height:int,collected_key:str):
@@ -10,38 +10,37 @@ class Collectable(pygame.sprite.Sprite):
         self.w = width
         self.h = height
         self.collected_key = collected_key
-        self.image = data.load_image(name)
+        self.image = my_image.load_image(name)
         self.image = pygame.transform.smoothscale(self.image,(self.w,self.h))
         self.rect = pygame.FRect(self.x,self.y,self.w,self.h)
         self.mask = pygame.mask.from_surface(self.image)
         self.collected = False
-        
+
     def collect(self,player)->None:
         pass
-    
+
     def get_collected(self,player)->None:
         if pygame.sprite.collide_mask(self,player):
             self.collect(player)
-    
+
     def update(self,player)->None:
         self.get_collected(player)
-    
+
     def draw(self,screen:pygame.Surface)->None:
         screen.blit(self.image,self.rect)
-            
+
 class Keys(Collectable):
     def __init__(self,name:str,x:float,y:float,width:int,height:int,collected_key:str):
         super().__init__(name,x,y,width,height,collected_key)
-    
-    
+
     def collect(self,player)->None:
         self.collected = True
         player.key_count +=1
-        
+
 class OneUps(Collectable):
     def __init__(self,name:str,x:float,y:float,width:int,height:int,collected_key:str):
         super().__init__(name,x,y,width,height,collected_key)
-        
+
     def collect(self,player)->None:
         self.collected = True
         player.lives +=1

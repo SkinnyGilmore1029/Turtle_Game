@@ -1,6 +1,7 @@
 import pygame
 from Utility.Settings import HEIGHT
-from Utility.Image_Handler import data
+from Managers.Image_Manager import my_image
+from Managers.Data_Manager import data
 
 
 class The_Fish(pygame.sprite.Sprite):
@@ -17,7 +18,7 @@ class The_Fish(pygame.sprite.Sprite):
         self.speed = speed
         self.velocity = pygame.Vector2(speed[0],speed[1])
         self.sheet_size = sheet_size
-        self.image = data.load_image(self.name)
+        self.image = my_image.load_image(self.name)
         self.handle_direction()
         self.rect = pygame.FRect(self.x,self.y,self.w,self.h)
         self.mask = pygame.mask.from_surface(self.image)
@@ -41,10 +42,9 @@ class The_Fish(pygame.sprite.Sprite):
             case "Down":
                 if self.rect.y > HEIGHT - 160:
                     self.rect.y = -160
-    
+
     def update(self,dt:float)->None:
         self.move(dt)
-        
-        
+
     def draw(self,screen:pygame.Surface)->None:
         screen.blit(self.image,self.rect)

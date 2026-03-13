@@ -1,5 +1,6 @@
 import pygame
-from Utility.Image_Handler import Image_Animator,data
+from Managers.Image_Manager import Image_Animator
+from Managers.Data_Manager import data
 
 
 class Teleporter(pygame.sprite.Sprite):
@@ -23,8 +24,6 @@ class Teleporter(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
         self.change_level = change_level
 
-    
-
     def update(self):
         self.image = self.animator.play(self.frame_count)
         self.mask = pygame.mask.from_surface(self.image)
@@ -36,7 +35,7 @@ class Teleporter(pygame.sprite.Sprite):
 class Tele_Group(pygame.sprite.Group):
     def __init__(self):
         super().__init__()
-        
+
     def get_tele_data(self,level:int,room:int)->None:
         self.empty()
         tele_data = data.load_level_data(level,"Teleporter")
@@ -44,7 +43,7 @@ class Tele_Group(pygame.sprite.Group):
             if t['in_room'] == room:
                 teleporter = self.create_teleporter(t)
                 self.add(teleporter)
-                
+
     def create_teleporter(self,data:dict):
         return Teleporter(
             name= data["name"],
@@ -64,9 +63,9 @@ class Tele_Group(pygame.sprite.Group):
     def update(self):
         for sprite in self:
             sprite.update()
-            
+
     def draw(self,screen):
         for sprite in self:
             sprite.draw(screen)
-            
+
 The_tele = Tele_Group()

@@ -1,5 +1,5 @@
 import pygame
-from Utility.Image_Handler import data
+from Managers.Data_Manager import data
 from Enemy.The_Enemy_Group import bad_guys
 
 class Shelters(pygame.sprite.Sprite):

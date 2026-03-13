@@ -1,5 +1,6 @@
 import pygame
-from Utility.Image_Handler import data
+from Managers.Image_Manager import my_image
+from Managers.Data_Manager import data
 from NPCS.The_crabs import The_Crabs
 from The_turtles.The_player import player
 from Enemy.The_Enemy_Group import bad_guys
@@ -11,7 +12,7 @@ class The_Walls(pygame.sprite.Sprite):
     def __init__(self,name:str,x:float,y:float,width:float,height:float,direction:str,room:int)->None:
         super().__init__()
         self.name = name
-        self.image = data.load_image(name)
+        self.image = my_image.load_image(name)
         self.ignore = ["Bolder","Tornado","Fish","Arrow"]
         self.wall_id = ""
         self.x = x
@@ -95,19 +96,19 @@ class The_Walls(pygame.sprite.Sprite):
 
     def draw(self,screen):
         screen.blit(self.image,self.rect)
-        
+
 class The_vines(The_Walls):
     def __init__(self,name:str,x:float,y:float,width:float,height:float,direction:str,room:int):
         super().__init__(name,x,y,width,height,direction,room)
         self.despawn:bool = False
         self.cut:bool = False
         self.pos:tuple[int,int] = (self.x,self.y)
-        
+
     def cut_vine(self):
         for crab in The_Crabs:
             if pygame.sprite.collide_mask(self,crab):
                 self.cut = True
-    
+
     def move(self,dt)->None:
         if self.cut == True:
             match self.direction:
@@ -119,12 +120,12 @@ class The_vines(The_Walls):
                     self.rect.y += 150 * dt
                     if self.rect.y >= 800:
                         self.despawn = True
-                    
+
     def update(self,dt):
         self.wall_collision()
         self.cut_vine()
         self.move(dt)
-        
+
 
 class Cage_Doors(The_Walls):
     def __init__(self,name:str,x:float,y:float,width:float,height:float,direction:str,room:int):
@@ -133,16 +134,16 @@ class Cage_Doors(The_Walls):
         self.can_unlock: bool = False
         self.pos:tuple[int,int] = (self.x,self.y)
         self.speed = 100
-        
+
     def check_buttons(self):
         for button in Button_group:
             if button.name2 == self.wall_id and button.pressed:
                 self.can_move = True
-    
+
     def check_lock(self):
         if the_lock.sprite is None:
             self.can_unlock = True
-    
+
     def move_cages(self,dt:float):
         if self.can_move:
             match self.wall_id:
@@ -190,7 +191,7 @@ class Cage_Doors(The_Walls):
                     self.rect.y += self.speed *dt
                     if self.rect.y >= self.pos[1] + self.height:
                         self.speed = 0
-    
+
     def update(self,dt):
         self.check_lock()
         self.check_buttons()
@@ -199,7 +200,7 @@ class Cage_Doors(The_Walls):
         self.move_cages(dt)
         self.unlock_doors(dt)
 
-        
+
 class The_walls_group(pygame.sprite.Group):
     wall_classes:dict = {
         "Fence" : The_Walls,
@@ -223,26 +224,26 @@ class The_walls_group(pygame.sprite.Group):
         self.loaded_room = set()
         self.moved_walls = set()
         self.wall_lookup = {}
-        
+
     def load_group(self,level:int,room:int)->None:
         self.empty()
         self.wall_lookup.clear()
         key = (level,room)
-        
+
         if key not in self.loaded_room:
             walls = data.load_level_data(level,"walls")
-            
+
             for w in walls.values():
                 cut_key = (w['name'],w['direction'],w['x'])
-                
+
                 if w['room'] == room and cut_key not in self.moved_walls:
                     wall = self.create_walls(w)
                     wall.wall_id = w['level']
                     self.add(wall)
                     self.wall_lookup[wall.name] = wall
-                  
+
             self.loaded_room.add(key)
-    
+
     def create_walls(self,data:dict)->None:
         clas = self.wall_classes.get(data["name"])
         if clas:
