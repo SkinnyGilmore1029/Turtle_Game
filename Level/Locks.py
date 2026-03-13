@@ -1,5 +1,5 @@
 import pygame
-from Managers.Data_Manager import data
+from Managers.Image_Manager import my_image
 
 
 class Lock(pygame.sprite.Sprite):
@@ -10,7 +10,7 @@ class Lock(pygame.sprite.Sprite):
         self.y = y
         self.w = width
         self.h = height
-        self.image = data.load_image(name)
+        self.image = my_image.load_image(name)
         self.image = pygame.transform.smoothscale(self.image,(self.w,self.h))
         self.rect = pygame.FRect(self.x,self.y,self.w,self.h)
         self.mask = pygame.mask.from_surface(self.image)

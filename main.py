@@ -25,7 +25,7 @@ class Turtle_Game:
         self.current_level = Level_Creater(self.level,self.room)
         self.running: bool = True
         self.joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
-        
+
     def handle_events(self):
         event_queue = pygame.event.get()
 
@@ -47,11 +47,13 @@ class Turtle_Game:
     def change_level(self):
         if (self.current_level.level != self.level):
             self.current_level.clear_level()
+            self.current_level.The_Rooms.change_level(self.level)
             self.current_level.change_rooms(self.level, self.room)
 
     def change_level_room(self):
         if (self.current_level.room != self.room):
             self.current_level.change_rooms(self.level,self.room)
+
 
 
     def update_game(self,dt:float)->None:

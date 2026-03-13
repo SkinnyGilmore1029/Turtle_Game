@@ -270,15 +270,14 @@ class The_walls_group(pygame.sprite.Group):
         for sprite in list(self):
             self.check_if_vine(sprite)
             sprite.update(dt)
-    
+
     def change_room(self):
         self.empty()
         self.loaded_room.clear()
         self.wall_lookup.clear()
-        
-    
+
     def draw(self,screen:pygame.Surface)->None:
         for sprite in self:
             sprite.draw(screen)
-            
+
 All_walls = The_walls_group()

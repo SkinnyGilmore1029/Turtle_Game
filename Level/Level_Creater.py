@@ -26,6 +26,7 @@ from NPCS.The_Lizard import Lizards
 from .Lily_Pads import All_Lily
 from Managers.Background_manager import Level_Backgrounds
 from Managers.Wall_manager import All_walls
+from Managers.Room_Manager import Room_Handler
 from .Collectables_Group import Collect_group
 from .Locks_Group import the_lock
 from .Teleporters import The_tele
@@ -37,8 +38,9 @@ from .shelter import The_shelters
 class Level_Creater:
     def __init__(self,level:int,room:int):
         self.backgrounds:dict[tuple,Level_Backgrounds] = {}
-        self.level = level
-        self.room = room
+        self.The_Rooms:Room_Handler =Room_Handler(room,level)
+        self.level = self.The_Rooms.level
+        self.room: int = self.The_Rooms.room
         self.room2_location = data.get_room2_location(level)
         self.background = Level_Backgrounds(level,room)
         self.change_rooms(level,room)
@@ -156,6 +158,11 @@ class Level_Creater:
         The_tele.get_tele_data(level,room)
         self.check_level_only(level,room)
 
+    def change_rooms2(self, level: int, room: int) -> None:
+        self.level = self.The_Rooms.change_level(level)
+        self.room = self.The_Rooms.change_room(room)
+        self.The_Rooms.change_rooms(level, room)
+
     def clear_level(self)->None:
         Collect_group.get_clear_level()
         the_lock.clear_level()
@@ -209,6 +216,7 @@ class Level_Creater:
             if collided_tele.change_level == True:
                 game.level +=1
                 game.room = 1
+                self.The_Rooms.change_level((game.level))
                 player.rect.x, player.rect.y = data.get_player_start(game.level)
                 self.room2_location = data.get_room2_location(game.level)
             elif game.level ==3:
@@ -289,12 +297,6 @@ class Level_Creater:
 
     def draw_level(self,screen:pygame.Surface,game:object)->None:
         self.background.draw(screen)
-        All_walls.draw(screen)
-        bad_guys.draw(screen)
-        Collect_group.draw(screen)
-        the_lock.draw(screen)
-        The_tele.draw(screen)
-        The_hints.draw(screen)
-        self.draw_level_only(screen,game)
+        self.The_Rooms.draw(screen)
         player.draw(screen)
         Show_hud(screen,player,self.level,self.room)

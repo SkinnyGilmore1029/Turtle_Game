@@ -29,7 +29,7 @@ class Button(pygame.sprite.Sprite):
 
     def on_pressed(self)->None:
         self.name = "Green Star"
-        self.image = data.load_image(self.name)
+        self.image = my_image.load_image(self.name)
         self.image = pygame.transform.smoothscale(self.image,(self.w,self.h))
         self.mask = pygame.mask.from_surface(self.image)
 
