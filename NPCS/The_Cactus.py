@@ -1,6 +1,7 @@
 import pygame
 from .Npc_base import Animated_Npc_base
 from Managers.Data_Manager import data
+from Managers.Image_Manager import my_image
 from The_turtles.The_player import player
 
 class Cactus(Animated_Npc_base):

@@ -17,6 +17,9 @@ class Player(Turtle_Base):
             "right" : False
         }
 
+    def get_player_pos(self) -> tuple[int,int]:
+        return (self.x, self.y)
+
     def move_up(self, dt:float) -> None:
         if self.button_pushed["up"]:
             self.direction = "Up"

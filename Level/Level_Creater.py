@@ -9,21 +9,15 @@ from Utility.Settings import (
     LEVEL6_POS,
     LEVEL7_POS,
     LEVEL8_POS,
-    WIDTH,
-    HEIGHT
 )
 from The_turtles.The_player import player
-from Enemy.The_Villian import boss2
-from The_turtles.Jesse import jesse2
+
 from Enemy.The_Enemy_Group import bad_guys
-from Enemy.The_Bolders import final_bolder
+
 from UI.The_hud import Show_hud
-from NPCS.The_hints import The_hints
+
 from NPCS.The_crabs import The_Crabs
-from NPCS.The_Cactus import All_cactus
-from NPCS.The_Flies import All_Flies
-from NPCS.The_Lizard import Lizards
-from .Lily_Pads import All_Lily
+
 from Managers.Background_manager import Level_Backgrounds
 from Managers.Wall_manager import All_walls
 from Managers.Room_Manager import Room_Handler
@@ -31,7 +25,6 @@ from .Collectables_Group import Collect_group
 from .Locks_Group import the_lock
 from .Teleporters import The_tele
 from .Buttons import Button_group
-from .Heat_Puddle import All_puddles , heat_bar
 from .shelter import The_shelters
 
 
@@ -41,9 +34,38 @@ class Level_Creater:
         self.The_Rooms:Room_Handler =Room_Handler(room,level)
         self.level = self.The_Rooms.level
         self.room: int = self.The_Rooms.room
-        self.room2_location = data.get_room2_location(level)
+
         self.background = Level_Backgrounds(level,room)
+        #load the first room
         self.change_rooms(level,room)
+
+    def draw_starting_square(self, screen:pygame.Surface) ->None:
+        match self.level:
+            case 1:
+                x, y = LEVEL1_POS
+                color = "#FFFFFF"
+            case 2:
+                x, y = LEVEL2_POS
+                color = "#1D2969"
+            case 3:
+                x, y = LEVEL3_POS
+                color = "#E71313"
+            case 4:
+                x, y = LEVEL4_POS
+                color = "#5DEE39"
+            case 5:
+                x, y = LEVEL5_POS
+                color = "#70294D"
+            case 6:
+                x, y = LEVEL6_POS
+                color = "#23C790"
+            case 7:
+                x, y = LEVEL7_POS
+                color = "#344223"
+            case 8:
+                x, y = LEVEL8_POS
+                color = "#280A41"
+        pygame.draw.rect(screen,color,(x, y,player.w,player.h))
 
     def get_background(self,level:int,room:int):
         key = (level, room)
@@ -51,116 +73,11 @@ class Level_Creater:
             self.backgrounds[key] = Level_Backgrounds(level,room)
         return self.backgrounds[key]
 
-    def change_up_down(self,game) -> None:
-        if self.room2_location == "Above":
-            if player.rect.x <= 0:
-                player.rect.x = 0
-            elif player.rect.x >= WIDTH-64:
-                player.rect.x = WIDTH-64
-            if player.rect.y <= 0 and game.room == 1:
-                game.room +=1
-                player.rect.y = HEIGHT -1
-                The_tele.get_tele_data(game.level, game.room)
-            elif player.rect.y <=0 and game.room == 2:
-                player.rect.y =1 
-            elif player.rect.y >= HEIGHT and game.room == 2:
-                game.room -= 1 
-                player.rect.y = 1
-                The_tele.get_tele_data(game.level, game.room)
-            elif player.rect.y >= HEIGHT-64 and game.room == 1:
-                player.rect.y = HEIGHT - 64
-
-    #Room 2 on bottom
-    def change_down_up(self,game) -> None:
-        if self.room2_location == "Below":
-            if player.rect.x <= 0:
-                player.rect.x = 0
-            elif player.rect.x >= WIDTH-64:
-                player.rect.x = WIDTH-64
-            if player.rect.y >= HEIGHT and game.room == 1:
-                game.room +=1
-                player.rect.y = 1
-                The_tele.get_tele_data(game.level, game.room)
-            elif player.rect.y <=0 and game.room == 1:
-                player.rect.y =1
-            elif player.rect.y <= 0 and game.room ==2:
-                game.room -= 1
-                player.rect.y = HEIGHT-32
-                The_tele.get_tele_data(game.level, game.room)
-            elif player.rect.y >= HEIGHT-32 and game.room == 2:
-                player.rect.y = HEIGHT - 32
-
-    def change_left_right(self,game)->None:
-        if self.room2_location == "Side":
-            if player.rect.y <= 0:
-                player.rect.y = 0
-            elif player.rect.y >= HEIGHT - 64:
-                player.rect.y = HEIGHT-64
-            if player.rect.x <= 0 and game.room == 1:
-                player.rect.x =1
-            elif player.rect.x >= WIDTH-64 and game.room == 2:
-                player.rect.x = WIDTH-64
-            elif player.rect.x >= WIDTH and game.room == 1:
-                game.room +=1
-                player.rect.x = 0
-                The_tele.get_tele_data(game.level, game.room)
-            elif player.rect.x <=0 and game.room ==2:
-                game.room -=1
-                player.rect.x = WIDTH-64
-                The_tele.get_tele_data(game.level, game.room)
-
-    def tele_second_room(self):
-        if self.room2_location == "Tele":
-            if player.rect.y <= 0:
-                player.rect.y = 0
-            elif player.rect.y >= HEIGHT - 64:
-                player.rect.y = HEIGHT-64
-            if player.rect.x <= 0:
-                player.rect.x = 0
-            elif player.rect.x >= WIDTH-64:
-                player.rect.x = WIDTH-64
-
-    def check_level_only(self,level,room):
-        match level:
-            case 2:
-                Button_group.clear_buttons_room(level,room)
-                Button_group.get_level_buttons(level,room)
-            case 3:
-                The_Crabs.get_level_crabs(level,room)
-                All_Lily.change_room()
-                All_Lily.get_lily_data(level,room)
-            case 4:
-                All_cactus.get_level_cactus(level,room)
-                All_Flies.get_level_flies(level,room)
-                Lizards.get_lizard_data(level,room)
-            case 5:
-                All_puddles.get_puddle_data(level,room)
-            case 6:
-                The_shelters.get_shelter_data(level,room)
-            case 7:
-                Button_group.clear_buttons_room(level,room)
-                Button_group.get_level_buttons(level,room)
-            case 8:
-                Button_group.clear_buttons_room(level,room)
-                Button_group.get_level_buttons(level,room)
-
     def change_rooms(self, level: int, room: int) -> None:
         self.level = level
         self.room = room
         self.background = self.get_background(level, room)
-        self.room2_location = data.get_room2_location(level)
-        bad_guys.get_level_badguys(level, room)
-        All_walls.change_room()
-        All_walls.load_group(level, room)
-        Collect_group.get_level_collectables(level,room)
-        the_lock.get_level_lock(level,room)
-        The_hints.get_level_Hints(level,room)
-        The_tele.get_tele_data(level,room)
-        self.check_level_only(level,room)
-
-    def change_rooms2(self, level: int, room: int) -> None:
-        self.level = self.The_Rooms.change_level(level)
-        self.room = self.The_Rooms.change_room(room)
+        self.The_Rooms.room2_location = data.get_room2_location(level)
         self.The_Rooms.change_rooms(level, room)
 
     def clear_level(self)->None:
@@ -226,77 +143,16 @@ class Level_Creater:
                 game.room = 2
                 player.rect.x, player.rect.y = (10, 400)
 
-    def level_only_update(self,dt,game)->None:
-        match game.level:
-            case 2:
-                Button_group.update()
-            case 3:
-                The_Crabs.update(dt)
-                All_walls.update(dt)
-                All_Lily.update(dt)
-            case 4:
-                All_cactus.update()
-                All_Flies.update(dt)
-                Lizards.update(dt)
-            case 5:
-                All_puddles.update()
-            case 6:
-                The_shelters.update()
-            case 7:
-                Button_group.update()
-            case 8:
-                Button_group.update()
-                if game.room == 2:
-                    boss2.update(dt)
-                    jesse2.update(player,game)
-                    final_bolder.final_update(All_walls.get_wall_by_name("Cage Front"),dt)
 
     def update_level(self,dt:float,game:object)->None:
-        bad_guys.update(dt)
-        Collect_group.update(player)
-        the_lock.update(player)
-        The_tele.update()
-        self.change_up_down(game)
-        self.change_left_right(game)
-        self.change_down_up(game)
-        self.tele_second_room()
-        The_hints.collison_with_player()
-        All_walls.update(dt)
-        self.level_only_update(dt,game)
+        self.The_Rooms.update(dt, game)
         player.update(dt)
 
-    def draw_level_only(self,screen,game):
-        """
-        These have json files that other levels
-        dont have could mess things up if ran
-        together.
-        """
-        match game.level:
-            case 2:
-                Button_group.draw(screen)
-            case 3:
-                The_Crabs.draw(screen)
-                All_Lily.draw(screen)
-            case 4:
-                All_cactus.draw(screen)
-                All_Flies.draw(screen)
-                Lizards.draw(screen)
-            case 5:
-                All_puddles.draw(screen)
-                heat_bar.draw(screen)
-            case 6:
-                The_shelters.draw(screen)
-            case 7:
-                Button_group.draw(screen)
-            case 8:
-                Button_group.draw(screen)
-                if game.room == 2:
-                    boss2.draw(screen)
-                    jesse2.draw(screen)
-                    final_bolder.draw_final(screen)
 
     def draw_level(self,screen:pygame.Surface,game:object)->None:
         self.background.draw(screen)
         self.The_Rooms.draw(screen)
+        if self.room == 1:
+            self.draw_starting_square(screen)
         player.draw(screen)
         Show_hud(screen,player,self.level,self.room)
