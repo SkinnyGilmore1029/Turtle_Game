@@ -27,6 +27,7 @@ from .Locks_Group import the_lock
 from .Teleporters import The_tele
 from .Buttons import Button_group
 from .shelter import The_shelters
+from .Heat_Puddle import heat_bar
 
 
 class Level_Creater:
@@ -35,8 +36,8 @@ class Level_Creater:
         self.The_Rooms:Room_Handler =Room_Handler(room,level)
         self.level = self.The_Rooms.level
         self.room: int = self.The_Rooms.room
-
         self.background = Level_Backgrounds(level,room)
+
         #load the first room
         self.change_rooms(level,room)
 
@@ -133,8 +134,11 @@ class Level_Creater:
 
             if not Check_point.sprite.acquired:
                 game.room = 1
+
             elif Check_point.sprite.acquired:
                 game.room = 2
+            if game.level == 5:
+                heat_bar.hp = heat_bar.max_hp
             self.change_rooms(game.level,game.room)
 
     def handle_collision_winning(self, game:object) -> None:

@@ -1,5 +1,6 @@
 import pygame
 from Managers.Data_Manager import data
+from Managers.Image_Manager import my_image
 from Utility.Settings import WIDTH
 from The_turtles.The_player import player
 
@@ -34,7 +35,7 @@ class Puddles(pygame.sprite.Sprite):
         self.y = y
         self.w = width
         self.h = height
-        self.image = data.load_image(self.name)
+        self.image = my_image.load_image(self.name)
         self.image = pygame.transform.smoothscale(self.image,(self.w,self.h))
         self.rect = pygame.FRect(self.x,self.y,self.w,self.h)
         self.mask = pygame.mask.from_surface(self.image)

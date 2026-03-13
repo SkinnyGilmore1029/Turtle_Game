@@ -1,7 +1,7 @@
 {
     "CheckPoint1" :{
-        "x" : 600,
-        "y" : 375,
+        "x" : 900,
+        "y" : 75,
         "width" : 64,
         "height" : 64,
         "acquired" : false,

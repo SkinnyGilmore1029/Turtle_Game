@@ -21,6 +21,7 @@ class CutScenes(Screens):
         screen.blit(text,(0,0))
 
     def update(self,dt,game):
+        game.current_level.clear_level()
         player.update_cutscene(dt,game)
         jesse.update_cutscene(dt,boss,player)
         boss.update_cutscene(jesse,dt)
