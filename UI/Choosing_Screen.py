@@ -16,7 +16,7 @@ from Managers.Cursor_Manager import Cursor
 class Choose_Level(Screens):
     def __init__(self,name:str)->None:
         super().__init__(name)
-        self.cursor: Cursor = Cursor("Level 1")
+        self.cursor: Cursor = Cursor("Level 1", 168, 200)
         self.button_pushed: dict[int|str, bool] = {
             1: False,
             2: False,
@@ -26,10 +26,31 @@ class Choose_Level(Screens):
             6: False,
             7: False,
             8: False,
-            "Esc" : False
+            "Esc" : False,
+            "D-Pad up" : False,
+            "D-pad down" : False,
+            "Controller B" : False,
+            "Controller A" : False
         }
         self.starting_pos:int = 200
         self.y_spacing:int = 40
+
+    def choose_level_up(self) -> None:
+        if self.button_pushed["D-Pad up"]:
+            self.cursor.move_up([f"Level {i + 1}" for i, _ in enumerate(range(8))],
+                                self.starting_pos,
+                                self.y_spacing,
+                                self.starting_pos)
+            self.button_pushed["D-Pad up"] = False
+
+    def choose_level_down(self) -> None:
+        if self.button_pushed["D-pad down"]:
+            self.cursor.move_down([f"Level {i + 1}" for i, _ in enumerate(range(8))],
+                                self.starting_pos,
+                                self.y_spacing,
+                                self.starting_pos)
+            self.button_pushed["D-pad down"] = False
+
 
     def choosing_level2(self, game: object) -> None:
         if game.room != 1:
@@ -50,7 +71,7 @@ class Choose_Level(Screens):
         # Loop through button_pushed
         for key, pressed in self.button_pushed.items():
             if pressed:
-                if key == "Esc":
+                if key == "Esc" or key == "Controller B":
                     game.game_state = "Title"
                 else:
                     game.level = key
@@ -77,6 +98,10 @@ class Choose_Level(Screens):
             (back, (700, 500))
             ])
 
+    def update_cursor(self) -> None:
+        self.choose_level_up()
+        self.choose_level_down()
+
     def draw_option_text(self, screen: pygame.Surface) -> None:
         for i, _ in enumerate(range(8)):
             level = self.fonts["Start Button"].render(f"Level {i +1 }",True,"#F5E800")
@@ -85,6 +110,7 @@ class Choose_Level(Screens):
 
     def draw_choose_level_screen2(self,screen: pygame.Surface)->None:
         screen.fill("Blue")
+        self.cursor.draw_cursor(screen)
         self.explain_text(screen)
         self.Title_Text(screen)
         self.draw_option_text(screen)

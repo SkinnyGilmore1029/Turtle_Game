@@ -46,6 +46,7 @@ class Turtle_Game:
                 match self.game_state:
                     case "Choosing Level":
                         the_keyboard.handle_choosing_keyboard(event, self)
+                        the_controller.choose_screen_controller(event)
                     case "Playing":
                         the_controller.player_controller(event)
 
@@ -82,6 +83,7 @@ class Turtle_Game:
                         Title_screen.draw_Title_screen(self.screen)
                         Title_screen.Title_screen_controls(self)
                     case "Choosing Level":
+                        Choosing_screen.update_cursor()
                         Choosing_screen.draw_choose_level_screen2(self.screen)
                         Choosing_screen.choosing_level2(self)
                     case "Game Over":
