@@ -55,10 +55,11 @@ class The_Bad_Guys(pygame.sprite.Group):
                 sheet_size= data['sheet size']
             )
 
-    def collision_with_player(self,player)->None:
+    def collision_with_player(self, player) -> bool:
         for sprite in self:
-            if pygame.sprite.collide_mask(sprite,player):
-                return True
+            if sprite.rect.colliderect(player.rect):  # cheap first check
+                if pygame.sprite.collide_mask(sprite, player):  # precise mask check
+                    return True
         return False
 
     def update(self,dt:float):

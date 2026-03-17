@@ -166,7 +166,7 @@ class Level_Creater:
 
     def draw_level(self,screen:pygame.Surface,game:object)->None:
         self.background.draw(screen)
-        self.The_Rooms.draw(screen)
+        self.The_Rooms.draw(screen, game)
         if self.room == 1:
             self.draw_starting_square(screen)
         player.draw(screen)

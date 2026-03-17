@@ -89,50 +89,50 @@ class Turtle_Base(pygame.sprite.Sprite):
             # Up: just scale
             up_img = pygame.transform.smoothscale(frame, (self.w, self.h))
             self.transformed_frames["Up"].append(up_img)
-            
+
             # Down: flip vertically + scale
             down_img = pygame.transform.flip(frame, False, True)
             down_img = pygame.transform.smoothscale(down_img, (self.w, self.h))
             self.transformed_frames["Down"].append(down_img)
-            
+
             # Left: rotate -90 and flip horizontally + scale
             left_img = pygame.transform.rotate(frame, -90)
             left_img = pygame.transform.flip(left_img, True, False)
             left_img = pygame.transform.smoothscale(left_img, (self.w, self.h))
             self.transformed_frames["Left"].append(left_img)
-            
+
             # Right: rotate -90 + scale
             right_img = pygame.transform.rotate(frame, -90)
             right_img = pygame.transform.smoothscale(right_img, (self.w, self.h))
             self.transformed_frames["Right"].append(right_img)
-    
+
     def handle_animations(self)->None:
         """
         Handles player animation frame updates based on elapsed time.
 
-        Advances the animation frame if enough time has passed, and updates 
+        Advances the animation frame if enough time has passed, and updates
         the current image and collision mask based on the facing direction.
         """
 
-         # Animate frames over time
+        # Animate frames over time
         current_time = pygame.time.get_ticks()
         if current_time - self.animation_timer > self.animation_speed:
             self.current_frame = (self.current_frame + 1) % self.frame_count
             self.animation_timer = current_time
-        
+
         # Set current image to the correct frame and direction (no transforms here)
         self.image = self.transformed_frames[self.direction][self.current_frame]
         self.mask = pygame.mask.from_surface(self.image)
-        
+
     def move(self,dt:float)->None:
         #will be updated by children classes
         pass
-   
+
     def update(self, dt):
         #will be updated by children classes
         pass
-    
+
     def draw(self,screen:pygame.Surface)->None:
         #will be updated by children classes
         pass
-        
+

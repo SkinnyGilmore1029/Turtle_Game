@@ -57,18 +57,18 @@ class The_Bolders(Bad_guy):
 
         left_wall:int = self.start_pos[0]
         right_wall:int = self.start_pos[0] + 300 - self.w
-        
+
         if self.rect.x <= left_wall or self.rect.x >= right_wall:
             self.speed[0] *= -1
-  
+
     def reset_bolders(self):
         self.rect.x, self.rect.y = self.start_pos
-  
+
     def update(self,dt):
         self.handle_animations()
         self.move_down(dt)
         self.move_left_right(dt)
-        
+
     def draw(self,screen):
         screen.blit(self.image,self.rect)
 

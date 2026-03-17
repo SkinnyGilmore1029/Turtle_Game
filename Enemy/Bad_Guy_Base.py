@@ -2,7 +2,16 @@ import pygame
 from Managers.Image_Manager import Image_Animator
 from Managers.Data_Manager import data
 
-
+def trim_surface(surf: pygame.Surface) -> pygame.Surface:
+        """Returns a cropped version of surf removing fully transparent edges."""
+        mask = pygame.mask.from_surface(surf)
+        rects = mask.get_bounding_rects()
+        if rects:
+            rect = rects[0]  # get bounding rect of visible pixels
+            return surf.subsurface(rect).copy()  # copy to avoid referencing original
+        else:
+            return surf.copy()
+        
 class Bad_guy(pygame.sprite.Sprite):
     """
     This is a parent Class for all the rest of
@@ -37,37 +46,27 @@ class Bad_guy(pygame.sprite.Sprite):
         self.animation_timer = pygame.time.get_ticks()
         self.animation_speed = 200  # ms per frame
 
+
     def pre_load_frames(self):
-        """
-        Prepares and transforms the player's animation frames for each facing direction.
-
-        This method iterates through the original frames, performing transformations to
-        produce separate frame lists for 'Up', 'Down', 'Left', and 'Right' directions:
-            - 'Left': Rotates the image -90 degrees, flips it horizontally, and scales it.
-            - 'Right': Rotates the image -90 degrees and scales it.
-
-        The resulting frames are stored in the `transformed_frames` dictionary 
-        keyed by direction.
-        """
         for frame in self.frames:
+            trimmed_frame = trim_surface(frame)  # trim transparent edges
+
             # Up: just scale
-            up_img = pygame.transform.smoothscale(frame, (self.w, self.h))
+            up_img = pygame.transform.smoothscale(trimmed_frame, (self.w, self.h))
             self.transformed_frames["Up"].append(up_img)
 
             # Down: flip vertically + scale
-            down_img = pygame.transform.flip(frame, False, True)
+            down_img = pygame.transform.flip(trimmed_frame, False, True)
             down_img = pygame.transform.smoothscale(down_img, (self.w, self.h))
             self.transformed_frames["Down"].append(down_img)
 
-            # Left: rotate -90 and flip horizontally + scale
-            #left_img = pygame.transform.rotate(frame, -90)
-            left_img = pygame.transform.flip(frame, True, False)
+            # Left: flip horizontally + scale
+            left_img = pygame.transform.flip(trimmed_frame, True, False)
             left_img = pygame.transform.smoothscale(left_img, (self.w, self.h))
             self.transformed_frames["Left"].append(left_img)
 
-            # Right: rotate -90 + scale
-            #right_img = pygame.transform.rotate(frame, -90)
-            right_img = pygame.transform.smoothscale(frame, (self.w, self.h))
+            # Right: just scale
+            right_img = pygame.transform.smoothscale(trimmed_frame, (self.w, self.h))
             self.transformed_frames["Right"].append(right_img)
 
     def handle_animations(self)->None:

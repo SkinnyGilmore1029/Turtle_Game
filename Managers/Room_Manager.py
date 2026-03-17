@@ -143,7 +143,7 @@ class Room_Handler:
                 player.rect.x = WIDTH-64
                 The_tele.get_tele_data(game.level, game.room)
 
-    def unique_to_room_draw(self, screen:pygame.Surface)-> None:
+    def unique_to_room_draw(self, screen:pygame.Surface, game:object)-> None:
         """Responsible for draw things on the screen that
         are unique to the level or the room.
 
@@ -172,7 +172,7 @@ class Room_Handler:
                 Button_group.draw(screen)
             case 8:
                 Button_group.draw(screen)
-                if self.room == 2:
+                if game.room == 2:
                     boss2.draw(screen)
                     jesse2.draw(screen)
                     final_bolder.draw_final(screen)
@@ -361,13 +361,13 @@ class Room_Handler:
         self.unique_only_updates(dt, game)
         Check_point.update(game)
 
-    def draw(self, screen: pygame.Surface)-> None:
+    def draw(self, screen: pygame.Surface, game:object)-> None:
         """Puts everything on the screen.
 
         Args:
             screen (pygame.Surface): The main draw window.
         """
-        self.unique_to_room_draw(screen)
+        self.unique_to_room_draw(screen, game)
         All_walls.draw(screen)
         bad_guys.draw(screen)
         Collect_group.draw(screen)
