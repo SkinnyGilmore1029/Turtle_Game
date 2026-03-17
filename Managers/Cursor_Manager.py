@@ -47,7 +47,7 @@ class Cursor(pygame.sprite.Sprite):
             x_spacing (int): For screens that need to move the cursor left or right.
         """
         self.option_name = option_list[self.selected_index]
-        self.rect.x = x_spacing
+        self.rect.x = x_spacing - self.w
         self.rect.y = y_start+ (self.selected_index * y_spacing)
 
     def draw_cursor(self,screen:pygame.Surface)->None:

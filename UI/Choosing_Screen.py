@@ -34,8 +34,12 @@ class Choose_Level(Screens):
         }
         self.starting_pos:int = 200
         self.y_spacing:int = 40
+        self.color: str = "#F5E800"
 
     def choose_level_up(self) -> None:
+        """Helps control the up press on
+        the joystick on the controller.
+        """
         if self.button_pushed["D-Pad up"]:
             self.cursor.move_up([f"Level {i + 1}" for i, _ in enumerate(range(8))],
                                 self.starting_pos,
@@ -44,6 +48,9 @@ class Choose_Level(Screens):
             self.button_pushed["D-Pad up"] = False
 
     def choose_level_down(self) -> None:
+        """Helps control the down press on
+        the joystick on controller.
+        """
         if self.button_pushed["D-pad down"]:
             self.cursor.move_down([f"Level {i + 1}" for i, _ in enumerate(range(8))],
                                 self.starting_pos,
@@ -51,8 +58,38 @@ class Choose_Level(Screens):
                                 self.starting_pos)
             self.button_pushed["D-pad down"] = False
 
+    def get_level_from_cursor(self) -> int:
+        """Takes the selected level from the cursor
+        and converts in to an integer for choosing_level.
 
-    def choosing_level2(self, game: object) -> None:
+        Returns:
+            int: The level number.
+        """
+        match self.cursor.option_name:
+            case "Level 1":
+                return 1
+            case "Level 2":
+                return 2
+            case "Level 3":
+                return 3
+            case "Level 4":
+                return 4
+            case "Level 5":
+                return 5
+            case "Level 6":
+                return 6
+            case "Level 7":
+                return 7
+            case "Level 8":
+                return 8
+
+    def choosing_level(self, game: object) -> None:
+        """Handles the level selection for both
+        keyboard and controller.
+
+        Args:
+            game (object): The main game class.
+        """
         if game.room != 1:
             game.room = 1
 
@@ -73,25 +110,38 @@ class Choose_Level(Screens):
             if pressed:
                 if key == "Esc" or key == "Controller B":
                     game.game_state = "Title"
+                elif key == "D-pad down" or key == "D-pad up":
+                    continue
                 else:
-                    game.level = key
+                    level_key = self.get_level_from_cursor()
+                    game.level = level_key
                     game.playing = True
                     game.game_state = "Playing"
-                    player.rect.x, player.rect.y = level_positions[key]
+                    player.rect.x, player.rect.y = level_positions[level_key]
                 # Reset the button
                 self.button_pushed[key] = False
                 break
 
     def Title_Text(self, screen:pygame.Surface) -> None:
-        """Yes this is mine"""
-        Title = self.fonts["Title"].render("Choose Your Level!",True,"#F5E800")
+        """Displays the Title of the game on the screen.
+
+        Args:
+            screen (pygame.Surface): The screen you want to display on.
+        """
+        Title = self.fonts["Title"].render("Choose Your Level!",True,self.color)
         screen.blit(Title,(400,0))
 
     def explain_text(self, screen: pygame.Surface)-> None:
+        """Displays what the controls are on the level selection
+        screen.
+
+        Args:
+            screen (pygame.Surface): The screen you want to display on.mo
+        """
         pygame.draw.rect(screen,"Black", (680, 180, 510, 430), 20, 10, 10, 10, 10, 10)
-        explain_text = self.fonts["Start Button"].render("Press the number of the level on the Keyboard to choose!",True,"#F5E800",None,500)
-        control_text = self.fonts["Start Button"].render("Move the cursor to the level and press A",True,"#F5E800",None,400)
-        back = self.fonts["Start Button"].render("Press the Escape button or the B button to go back to Title Screen",True,"#F5E800",None,500)
+        explain_text = self.fonts["Start Button"].render("Press the number of the level on the Keyboard to choose!",True,self.color,None,500)
+        control_text = self.fonts["Start Button"].render("Move the cursor to the level and press A",True,self.color,None,400)
+        back = self.fonts["Start Button"].render("Press the Escape button or the B button to go back to Title Screen",True,self.color,None,500)
         screen.blits([
             (explain_text,(700,200)),
             (control_text,(700,350)),
@@ -99,16 +149,29 @@ class Choose_Level(Screens):
             ])
 
     def update_cursor(self) -> None:
+        """Changes the position and
+        option name of the cursor.
+        """
         self.choose_level_up()
         self.choose_level_down()
 
     def draw_option_text(self, screen: pygame.Surface) -> None:
+        """Displays the Level options on the screen.
+
+        Args:
+            screen (pygame.Surface): The screen you want to display on.
+        """
         for i, _ in enumerate(range(8)):
-            level = self.fonts["Start Button"].render(f"Level {i +1 }",True,"#F5E800")
+            level = self.fonts["Start Button"].render(f"Level {i +1 }",True,self.color)
             y_pos = self.starting_pos + i * self.y_spacing
             screen.blit(level,(self.starting_pos,y_pos))
 
-    def draw_choose_level_screen2(self,screen: pygame.Surface)->None:
+    def draw_choose_level_screen(self,screen: pygame.Surface)->None:
+        """Displays Everything together for the main loop.
+
+        Args:
+            screen (pygame.Surface): The screen you want to display on.
+        """
         screen.fill("Blue")
         self.cursor.draw_cursor(screen)
         self.explain_text(screen)

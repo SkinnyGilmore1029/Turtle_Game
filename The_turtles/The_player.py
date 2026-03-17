@@ -14,68 +14,46 @@ class Player(Turtle_Base):
             "up" : False,
             "down" : False,
             "left" : False,
-            "right" : False
+            "right" : False,
+            "control up" : False,
+            "control down" : False,
+            "control left" : False,
+            "control right" : False
         }
 
     def get_player_pos(self) -> tuple[int,int]:
         return (self.x, self.y)
 
     def move_up(self, dt:float) -> None:
-        if self.button_pushed["up"]:
+        if self.button_pushed["up"] or self.button_pushed['control up']:
             self.direction = "Up"
             self.velocity.y = -self.speed
             self.rect.y += self.velocity.y *dt
+            #self.button_pushed['up'] = False
+
 
     def move_down(self,dt:float) -> None:
-        if self.button_pushed["down"]:
+        if self.button_pushed["down"] or self.button_pushed['control down']:
             self.velocity.y = self.speed
             self.direction = "Down"
             self.rect.y += self.velocity.y *dt
+            #self.button_pushed['down'] = False
+
 
     def move_left(self, dt:float) -> None:
-        if self.button_pushed["left"]:
+        if self.button_pushed["left"]or self.button_pushed['control left']:
             self.velocity.x = -self.speed
             self.direction = "Left"
             self.rect.x += self.velocity.x * dt
+            #self.button_pushed['left'] = False
 
     def move_right(self, dt:float) -> None:
-        if self.button_pushed["right"]:
+        if self.button_pushed["right"] or self.button_pushed['control right']:
             self.velocity.x = self.speed
             self.direction = "Right"
             self.rect.x += self.velocity.x * dt
+            #self.button_pushed['right'] = False
 
-    def move(self,dt:float)->None:
-        """
-        Updates the player's velocity and position based on keyboard input.
-
-        This method checks the current keyboard state and sets the player's
-        velocity and facing direction accordingly. The player's position is
-        then updated using the velocity scaled by the delta time (dt) for
-        framerate-independent movement.
-
-        Parameters:
-            dt (float): Time elapsed since the last frame (delta time).
-        """
-
-        keys = pygame.key.get_pressed()
-        self.velocity.x = 0
-        self.velocity.y = 0
-
-        if keys[pygame.K_LEFT]:
-            self.velocity.x = -self.speed
-            self.direction = "Left"
-        if keys[pygame.K_RIGHT]:
-            self.velocity.x = self.speed
-            self.direction = "Right"
-        if keys[pygame.K_UP]:
-            self.velocity.y = -self.speed
-            self.direction = "Up"
-        if keys[pygame.K_DOWN]:
-            self.velocity.y = self.speed
-            self.direction = "Down"
-
-        self.rect.x += self.velocity.x * dt
-        self.rect.y += self.velocity.y *dt
 
     def move_cutscene(self,dt,game):
         self.velocity.y = 0
@@ -111,8 +89,6 @@ class Player(Turtle_Base):
             dt (float): Time elapsed since the last frame (delta time).
         """
 
-        # Move player
-        #self.move(dt)
         self.move_down(dt)
         self.move_up(dt)
         self.move_left(dt)

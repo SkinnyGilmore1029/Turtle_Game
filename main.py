@@ -44,11 +44,16 @@ class Turtle_Game:
                 ):
 
                 match self.game_state:
+                    case "Title":
+                        the_controller.title_screen_controller(event)
+                        the_keyboard.start_screen_keyboard(event)
                     case "Choosing Level":
-                        the_keyboard.handle_choosing_keyboard(event, self)
+                        the_keyboard.handle_choosing_keyboard(event)
                         the_controller.choose_screen_controller(event)
                     case "Playing":
                         the_controller.player_controller(event)
+                        the_keyboard.move_turtle_keyboard(event, self)
+
 
     def change_level(self):
         if (self.current_level.level != self.level):
@@ -80,12 +85,13 @@ class Turtle_Game:
                 music.stop_music()
                 match self.game_state:
                     case "Title":
+                        Title_screen.update_cursor()
                         Title_screen.draw_Title_screen(self.screen)
                         Title_screen.Title_screen_controls(self)
                     case "Choosing Level":
                         Choosing_screen.update_cursor()
-                        Choosing_screen.draw_choose_level_screen2(self.screen)
-                        Choosing_screen.choosing_level2(self)
+                        Choosing_screen.draw_choose_level_screen(self.screen)
+                        Choosing_screen.choosing_level(self)
                     case "Game Over":
                         Game_over_screen.draw_game_over_screen(self.screen)
                         Game_over_screen.game_over_controls(self)
