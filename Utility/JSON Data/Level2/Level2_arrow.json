@@ -1,0 +1,9 @@
+{
+    "Room Arrow 1" : {
+        "name" : "Level 2 R2",
+        "x" : 1136,
+        "y" : 400,
+        "level" : 2,
+        "room" : 1
+    }
+}

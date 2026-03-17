@@ -36,7 +36,13 @@
             "Lily" : "Pictures/Misc/Lily Pad.png",
             "Puddle" : "Pictures/Misc/puddle.png",
             "Shelter" : "Pictures/Misc/shelter.png",
-            "Cursor" : "Pictures/Misc/Cursor.png"
+            "Cursor" : "Pictures/Misc/Cursor.png",
+            "Level 1 R2" : "Pictures/Misc/RoomArrow1.png",
+            "Level 2 R2" : "Pictures/Misc/RoomArrow2.png",
+            "Level 3 R2" : "Pictures/Misc/RoomArrow3.png",
+            "Level 4 R2" : "Pictures/Misc/RoomArrow4.png",
+            "Level 5 R2" : "Pictures/Misc/RoomArrow5.png",
+            "Level 6 R2" : "Pictures/Misc/RoomArrow6.png"
         },
 
         "Sheets" :{

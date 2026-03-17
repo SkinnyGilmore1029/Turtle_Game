@@ -30,6 +30,7 @@ from Level.Buttons import Button_group
 from Level.Heat_Puddle import All_puddles , heat_bar
 from Level.shelter import The_shelters
 from Level.Check_Points import Check_point
+from Level.Room2_arrows import Room2_arrow
 from Managers.Data_Manager import data
 
 class Room_Handler:
@@ -96,9 +97,9 @@ class Room_Handler:
                 player.rect.y = HEIGHT -1
                 The_tele.get_tele_data(game.level, game.room)
             elif player.rect.y <=0 and game.room == 2:
-                player.rect.y =1 
+                player.rect.y =1
             elif player.rect.y >= HEIGHT and game.room == 2:
-                game.room -= 1 
+                game.room -= 1
                 player.rect.y = 1
                 The_tele.get_tele_data(game.level, game.room)
             elif player.rect.y >= HEIGHT-64 and game.room == 1:
@@ -153,20 +154,25 @@ class Room_Handler:
         """
         match self.level:
             case 1:
-                pass
+                Room2_arrow.draw(screen)
             case 2:
+                Room2_arrow.draw(screen)
                 Button_group.draw(screen)
             case 3:
+                Room2_arrow.draw(screen)
                 The_Crabs.draw(screen)
                 All_Lily.draw(screen)
             case 4:
+                Room2_arrow.draw(screen)
                 All_cactus.draw(screen)
                 All_Flies.draw(screen)
                 Lizards.draw(screen)
             case 5:
+                Room2_arrow.draw(screen)
                 All_puddles.draw(screen)
                 heat_bar.draw(screen)
             case 6:
+                Room2_arrow.draw(screen)
                 The_shelters.draw(screen)
             case 7:
                 Button_group.draw(screen)
@@ -185,22 +191,27 @@ class Room_Handler:
         """
         match level:
             case 1:
-                pass
+                Room2_arrow.get_arrows(level, room)
             case 2:
                 Button_group.clear_buttons_room(level,room)
                 Button_group.get_level_buttons(level,room)
+                Room2_arrow.get_arrows(level, room)
             case 3:
                 The_Crabs.get_level_crabs(level, room)
                 All_Lily.change_room()
                 All_Lily.get_lily_data(level, room)
+                Room2_arrow.get_arrows(level, room)
             case 4:
                 All_cactus.get_level_cactus(level,room)
                 All_Flies.get_level_flies(level,room)
                 Lizards.get_lizard_data(level,room)
+                Room2_arrow.get_arrows(level, room)
             case 5:
                 All_puddles.get_puddle_data(level,room)
+                Room2_arrow.get_arrows(level, room)
             case 6:
                 The_shelters.get_shelter_data(level,room)
+                Room2_arrow.get_arrows(level, room)
             case 7:
                 Button_group.clear_buttons_room(level,room)
                 Button_group.get_level_buttons(level,room)
