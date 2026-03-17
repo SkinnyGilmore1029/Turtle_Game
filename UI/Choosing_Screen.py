@@ -11,98 +11,83 @@ from Utility.Settings import (
     LEVEL7_POS,
     LEVEL8_POS
 )
+from Managers.Cursor_Manager import Cursor
 
 class Choose_Level(Screens):
     def __init__(self,name:str)->None:
         super().__init__(name)
+        self.cursor: Cursor = Cursor("Level 1")
+        self.button_pushed: dict[int|str, bool] = {
+            1: False,
+            2: False,
+            3: False,
+            4: False,
+            5: False,
+            6: False,
+            7: False,
+            8: False,
+            "Esc" : False
+        }
+        self.starting_pos:int = 200
+        self.y_spacing:int = 40
 
-    def choosing_level(self,game:object)->None:
-        keys = pygame.key.get_pressed()
+    def choosing_level2(self, game: object) -> None:
         if game.room != 1:
             game.room = 1
-        if keys[pygame.K_1]:
-            game.level = 1
-            game.playing = True
-            game.game_state = "Playing"
-            player.rect.x = LEVEL1_POS[0]
-            player.rect.y = LEVEL1_POS[1]
 
-        elif keys[pygame.K_2]:
-            game.level = 2
-            game.playing = True
-            game.game_state = "Playing"
-            player.rect.x = LEVEL2_POS[0]
-            player.rect.y = LEVEL2_POS[1]
+        # Map level numbers to their positions
+        level_positions = {
+            1: LEVEL1_POS,
+            2: LEVEL2_POS,
+            3: LEVEL3_POS,
+            4: LEVEL4_POS,
+            5: LEVEL5_POS,
+            6: LEVEL6_POS,
+            7: LEVEL7_POS,
+            8: LEVEL8_POS
+        }
 
-        elif keys[pygame.K_3]:
-            game.level = 3
-            game.playing = True
-            game.game_state = "Playing"
-            player.rect.x = LEVEL3_POS[0]
-            player.rect.y = LEVEL3_POS[1]
+        # Loop through button_pushed
+        for key, pressed in self.button_pushed.items():
+            if pressed:
+                if key == "Esc":
+                    game.game_state = "Title"
+                else:
+                    game.level = key
+                    game.playing = True
+                    game.game_state = "Playing"
+                    player.rect.x, player.rect.y = level_positions[key]
+                # Reset the button
+                self.button_pushed[key] = False
+                break
 
+    def Title_Text(self, screen:pygame.Surface) -> None:
+        """Yes this is mine"""
+        Title = self.fonts["Title"].render("Choose Your Level!",True,"#F5E800")
+        screen.blit(Title,(400,0))
 
-        elif keys[pygame.K_4]:
-            game.level = 4
-            game.playing = True
-            game.game_state = "Playing"
-            player.rect.x = LEVEL4_POS[0]
-            player.rect.y = LEVEL4_POS[1]
-
-        elif keys[pygame.K_5]:
-            game.level = 5
-            game.playing = True
-            game.game_state = "Playing"
-            player.rect.x = LEVEL5_POS[0]
-            player.rect.y = LEVEL5_POS[1]
-
-        elif keys[pygame.K_6]:
-            game.level = 6
-            game.playing = True
-            game.game_state = "Playing"
-            player.rect.x = LEVEL6_POS[0]
-            player.rect.y = LEVEL6_POS[1]
-
-        elif keys[pygame.K_7]:
-            game.level = 7
-            game.playing = True
-            game.game_state = "Playing"
-            player.rect.x = LEVEL7_POS[0]
-            player.rect.y = LEVEL7_POS[1]
-
-        elif keys[pygame.K_8]:
-            game.level = 8
-            game.playing = True
-            game.game_state = "Playing"
-            player.rect.x = LEVEL8_POS[0]
-            player.rect.y = LEVEL8_POS[1]
-
-        elif keys[pygame.K_b]:
-            game.game_state = "Title"
-
-    def draw_choose_level_screen(self,screen:pygame.Surface)->None:
-        screen.fill("Blue")
-        Instruction = self.fonts["Title"].render("Choose Your Level!",True,"#F5E800")
-        level1 = self.fonts["Start Button"].render("Level 1: press 1",True,"#F5E800")
-        level2 = self.fonts["Start Button"].render("Level 2: press 2",True,"#F5E800")
-        level3 = self.fonts["Start Button"].render("Level 3: press 3",True,"#F5E800")
-        level4 = self.fonts["Start Button"].render("Level 4: press 4",True,"#F5E800")
-        level5 = self.fonts["Start Button"].render("Level 5: press 5",True,"#F5E800")
-        level6 = self.fonts["Start Button"].render("Level 6: press 6",True,"#F5E800")
-        level7 = self.fonts["Start Button"].render("Level 7: press 7",True,"#F5E800")
-        level8 = self.fonts["Start Button"].render("Level 8: press 8",True,"#F5E800")
-        go_back = self.fonts["Start Button"].render("To go back: press B",True,"#F5E800")
+    def explain_text(self, screen: pygame.Surface)-> None:
+        pygame.draw.rect(screen,"Black", (680, 180, 510, 430), 20, 10, 10, 10, 10, 10)
+        explain_text = self.fonts["Start Button"].render("Press the number of the level on the Keyboard to choose!",True,"#F5E800",None,500)
+        control_text = self.fonts["Start Button"].render("Move the cursor to the level and press A",True,"#F5E800",None,400)
+        back = self.fonts["Start Button"].render("Press the Escape button or the B button to go back to Title Screen",True,"#F5E800",None,500)
         screen.blits([
-            (Instruction,(400,0)),
-            (level1,(200,200)),
-            (level2,(200,240)),
-            (level3,(200,280)),
-            (level4,(200,320)),
-            (level5,(200,360)),
-            (level6,(200,400)),
-            (level7,(200,440)),
-            (level8,(200,480)),
-            (go_back,(200,520))
-        ])
+            (explain_text,(700,200)),
+            (control_text,(700,350)),
+            (back, (700, 500))
+            ])
+
+    def draw_option_text(self, screen: pygame.Surface) -> None:
+        for i, _ in enumerate(range(8)):
+            level = self.fonts["Start Button"].render(f"Level {i +1 }",True,"#F5E800")
+            y_pos = self.starting_pos + i * self.y_spacing
+            screen.blit(level,(self.starting_pos,y_pos))
+
+    def draw_choose_level_screen2(self,screen: pygame.Surface)->None:
+        screen.fill("Blue")
+        self.explain_text(screen)
+        self.Title_Text(screen)
+        self.draw_option_text(screen)
+
 
 Choosing_screen = Choose_Level('Title Screen')

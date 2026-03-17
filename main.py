@@ -7,6 +7,7 @@ from UI.Game_Over import Game_over_screen
 from UI.Win_screen import Win
 from Managers.Music_Manager import music
 from Managers.Controller_Manager import the_controller
+from Managers.KeyBoard_manager import the_keyboard
 import sys
 pygame.init()
 pygame.joystick.init()
@@ -42,7 +43,11 @@ class Turtle_Game:
                 pygame.JOYAXISMOTION
                 ):
 
-                the_controller.player_controller(event)
+                match self.game_state:
+                    case "Choosing Level":
+                        the_keyboard.handle_choosing_keyboard(event, self)
+                    case "Playing":
+                        the_controller.player_controller(event)
 
     def change_level(self):
         if (self.current_level.level != self.level):
@@ -77,8 +82,8 @@ class Turtle_Game:
                         Title_screen.draw_Title_screen(self.screen)
                         Title_screen.Title_screen_controls(self)
                     case "Choosing Level":
-                        Choosing_screen.draw_choose_level_screen(self.screen)
-                        Choosing_screen.choosing_level(self)
+                        Choosing_screen.draw_choose_level_screen2(self.screen)
+                        Choosing_screen.choosing_level2(self)
                     case "Game Over":
                         Game_over_screen.draw_game_over_screen(self.screen)
                         Game_over_screen.game_over_controls(self)

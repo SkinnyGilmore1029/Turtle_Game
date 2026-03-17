@@ -35,7 +35,8 @@
             "Title Screen" : "Pictures/Backgrounds/Title_bg.png",
             "Lily" : "Pictures/Misc/Lily Pad.png",
             "Puddle" : "Pictures/Misc/puddle.png",
-            "Shelter" : "Pictures/Misc/shelter.png"
+            "Shelter" : "Pictures/Misc/shelter.png",
+            "Cursor" : "Pictures/Misc/Cursor.png"
         },
 
         "Sheets" :{
