@@ -61,34 +61,30 @@ class The_Walls(pygame.sprite.Sprite):
 
     def enemy_collision(self) -> None:
         for e in bad_guys:
-            if self.rect.colliderect(e.rect) and e.name not in self.ignore:
-                dx_left = abs(self.rect.left - e.rect.right)
-                dx_right = abs(self.rect.right - e.rect.left)
-                dy_top = abs(self.rect.top - e.rect.bottom)
-                dy_bottom = abs(self.rect.bottom - e.rect.top)
+            if pygame.sprite.collide_mask(self, e) and e.name not in self.ignore:
+                # Calculate overlap on both axes
+                x_overlap = min(e.rect.right, self.rect.right) - max(e.rect.left, self.rect.left)
+                y_overlap = min(e.rect.bottom, self.rect.bottom) - max(e.rect.top, self.rect.top)
 
-                min_dist = min(dx_left, dx_right, dy_top, dy_bottom)
-
-                if min_dist == dy_top:
-                    # hit from top
-                    e.rect.bottom = self.rect.top
-                    e.velocity.y *= -1
-                    e.direction = 'Down'
-                elif min_dist == dy_bottom:
-                    # hit from bottom
-                    e.rect.top = self.rect.bottom
-                    e.velocity.y *= -1
-                    e.direction = 'Up'
-                elif min_dist == dx_left:
-                    # hit from left
-                    e.rect.right = self.rect.left
+                # Resolve collision in direction of least penetration
+                if x_overlap < y_overlap:
+                    # Horizontal collision
+                    if e.rect.centerx > self.rect.centerx:
+                        e.rect.left = self.rect.right
+                    else:
+                        e.rect.right = self.rect.left
+                    # Reverse horizontal velocity
                     e.velocity.x *= -1
-                    e.direction = 'Right'
-                elif min_dist == dx_right:
-                    # hit from right
-                    e.rect.left = self.rect.right
-                    e.velocity.x *= -1
-                    e.direction = 'Left'
+                    e.direction = 'Left' if e.velocity.x < 0 else 'Right'
+                else:
+                    # Vertical collision
+                    if e.rect.centery > self.rect.centery:
+                        e.rect.top = self.rect.bottom
+                    else:
+                        e.rect.bottom = self.rect.top
+                    # Reverse vertical velocity
+                    e.velocity.y *= -1
+                    e.direction = 'Up' if e.velocity.y < 0 else 'Down'
 
     def update(self,dt)->None:
         self.wall_collision()

@@ -5,7 +5,7 @@
         "y" : 150.0,
         "width" : 96,
         "height" : 96,
-        "direction" : "Up",
+        "direction" : "Down",
         "frame_count" : 3,
         "in_room" : 1,
         "speed": [200,200],
@@ -17,7 +17,7 @@
         "y" : 650,
         "width" : 96,
         "height" : 96,
-        "direction" : "Up",
+        "direction" : "Down",
         "frame_count" : 3,
         "in_room" : 1,
         "speed": [200,200],
@@ -29,7 +29,7 @@
         "y" : 80,
         "width" : 96,
         "height" : 96,
-        "direction" : "Down",
+        "direction" : "Up",
         "frame_count" : 3,
         "in_room" : 2,
         "speed": [-200,-200],
@@ -44,7 +44,7 @@
         "direction" : "Down",
         "frame_count" : 3,
         "in_room" : 2,
-        "speed": [-200,-200],
+        "speed": [-150,-150],
         "sheet size" : [1024,332]
         },
     "scorpion 5":{
@@ -56,7 +56,7 @@
         "direction" : "Down",
         "frame_count" : 3,
         "in_room" : 2,
-        "speed": [-200,-200],
+        "speed": [-150,-150],
         "sheet size" : [1024,332]
         }
 }
